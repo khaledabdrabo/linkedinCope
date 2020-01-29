@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITI.MVC.LinkedIn", "ITI.MVC.LinkedIn\ITI.MVC.LinkedIn.csproj", "{D5A4FFC0-1B0F-44A9-A730-D5F67F1A8E49}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITI.MVC.LinkedIn.DbLayer", "ITI.MVC.LinkedIn.DbLayer\ITI.MVC.LinkedIn.DbLayer.csproj", "{874597CF-4E43-4064-8C13-F7E86E5B554A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +17,15 @@ Global
 		{D5A4FFC0-1B0F-44A9-A730-D5F67F1A8E49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5A4FFC0-1B0F-44A9-A730-D5F67F1A8E49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5A4FFC0-1B0F-44A9-A730-D5F67F1A8E49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{874597CF-4E43-4064-8C13-F7E86E5B554A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{874597CF-4E43-4064-8C13-F7E86E5B554A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{874597CF-4E43-4064-8C13-F7E86E5B554A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{874597CF-4E43-4064-8C13-F7E86E5B554A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D1E5CAF7-87BB-4762-8F17-6047B21BFCAD}
 	EndGlobalSection
 EndGlobal
