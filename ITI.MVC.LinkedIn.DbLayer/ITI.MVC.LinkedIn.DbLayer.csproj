@@ -51,7 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Class1.cs" />
+    <Compile Include="Entities\Certification.cs" />
+    <Compile Include="Entities\Language.cs" />
+    <Compile Include="Entities\Organization.cs" />
+    <Compile Include="Entities\Project.cs" />
+    <Compile Include="Entities\Publication.cs" />
+    <Compile Include="Entities\Skill.cs" />
     <Compile Include="ModelContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
