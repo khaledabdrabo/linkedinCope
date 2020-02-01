@@ -50,6 +50,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Education.cs" />
+    <Compile Include="Entities\Reply.cs" />
+    <Compile Include="Entities\UserCertification.cs" />
+    <Compile Include="Entities\UserSkill.cs" />
+    <Compile Include="Entities\VolunteerExperience.cs" />
+    <Compile Include="Entities\WorkExprience.cs" />
+    <Compile Include="Enums\Cause.cs" />
+    <Compile Include="Enums\EmploymentType.cs" />
     <Compile Include="ModelContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -57,9 +65,6 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Entities\" />
-    <Folder Include="Enums\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
