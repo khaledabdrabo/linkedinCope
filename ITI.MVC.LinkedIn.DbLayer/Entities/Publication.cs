@@ -8,23 +8,28 @@ using System.Threading.Tasks;
 
 namespace ITI.MVC.LinkedIn.DbLayer.Entities
 {
-   public class Publication
+    [Table("Publication")]
+    public class Publication
     {
-        [Key, Column(Order = 0)]
-        public int Id { get; set; }
-        [Required(ErrorMessage ="please enter Title ")]
-        [StringLength(50, ErrorMessage = "The {0} must be at least {1} characters long.", MinimumLength = 6)]
-
+        [Column(Order = 0)]
+        [StringLength(50, ErrorMessage = "The title can only be 2 to 50 characters long.", MinimumLength = 2)]
+        [Required(ErrorMessage = "Title is required")]
         public int Title { get; set; }
-        public string Publisher { get; set; }
-        public DataType Date { get; set; }
-        public string Author { get; set; }
-        public string Url { get; set; }
-        public string Description { get; set; }
-       
-        
-        [Key, Column(Order = 1)]
+
+        [Key]
+        [Column(Order = 1)]
         public int UserId { get; set; }
-               
+
+        public string Publisher { get; set; }
+
+        public DataType Date { get; set; }
+
+        public string Author { get; set; }
+
+        public string Url { get; set; }
+
+        public string Description { get; set; }
+
+        public virtual ApplicationUser User { get; set; }
     }
 }

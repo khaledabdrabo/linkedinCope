@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ITI.MVC.LinkedIn.DbLayer.Entities
 {
-    [Table("Skill")]
-    public class Skill
+    [Table("Country")]
+    public class Country
     {
         [Key]
         public int Id { get; set; }
@@ -17,7 +12,5 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
         [Required(ErrorMessage = "Name is required")]
         [StringLength(50, ErrorMessage = "The name can only be 2 to 50 characters long.", MinimumLength = 2)]
         public string Name { get; set; }
-
-        public virtual ICollection<UserSkill> UserSkills { get; set; }
     }
 }

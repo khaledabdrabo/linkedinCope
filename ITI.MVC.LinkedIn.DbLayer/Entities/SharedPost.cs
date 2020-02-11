@@ -8,19 +8,16 @@ using System.Threading.Tasks;
 
 namespace ITI.MVC.LinkedIn.DbLayer.Entities
 {
-    [Table("UserSkill")]
-    public class UserSkill
+    [Table("SharedPost")]
+    public class SharedPost
     {
         [Key]
-        public int Id { get; set; }
-
-        [ForeignKey("User")]
+        public int PostId { get; set; }
         public int UserId { get; set; }
-        
-        [ForeignKey("Skill")]
-        public int SkillId { get; set; }
+        public int OriginalPostId { get; set; }
 
         public virtual ApplicationUser User { get; set; }
-        public virtual Skill Skill { get; set; }
+        public virtual Post Post { get; set; }
+        public virtual Post OriginalPost { get; set; }
     }
 }

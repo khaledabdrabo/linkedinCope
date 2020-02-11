@@ -9,27 +9,25 @@ using System.Threading.Tasks;
 namespace ITI.MVC.LinkedIn.DbLayer.Entities
 {
     [Table("Reply")]
-    class Reply
+    public class Reply
     {
         [Key]
-        [Column(Order=1)]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
-        [Key]
-        [Column(Order = 2)]
+        public int Id { get; set; }
+
         [ForeignKey("Comment")]
-        public int CommentID { get; set; }
-        [Key]
-        [Column(Order = 3)]
+        public int CommentId { get; set; }
+
         [ForeignKey("User")]
-        public int UserID { get; set; }
+        public int UserId { get; set; }
+
         [Required]
-        [MaxLength(250)]
+        [MaxLength(255)]
         public string Content { get; set; }
+
         public DateTime TimeStamp { get; set; }
 
-        //public virtual Comment Comment { get; set; }
-        //public virtual User User { get; set; }
-
+        public virtual Comment Comment { get; set; }
+        public virtual ApplicationUser User { get; set; }
+        public virtual ICollection<ReplyLike> Likes { get; set; }
     }
 }

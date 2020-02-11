@@ -8,23 +8,20 @@ using System.Threading.Tasks;
 
 namespace ITI.MVC.LinkedIn.DbLayer.Entities
 {
-    [Table("Course")]
-    public class Course
+    [Table("ReplyLike")]
+    public class ReplyLike
     {
-        [Required(ErrorMessage = "Name is required")]
-        public string Name { get; set; }
+        [Key]
+        [Column(Order = 0)]
+        [ForeignKey("Reply")]
+        public int ReplyId { get; set; }
 
         [Key]
-        [Required(ErrorMessage = "Number is required")]
-        public int Number { get; set; }
-
-        [ForeignKey("WorkExperience")]
-        public int? WorkExperienceId { get; set; }
-
+        [Column(Order = 1)]
         [ForeignKey("User")]
         public int UserId { get; set; }
 
+        public virtual Reply Reply { get; set; }
         public virtual ApplicationUser User { get; set; }
-        public virtual WorkExprience WorkExprience { get; set; }
     }
 }

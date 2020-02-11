@@ -8,27 +8,20 @@ using System.Threading.Tasks;
 
 namespace ITI.MVC.LinkedIn.DbLayer.Entities
 {
-    public class Awards
+    [Table("PostLike")]
+    public class PostLike
     {
         [Key]
         [Column(Order = 0)]
-        public String Title { get; set; }
+        [ForeignKey("Post")]
+        public int PostId { get; set; }
 
-        public List<Organization> WorkExperienceId { get; set; }
-
-        public String Issuer { get; set; }
-
-        public DateTime IssueDate { get; set; }
-
-        [Required]
-        public String Description { get; set; }
-        
         [Key]
         [Column(Order = 1)]
-        [ForeignKey("UserID")]
+        [ForeignKey("User")]
         public int UserId { get; set; }
 
-
-        public virtual User UserID { get; set; }
+        public virtual Post Post { get; set; }
+        public virtual ApplicationUser User { get; set; }
     }
 }

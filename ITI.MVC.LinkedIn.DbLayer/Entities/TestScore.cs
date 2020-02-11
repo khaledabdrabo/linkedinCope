@@ -8,28 +8,28 @@ using System.Threading.Tasks;
 
 namespace ITI.MVC.LinkedIn.DbLayer.Entities
 {
+    [Table("TestScore")]
     public class TestScore
     {
-
         [Key]
-        [Column(Order = 0)]
-        public String TestName { get; set; }
-        
-        public List<Organization> WorkExperienceId { get; set; }
+        public int Id { get; set; }
 
-        [Required]
+        public string TestName { get; set; }
+
+        [ForeignKey("User")]
+        public int UserId { get; set; }
+
+        [ForeignKey("Experience")]
+        public int? ExperienceId { get; set; }
+
+        [Required(ErrorMessage = "Score is required")]
         public int Score { get; set; }
 
         public DateTime TestDate { get; set; }
         
-        public String Description { get; set; }
+        public string Description { get; set; }
 
-        [Key]
-        [Column(Order = 1)]
-        [ForeignKey("UserID")]
-        public int UserId { get; set; }
-
-
-        public virtual User UserID { get; set; }
+        public virtual ApplicationUser User { get; set; }
+        public virtual Experience Experience { get; set; }
     }
 }

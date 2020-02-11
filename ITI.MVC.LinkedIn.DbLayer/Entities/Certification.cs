@@ -9,14 +9,15 @@ using System.Threading.Tasks;
 namespace ITI.MVC.LinkedIn.DbLayer.Entities
 {
     [Table("Certification")]
-   public class Certification
+    public class Certification
     {
         [Key]
         public int Id { get; set; }
-        [Required(ErrorMessage = "Please Enter valid name")]
-        [StringLength(50, ErrorMessage = "The {0} must be at least {1} characters long.", MinimumLength = 6)]
 
+        [Required(ErrorMessage = "Name is required")]
+        [StringLength(100, ErrorMessage = "The name must be between 100 and 50 characters", MinimumLength = 2)]
         public string Name { get; set; }
-        
+
+        public virtual ICollection<UserCertification> UserCertifications { get; set; }
     }
 }

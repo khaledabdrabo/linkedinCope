@@ -14,7 +14,6 @@ namespace ITI.MVC.LinkedIn.DbLayer.Enums
         FreeLance = 8,
         Contract = 16,
         Internship = 32,
-        apprenticeship = 64
-
+        Apprenticeship = 64
     }
 }

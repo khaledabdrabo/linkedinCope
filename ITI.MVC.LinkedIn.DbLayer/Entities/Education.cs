@@ -13,30 +13,36 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
     {
         [Key]
         [Column(Order = 1)]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        // ana zwdt da 3shan afrd user create work experince le nfs el orgnization mrten 
-        public int ID { get; set; }
+        [ForeignKey("Experience")]
+        public int ExperienceId { get; set; }
+
         [Key]
         [Column(Order = 2)]
-        [ForeignKey("User")]
-        public int UserID { get; set; }
-        [Key]
-        [Column(Order = 3)]
-        [ForeignKey("Organization")]
-        public int OrganizationID { get; set; }
         [MaxLength(50)]
         public string Degree { get; set; }
+
+        [Key]
+        [Column(Order = 3)]
         [MaxLength(50)]
         public string FieldOfStudy { get; set; }
+
+        [ForeignKey("User")]
+        public int UserId { get; set; }
+
+        public DateTime StartYear { get; set; }
+
+        public DateTime EndYear { get; set; }
+
         [MaxLength(50)]
         public string Grade { get; set; }
-        [MaxLength(250)]
+
+        [MaxLength(255)]
         public string Activities { get; set; }
-        [MaxLength(250)]
+
+        [MaxLength(255)]
         public string Description { get; set; }
 
-        //public virtual User User { get; set; }
-        //public virtual Organization Organization { get; set; }
-
+        public virtual Experience Experience { get; set; }
+        public virtual ApplicationUser User { get; set; }
     }
 }

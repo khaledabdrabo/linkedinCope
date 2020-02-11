@@ -41,6 +41,12 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -54,32 +60,38 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-
     <Compile Include="Entities\Certification.cs" />
+    <Compile Include="Entities\CommentLike.cs" />
+    <Compile Include="Entities\Connection.cs" />
+    <Compile Include="Entities\ConnectionRequest.cs" />
+    <Compile Include="Entities\Country.cs" />
+    <Compile Include="Entities\Experience.cs" />
     <Compile Include="Entities\Language.cs" />
     <Compile Include="Entities\Organization.cs" />
+    <Compile Include="Entities\PostLike.cs" />
     <Compile Include="Entities\Project.cs" />
     <Compile Include="Entities\Publication.cs" />
+    <Compile Include="Entities\ReplyLike.cs" />
+    <Compile Include="Entities\SharedPost.cs" />
     <Compile Include="Entities\Skill.cs" />
-
-
-    <Compile Include="Entities\Awards.cs" />
+    <Compile Include="Entities\Award.cs" />
     <Compile Include="Entities\Comment.cs" />
     <Compile Include="Entities\Course.cs" />
-
     <Compile Include="Entities\Patent.cs" />
     <Compile Include="Entities\Post.cs" />
     <Compile Include="Entities\TestScore.cs" />
-    <Compile Include="Entities\User.cs" />
-
+    <Compile Include="Entities\ApplicationUser.cs" />
     <Compile Include="Entities\Education.cs" />
     <Compile Include="Entities\Reply.cs" />
     <Compile Include="Entities\UserCertification.cs" />
+    <Compile Include="Entities\UserLanguage.cs" />
     <Compile Include="Entities\UserSkill.cs" />
-    <Compile Include="Entities\VolunteerExperience.cs" />
-    <Compile Include="Entities\WorkExprience.cs" />
-    <Compile Include="Enums\Cause.cs" />
+    <Compile Include="Entities\Volunteer.cs" />
+    <Compile Include="Entities\Work.cs" />
+    <Compile Include="Enums\PatentStatus.cs" />
+    <Compile Include="Enums\VolunteeringCause.cs" />
     <Compile Include="Enums\EmploymentType.cs" />
+    <Compile Include="Enums\OrganizationType.cs" />
     <Compile Include="ModelContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -87,13 +99,8 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Enums\" />
-  </ItemGroup>
-
   <ItemGroup />
-
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

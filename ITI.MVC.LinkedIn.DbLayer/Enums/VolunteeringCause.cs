@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ITI.MVC.LinkedIn.DbLayer.Enums
 {
-    public enum Cause
+    public enum VolunteeringCause
     {
         AnimalWelfare = 1,
         ArtsAndCulture = 2,

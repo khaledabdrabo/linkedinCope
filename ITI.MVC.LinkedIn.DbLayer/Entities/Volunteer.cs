@@ -10,32 +10,31 @@ using System.Threading.Tasks;
 namespace ITI.MVC.LinkedIn.DbLayer.Entities
 {
     [Table("VolunteerExperience")]
-    public class VolunteerExperience
+    public class Volunteer
     {
         [Key]
         [Column(Order = 1)]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        // ana zwdt da 3shan afrd user create work experince le nfs el orgnization mrten 
-        public int ID { get; set; }
+        [ForeignKey("Experience")]
+        public int ExperienceId { get; set; }
+
         [Key]
         [Column(Order = 2)]
-        [ForeignKey("User")]
-        public int UserID { get; set; }
-        [Key]
-        [Column(Order = 3)]
-        [ForeignKey("Organization")]
-        public int OrganizationID { get; set; }
         [MaxLength(50)]
-        public string Role{ get; set; }
+        public string Role { get; set; }
 
-        public Cause? Cause{ get; set; }
+        [ForeignKey("User")]
+        public int UserId { get; set; }
+
+        public VolunteeringCause? VolunteeringCause { get; set; }
 
         public DateTime StartDate { get; set; }
+
         public DateTime EndDate { get; set; }
+
         [MaxLength(250)]
         public string Description { get; set; }
 
-        //public virtual User User { get; set; }
-        //public virtual Organization Organization { get; set; }
+        public virtual Experience Experience { get; set; }
+        public virtual ApplicationUser User { get; set; }
     }
 }
