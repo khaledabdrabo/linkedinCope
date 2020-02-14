@@ -21,6 +21,7 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
         public virtual ICollection<TestScore> TestScores { get; set; }
         public virtual ICollection<Publication> Publications { get; set; }
         public virtual ICollection<Post> Posts { get; set; }
+        public virtual ICollection<Image> Images { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<Reply> Replies { get; set; }
         public virtual ICollection<SharedPost> SharedPosts { get; set; }

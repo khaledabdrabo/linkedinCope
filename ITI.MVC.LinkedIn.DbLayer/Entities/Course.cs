@@ -18,13 +18,13 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
         [Required(ErrorMessage = "Number is required")]
         public int Number { get; set; }
 
-        [ForeignKey("WorkExperience")]
-        public int? WorkExperienceId { get; set; }
+        [ForeignKey("Experience")]
+        public int? ExperienceId { get; set; }
 
         [ForeignKey("User")]
         public int UserId { get; set; }
 
         public virtual ApplicationUser User { get; set; }
-        public virtual WorkExprience WorkExprience { get; set; }
+        public virtual Experience Experience { get; set; }
     }
 }

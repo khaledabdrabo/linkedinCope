@@ -28,5 +28,6 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<SharedPost> Shares { get; set; }
         public virtual ICollection<PostLike> Likes { get; set; }
+        public virtual ICollection<Image> Images { get; set; }
     }
 }

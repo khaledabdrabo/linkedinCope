@@ -26,6 +26,5 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
         public virtual Volunteer VolunteerExperience { get; set; }
         public virtual Education EducationExperience { get; set; }
         public virtual ICollection<Award> Awards { get; set; }
-
     }
 }
