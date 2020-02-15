@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ITI.MVC.LinkedIn.Web.Models;
+using ITI.MVC.LinkedIn.Store.DbManagers;
 
 namespace ITI.MVC.LinkedIn.Web.Controllers
 {
