@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -25,12 +26,16 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<Reply> Replies { get; set; }
         public virtual ICollection<SharedPost> SharedPosts { get; set; }
+        public virtual ICollection<Text> Texts { get; set; }
         public virtual ICollection<PostLike> PostLikes { get; set; }
         public virtual ICollection<CommentLike> CommentLikes { get; set; }
         public virtual ICollection<ReplyLike> ReplyLikes { get; set; }
+
+        [InverseProperty("Sender")]
         public virtual ICollection<Connection> Connections { get; set; }
-        public virtual ICollection<ConnectionRequest> ReceivedConnectionRequests { get; set; }
-        public virtual ICollection<ConnectionRequest> SentConnectionRequests { get; set; }
+
+        [InverseProperty("Sender")]
+        public virtual ICollection<ConnectionRequest> ConnectionRequests { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

@@ -13,26 +13,16 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
     public class Volunteer
     {
         [Key]
-        [Column(Order = 1)]
         [ForeignKey("Experience")]
         public int ExperienceId { get; set; }
 
-        [Key]
-        [Column(Order = 2)]
         [MaxLength(50)]
         public string Role { get; set; }
 
         [ForeignKey("User")]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
         public VolunteeringCause? VolunteeringCause { get; set; }
-
-        public DateTime StartDate { get; set; }
-
-        public DateTime EndDate { get; set; }
-
-        [MaxLength(250)]
-        public string Description { get; set; }
 
         public virtual Experience Experience { get; set; }
         public virtual ApplicationUser User { get; set; }

@@ -15,10 +15,17 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
         public int Id { get; set; }
 
         [ForeignKey("User")]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
         [ForeignKey("Organization")]
         public int OrganizationId { get; set; }
+
+        public DateTime StartDate { get; set; }
+
+        public DateTime EndDate { get; set; }
+
+        [MaxLength(255)]
+        public string Description { get; set; }
 
         public virtual ApplicationUser User { get; set; }
         public virtual Organization Organization { get; set; }

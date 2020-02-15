@@ -19,7 +19,7 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
         [Key]
         [Column(Order = 1)]
         [ForeignKey("User")]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
         public virtual Post Post { get; set; }
         public virtual ApplicationUser User { get; set; }

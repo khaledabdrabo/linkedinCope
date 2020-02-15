@@ -13,7 +13,7 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
     {
         [Key]
         public int PostId { get; set; }
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public int OriginalPostId { get; set; }
 
         public virtual ApplicationUser User { get; set; }

@@ -9,7 +9,7 @@ namespace ITI.MVC.LinkedIn.DbLayer
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("ApplicationDbContext", throwIfV1Schema: false)
+            : base("name=ApplicationDbContext", throwIfV1Schema: false)
         {
         }
 
@@ -46,5 +46,6 @@ namespace ITI.MVC.LinkedIn.DbLayer
         public virtual DbSet<Post> Posts { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<Image> Images { get; set; }
+        public virtual DbSet<Text> Texts { get; set; }
     }
 }

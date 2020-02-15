@@ -12,22 +12,18 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
     public class Reply
     {
         [Key]
-        public int Id { get; set; }
+        [ForeignKey("Text")]
+        public int TextId { get; set; }
 
         [ForeignKey("Comment")]
         public int CommentId { get; set; }
 
         [ForeignKey("User")]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
-        [Required]
-        [MaxLength(255)]
-        public string Content { get; set; }
-
-        public DateTime TimeStamp { get; set; }
-
+        public ApplicationUser User { get; set; }
+        public virtual Text Text { get; set; }
         public virtual Comment Comment { get; set; }
-        public virtual ApplicationUser User { get; set; }
         public virtual ICollection<ReplyLike> Likes { get; set; }
     }
 }

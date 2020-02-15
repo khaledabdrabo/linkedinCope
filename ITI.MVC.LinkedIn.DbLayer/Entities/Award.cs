@@ -19,7 +19,7 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
 
         public string Issuer { get; set; }
 
-        [ForeignKey("ExperienceId")]
+        [ForeignKey("Experience")]
         public int? ExperienceId { get; set; }
 
         public DateTime IssueDate { get; set; }
@@ -27,7 +27,7 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
         public string Description { get; set; }
         
         [ForeignKey("User")]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
         public virtual ApplicationUser User { get; set; }
         public virtual Experience Experience { get; set; }

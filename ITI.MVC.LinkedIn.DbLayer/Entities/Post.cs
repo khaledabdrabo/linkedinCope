@@ -12,22 +12,16 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
     public class Post
     {
         [Key]
-        public int Id { get; set; }
-
-        [Required]
-        [MaxLength(255)]
-        public string Content { get; set; }
-
-        [Required]
-        public DateTime Time { get; set; }
+        [ForeignKey("Text")]
+        public int TextId { get; set; }
 
         [ForeignKey("User")]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
-        public virtual ApplicationUser User { get; set; }
+        public ApplicationUser User { get; set; }
+        public virtual Text Text { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<SharedPost> Shares { get; set; }
         public virtual ICollection<PostLike> Likes { get; set; }
-        public virtual ICollection<Image> Images { get; set; }
     }
 }

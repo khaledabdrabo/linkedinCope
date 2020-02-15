@@ -24,7 +24,7 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
         [Key]
         [Column(Order = 2)]
         [ForeignKey("User")]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
         [Required]
         [ForeignKey("Country")]

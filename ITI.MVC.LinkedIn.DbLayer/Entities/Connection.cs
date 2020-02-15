@@ -14,12 +14,12 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
         [Key]
         [Column(Order = 0)]
         [ForeignKey("Sender")]
-        public int SenderId { get; set; }
+        public string SenderId { get; set; }
 
         [Key]
         [Column(Order = 1)]
         [ForeignKey("Receiver")]
-        public int ReceiverId { get; set; }
+        public string ReceiverId { get; set; }
 
         public DateTime StartDate { get; set; }
 

@@ -14,11 +14,11 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
         [Column(Order = 0)]
         [StringLength(50, ErrorMessage = "The title can only be 2 to 50 characters long.", MinimumLength = 2)]
         [Required(ErrorMessage = "Title is required")]
-        public int Title { get; set; }
+        public string Title { get; set; }
 
         [Key]
         [Column(Order = 1)]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
         public string Publisher { get; set; }
 

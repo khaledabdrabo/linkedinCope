@@ -17,7 +17,7 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
         public string TestName { get; set; }
 
         [ForeignKey("User")]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
         [ForeignKey("Experience")]
         public int? ExperienceId { get; set; }

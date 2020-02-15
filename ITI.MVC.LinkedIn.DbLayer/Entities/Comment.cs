@@ -12,23 +12,18 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
     public class Comment
     {
         [Key]
-        public int Id { get; set; }
-
-        [Required]
-        [MaxLength(255)]
-        public string Content { get; set; }
-
-        [Required]
-        public DateTime Time { get; set; }
+        [ForeignKey("Text")]
+        public int TextId { get; set; }
 
         [ForeignKey("Post")]
         public int PostId { get; set; }
 
         [ForeignKey("User")]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
+        public ApplicationUser User { get; set; }
+        public virtual Text Text { get; set; }
         public virtual Post Post { get; set; }
-        public virtual ApplicationUser User { get; set; }
         public virtual ICollection<Reply> Replies { get; set; }
         public virtual ICollection<CommentLike> Likes { get; set; }
     }

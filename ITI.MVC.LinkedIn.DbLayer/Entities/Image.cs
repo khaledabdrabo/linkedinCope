@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ITI.MVC.LinkedIn.DbLayer.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -16,13 +17,15 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
 
         public string Url { get; set; }
 
-        [ForeignKey("Post")]
-        public int PostId { get; set; }
+        [ForeignKey("Text")]
+        public int? TextId { get; set; }
 
         [ForeignKey("User")]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
-        public Post Post { get; set; }
+        public ImageRole ImageRole { get; set; }
+
+        public virtual Text Text { get; set; }
         public ApplicationUser User { get; set; }
     }
 }
