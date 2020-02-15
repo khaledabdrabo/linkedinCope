@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Claims;
@@ -9,6 +10,24 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
 {
     public class ApplicationUser : IdentityUser
     {
+        public string Summary { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public DateTime BirthDate { get; set; }
+
+        [ForeignKey("Country")]
+        public string CountryName { get; set; }
+
+        [ForeignKey("CurrentPosition")]
+        public int WorkExperienceId { get; set; }
+
+        [ForeignKey("Industry")]
+        public string IndustryName { get; set; }
+
+        public virtual Country Country { get; set; }
+        public virtual Work CurrentPosition { get; set; }
+        public virtual Industry Industry { get; set; }
+
         public virtual ICollection<Award> Awards { get; set; }
         public virtual ICollection<Course> Courses { get; set; }
         public virtual ICollection<UserCertification> UserCertifications { get; set; }

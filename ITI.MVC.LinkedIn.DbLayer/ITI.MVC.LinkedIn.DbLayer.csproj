@@ -66,6 +66,7 @@
     <Compile Include="Entities\Country.cs" />
     <Compile Include="Entities\Experience.cs" />
     <Compile Include="Entities\Image.cs" />
+    <Compile Include="Entities\Industry.cs" />
     <Compile Include="Entities\Language.cs" />
     <Compile Include="Entities\Organization.cs" />
     <Compile Include="Entities\PostLike.cs" />
@@ -99,6 +100,10 @@
     <Compile Include="Migrations\202002150041091_Init.Designer.cs">
       <DependentUpon>202002150041091_Init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002151311035_AddAdditionalUserProps.cs" />
+    <Compile Include="Migrations\202002151311035_AddAdditionalUserProps.Designer.cs">
+      <DependentUpon>202002151311035_AddAdditionalUserProps.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -109,6 +114,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202002150041091_Init.resx">
       <DependentUpon>202002150041091_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002151311035_AddAdditionalUserProps.resx">
+      <DependentUpon>202002151311035_AddAdditionalUserProps.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

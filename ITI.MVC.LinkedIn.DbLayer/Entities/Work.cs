@@ -17,7 +17,7 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
         public int ExperienceId { get; set; }
 
         [ForeignKey("Country")]
-        public int? CountryId { get; set; }
+        public string CountryName { get; set; }
 
         [ForeignKey("User")]
         public string UserId { get; set; }
