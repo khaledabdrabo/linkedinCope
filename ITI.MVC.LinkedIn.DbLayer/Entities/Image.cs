@@ -13,6 +13,7 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
     public class Image
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         public string Url { get; set; }

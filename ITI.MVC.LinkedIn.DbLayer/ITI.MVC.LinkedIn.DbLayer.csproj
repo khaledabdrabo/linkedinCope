@@ -113,6 +113,14 @@
     <Compile Include="Migrations\202002161219526_FixDateTimeError.Designer.cs">
       <DependentUpon>202002161219526_FixDateTimeError.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002161345082_fix1.cs" />
+    <Compile Include="Migrations\202002161345082_fix1.designer.cs">
+      <DependentUpon>202002161345082_fix1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002161920051_fix-image-id.cs" />
+    <Compile Include="Migrations\202002161920051_fix-image-id.designer.cs">
+      <DependentUpon>202002161920051_fix-image-id.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -132,6 +140,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002161219526_FixDateTimeError.resx">
       <DependentUpon>202002161219526_FixDateTimeError.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002161345082_fix1.resx">
+      <DependentUpon>202002161345082_fix1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002161920051_fix-image-id.resx">
+      <DependentUpon>202002161920051_fix-image-id.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

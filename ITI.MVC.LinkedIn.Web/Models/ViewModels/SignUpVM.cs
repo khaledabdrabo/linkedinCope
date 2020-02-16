@@ -38,5 +38,8 @@ namespace ITI.MVC.LinkedIn.Web.Models.ViewModels
         [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }
         public List<Country> Countries { get; set; }
+
+        public string ImagePath { get; set; }
+        public HttpPostedFileBase ImageFile { get; set; }
     }
 }

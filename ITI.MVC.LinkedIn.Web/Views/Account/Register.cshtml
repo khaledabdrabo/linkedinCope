@@ -14,10 +14,10 @@
     <script src="https://kit.fontawesome.com/5028f5981e.js" crossorigin="anonymous"></script>
 </head>
 <body class="signup-page">
-    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "signup__form" }))
-    {
-        @Html.AntiForgeryToken()
-        <div class="Signup__Header">
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { enctype = "multipart/form-data" ,@class = "signup__form" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="Signup__Header">
             <div class="signup__logo">
                 Linked<i class="fab fa-linkedin"></i>
             </div>
@@ -82,7 +82,7 @@
             </div>
             <div class="signup-form-input-container signup-upload">
                 <label for="UploadPhoto"><i class="fas fa-camera"></i></label>
-                <input class="signup-form-input" id="UploadPhoto" type="file" accept="image/*">
+                <input class="signup-form-input" id="UploadPhoto" type="file" accept="image/*" name="ImageFile">
             </div>
 
             <div class="signup__aggr">
