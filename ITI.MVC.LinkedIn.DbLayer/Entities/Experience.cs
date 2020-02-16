@@ -20,9 +20,11 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
         [ForeignKey("Organization")]
         public int OrganizationId { get; set; }
 
-        public DateTime StartDate { get; set; }
+        [Column(TypeName = "datetime2")]
+        public DateTime? StartDate { get; set; }
 
-        public DateTime EndDate { get; set; }
+        [Column(TypeName = "datetime2")]
+        public DateTime? EndDate { get; set; }
 
         [MaxLength(255)]
         public string Description { get; set; }

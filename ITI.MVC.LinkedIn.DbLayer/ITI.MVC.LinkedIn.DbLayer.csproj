@@ -105,33 +105,13 @@
     <Compile Include="Migrations\202002151311035_AddAdditionalUserProps.Designer.cs">
       <DependentUpon>202002151311035_AddAdditionalUserProps.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002151506081_Mohamed-Migration.cs" />
-    <Compile Include="Migrations\202002151506081_Mohamed-Migration.designer.cs">
-      <DependentUpon>202002151506081_Mohamed-Migration.cs</DependentUpon>
+    <Compile Include="Migrations\202002161212456_UpdateNullableProps.cs" />
+    <Compile Include="Migrations\202002161212456_UpdateNullableProps.Designer.cs">
+      <DependentUpon>202002161212456_UpdateNullableProps.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002152229093_birthdatefix.cs" />
-    <Compile Include="Migrations\202002152229093_birthdatefix.designer.cs">
-      <DependentUpon>202002152229093_birthdatefix.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002152232057_birthdatefix1.cs" />
-    <Compile Include="Migrations\202002152232057_birthdatefix1.designer.cs">
-      <DependentUpon>202002152232057_birthdatefix1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002161156567_birthdatefix2.cs" />
-    <Compile Include="Migrations\202002161156567_birthdatefix2.designer.cs">
-      <DependentUpon>202002161156567_birthdatefix2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002161211586_workExpIdFix.cs" />
-    <Compile Include="Migrations\202002161211586_workExpIdFix.designer.cs">
-      <DependentUpon>202002161211586_workExpIdFix.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002161218205_birthdatefix3.cs" />
-    <Compile Include="Migrations\202002161218205_birthdatefix3.designer.cs">
-      <DependentUpon>202002161218205_birthdatefix3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002161230309_birdatefix5.cs" />
-    <Compile Include="Migrations\202002161230309_birdatefix5.designer.cs">
-      <DependentUpon>202002161230309_birdatefix5.cs</DependentUpon>
+    <Compile Include="Migrations\202002161219526_FixDateTimeError.cs" />
+    <Compile Include="Migrations\202002161219526_FixDateTimeError.Designer.cs">
+      <DependentUpon>202002161219526_FixDateTimeError.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -147,26 +127,11 @@
     <EmbeddedResource Include="Migrations\202002151311035_AddAdditionalUserProps.resx">
       <DependentUpon>202002151311035_AddAdditionalUserProps.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002151506081_Mohamed-Migration.resx">
-      <DependentUpon>202002151506081_Mohamed-Migration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202002161212456_UpdateNullableProps.resx">
+      <DependentUpon>202002161212456_UpdateNullableProps.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002152229093_birthdatefix.resx">
-      <DependentUpon>202002152229093_birthdatefix.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002152232057_birthdatefix1.resx">
-      <DependentUpon>202002152232057_birthdatefix1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002161156567_birthdatefix2.resx">
-      <DependentUpon>202002161156567_birthdatefix2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002161211586_workExpIdFix.resx">
-      <DependentUpon>202002161211586_workExpIdFix.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002161218205_birthdatefix3.resx">
-      <DependentUpon>202002161218205_birthdatefix3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002161230309_birdatefix5.resx">
-      <DependentUpon>202002161230309_birdatefix5.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202002161219526_FixDateTimeError.resx">
+      <DependentUpon>202002161219526_FixDateTimeError.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

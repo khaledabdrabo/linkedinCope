@@ -164,7 +164,6 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -262,11 +261,11 @@
       <Name>ITI.MVC.LinkedIn.DbLayer</Name>
     </ProjectReference>
     <ProjectReference Include="..\ITI.MVC.LinkedIn.DbManager\ITI.MVC.LinkedIn.DbManager.csproj">
-      <Project>{2c3be841-b0bb-423b-b738-77938dc63d28}</Project>
+      <Project>{2C3BE841-B0BB-423B-B738-77938DC63D28}</Project>
       <Name>ITI.MVC.LinkedIn.DbManager</Name>
     </ProjectReference>
     <ProjectReference Include="..\ITI.MVC.LinkedIn.Store\ITI.MVC.LinkedIn.Store.csproj">
-      <Project>{476f7252-13c0-4d68-9272-0b64e2f9dc02}</Project>
+      <Project>{476F7252-13C0-4D68-9272-0B64E2F9DC02}</Project>
       <Name>ITI.MVC.LinkedIn.Store</Name>
     </ProjectReference>
   </ItemGroup>
@@ -288,7 +287,9 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>52270</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44350/</IISUrl>
+          <IISUrl>http://localhost:44350/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost:44350/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

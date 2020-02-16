@@ -21,7 +21,8 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
         [ForeignKey("Receiver")]
         public string ReceiverId { get; set; }
 
-        public DateTime StartDate { get; set; }
+        [Column(TypeName = "datetime2")]
+        public DateTime? StartDate { get; set; }
 
         public virtual ApplicationUser Sender { get; set; }
         public virtual ApplicationUser Receiver { get; set; }

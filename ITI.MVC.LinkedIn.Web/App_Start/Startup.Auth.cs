@@ -8,6 +8,8 @@ using Owin;
 using ITI.MVC.LinkedIn.Web.Models;
 using ITI.MVC.LinkedIn.DbLayer;
 using ITI.MVC.LinkedIn.DbLayer.Entities;
+using ITI.MVC.LinkedIn.Store;
+using ITI.MVC.LinkedIn.Store.DbManagers;
 
 namespace ITI.MVC.LinkedIn.Web
 {
@@ -20,6 +22,7 @@ namespace ITI.MVC.LinkedIn.Web
             app.CreatePerOwinContext(ApplicationDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
+            app.CreatePerOwinContext<DbStore>(DbStore.Create);
 
             // Enable the application to use a cookie to store information for the signed in user
             // and to use a cookie to temporarily store information about a user logging in with a third party login provider

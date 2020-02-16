@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ITI.MVC.LinkedIn.Store;
+using Microsoft.AspNet.Identity.Owin;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +10,15 @@ namespace ITI.MVC.LinkedIn.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private DbStore store;
+
+        public DbStore Store 
+        {
+            get => store ?? HttpContext.GetOwinContext().Get<DbStore>();
+
+            private set => store = value;
+        }
+
         public ActionResult Index()
         {
             return View();
