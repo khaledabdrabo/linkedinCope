@@ -104,6 +104,10 @@
     <Compile Include="Migrations\202002151311035_AddAdditionalUserProps.Designer.cs">
       <DependentUpon>202002151311035_AddAdditionalUserProps.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002161212456_UpdateNullableProps.cs" />
+    <Compile Include="Migrations\202002161212456_UpdateNullableProps.Designer.cs">
+      <DependentUpon>202002161212456_UpdateNullableProps.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -117,6 +121,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002151311035_AddAdditionalUserProps.resx">
       <DependentUpon>202002151311035_AddAdditionalUserProps.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002161212456_UpdateNullableProps.resx">
+      <DependentUpon>202002161212456_UpdateNullableProps.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

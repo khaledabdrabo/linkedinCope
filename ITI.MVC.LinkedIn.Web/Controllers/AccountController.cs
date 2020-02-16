@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using ITI.MVC.LinkedIn.Web.Models;
 using ITI.MVC.LinkedIn.DbLayer.Entities;
 using Microsoft.AspNet.Identity.EntityFramework;
+using ITI.MVC.LinkedIn.Store.DbManagers;
 
 namespace ITI.MVC.LinkedIn.Web.Controllers
 {

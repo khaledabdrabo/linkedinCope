@@ -35,7 +35,7 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
         [Required]
         public PatentStatus Status { get; set; }
 
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }
 
         public string Url { get; set; }
 
