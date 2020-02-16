@@ -24,8 +24,10 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
         [ForeignKey("Organization")]
         public int OrganizationId { get; set; }
 
+        [Column(TypeName = "datetime2")]
         public DateTime? IssueDate { get; set; }
 
+        [Column(TypeName = "datetime2")]
         public DateTime? ExpirationDate { get; set; }
 
         [MaxLength(250)]

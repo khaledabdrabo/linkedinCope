@@ -108,6 +108,10 @@
     <Compile Include="Migrations\202002161212456_UpdateNullableProps.Designer.cs">
       <DependentUpon>202002161212456_UpdateNullableProps.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002161219526_FixDateTimeError.cs" />
+    <Compile Include="Migrations\202002161219526_FixDateTimeError.Designer.cs">
+      <DependentUpon>202002161219526_FixDateTimeError.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -124,6 +128,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002161212456_UpdateNullableProps.resx">
       <DependentUpon>202002161212456_UpdateNullableProps.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002161219526_FixDateTimeError.resx">
+      <DependentUpon>202002161219526_FixDateTimeError.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

@@ -25,6 +25,7 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
         [Required(ErrorMessage = "Score is required")]
         public int Score { get; set; }
 
+        [Column(TypeName = "datetime2")]
         public DateTime? TestDate { get; set; }
         
         public string Description { get; set; }
