@@ -24,9 +24,9 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
         [ForeignKey("Organization")]
         public int OrganizationId { get; set; }
 
-        public DateTime IssueDate { get; set; }
+        public DateTime? IssueDate { get; set; }
 
-        public DateTime ExpirationDate { get; set; }
+        public DateTime? ExpirationDate { get; set; }
 
         [MaxLength(250)]
         public string CredentialId { get; set; }

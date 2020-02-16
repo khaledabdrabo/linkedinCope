@@ -22,7 +22,7 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
         [ForeignKey("Experience")]
         public int? ExperienceId { get; set; }
 
-        public DateTime IssueDate { get; set; }
+        public DateTime? IssueDate { get; set; }
 
         public string Description { get; set; }
         
