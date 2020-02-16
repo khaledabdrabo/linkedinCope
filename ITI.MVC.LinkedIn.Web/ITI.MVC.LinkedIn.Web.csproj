@@ -19,9 +19,9 @@
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort>44350</IISExpressSSLPort>
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode />
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -169,12 +169,14 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LinkedInAccountController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ViewModels\SignUpVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -183,6 +185,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\MoahamedCss\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -234,6 +237,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\LinkedInAccount\SignUp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -256,6 +260,14 @@
     <ProjectReference Include="..\ITI.MVC.LinkedIn.DbLayer\ITI.MVC.LinkedIn.DbLayer.csproj">
       <Project>{874597CF-4E43-4064-8C13-F7E86E5B554A}</Project>
       <Name>ITI.MVC.LinkedIn.DbLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ITI.MVC.LinkedIn.DbManager\ITI.MVC.LinkedIn.DbManager.csproj">
+      <Project>{2c3be841-b0bb-423b-b738-77938dc63d28}</Project>
+      <Name>ITI.MVC.LinkedIn.DbManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ITI.MVC.LinkedIn.Store\ITI.MVC.LinkedIn.Store.csproj">
+      <Project>{476f7252-13c0-4d68-9272-0b64e2f9dc02}</Project>
+      <Name>ITI.MVC.LinkedIn.Store</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

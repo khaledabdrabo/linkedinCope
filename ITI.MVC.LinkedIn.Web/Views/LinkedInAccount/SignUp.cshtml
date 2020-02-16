@@ -14,9 +14,7 @@
     <script src="https://kit.fontawesome.com/5028f5981e.js" crossorigin="anonymous"></script>
 </head>
 <body class="signup-page">
-    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "signup__form" }))
-    {
-        @Html.AntiForgeryToken()
+    <form class="signup__form" action="">
         <div class="Signup__Header">
             <div class="signup__logo">
                 Linked<i class="fab fa-linkedin"></i>
@@ -64,14 +62,9 @@
                 <option value="germany">germany</option>
             </select>*@
                 @Html.LabelFor(e => e.Country)
-                @Html.DropDownListFor(e => e.Country, new SelectList(Model.Countries, "Name", "Name"), "Select Country",
-                  new { @class = "signup-form-input" })
+                @Html.DropDownListFor(e => e.Country, new SelectList(new List<string> { "Egypt", "USA", "Jordon" }),
+                 new { @class = "signup-form-input" })
                 @Html.ValidationMessageFor(e => e.Country, null, new { @class = "text-danger" })
-            </div>
-            <div class="signup-form-input-container">
-                @Html.LabelFor(e => e.BirthDate)
-                @Html.EditorFor(e => e.BirthDate, new { htmlAttributes = new { @class = "signup-form-input", placeholder = "Last Name" ,type = "date"} })
-                @Html.ValidationMessageFor(e => e.BirthDate, null, new { @class = "text-danger" })
             </div>
             <div class="signup-form-input-container">
                 @*<label for="PostalCode">Postal code</label>
@@ -80,26 +73,31 @@
                 @Html.TextBoxFor(e => e.PostalCode, new { @class = "signup-form-input", placeholder = "Postal code" })
                 @Html.ValidationMessageFor(e => e.PostalCode, null, new { @class = "text-danger" })
             </div>
-            <div class="signup-form-input-container signup-upload">
-                <label for="UploadPhoto"><i class="fas fa-camera"></i></label>
-                <input class="signup-form-input" id="UploadPhoto" type="file" accept="image/*">
+            <div class="signup-form-input-container">
+                @Html.LabelFor(e => e.BirthDate)
+                @Html.EditorFor(e => e.BirthDate, new { htmlAttributes = new { @class = "signup-form-input", placeholder = "Last Name" } })
+                @Html.ValidationMessageFor(e => e.BirthDate, null, new { @class = "text-danger" })
             </div>
+                <div class="signup-form-input-container signup-upload">
+                    <label for="UploadPhoto"><i class="fas fa-camera"></i></label>
+                    <input class="signup-form-input" id="UploadPhoto" type="file" accept="image/*">
+                </div>
 
-            <div class="signup__aggr">
-                By clicking Agree & Join, you agree to the LinkedIn <a href="">User Agreement, Privacy Policy</a> , and
-                <a href="">Cookie Policy</a> .
+                <div class="signup__aggr">
+                    By clicking Agree & Join, you agree to the LinkedIn <a href="">User Agreement, Privacy Policy</a> , and
+                    <a href="">Cookie Policy</a> .
+                </div>
+                <div class="signup__btns">
+                    <button class="signup-btn signup-btn--sky">Agree & Join</button>
+                    <button class="signup-btn signup-btn--dark-blue"><i class="fab fa-facebook-f"></i> Continue With Facebook</button>
+                </div>
+                <div style="text-align: center;">
+                    Already on LinkedIn? <a href="">Sign in</a>
+                </div>
             </div>
-            <div class="signup__btns">
-                <button class="signup-btn signup-btn--sky" type="submit">Agree & Join</button>
-                <button class="signup-btn signup-btn--dark-blue"><i class="fab fa-facebook-f"></i> Continue With Facebook</button>
-            </div>
-            <div style="text-align: center;">
-                Already on LinkedIn? <a href="">Sign in</a>
-            </div>
-        </div>
-    }
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+            <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+            <script src="~/Scripts/jquery.validate.min.js"></script>
+            <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</form>
 </body>
 </html>

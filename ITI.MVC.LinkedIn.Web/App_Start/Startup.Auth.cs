@@ -6,6 +6,8 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using ITI.MVC.LinkedIn.Web.Models;
+using ITI.MVC.LinkedIn.DbLayer;
+using ITI.MVC.LinkedIn.DbLayer.Entities;
 
 namespace ITI.MVC.LinkedIn.Web
 {

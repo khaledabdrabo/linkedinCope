@@ -11,6 +11,9 @@ using Microsoft.Owin.Security;
 using ITI.MVC.LinkedIn.Web.Models;
 using ITI.MVC.LinkedIn.DbLayer.Entities;
 using Microsoft.AspNet.Identity.EntityFramework;
+using ITI.MVC.LinkedIn.DbLayer;
+using ITI.MVC.LinkedIn.Store.DbManagers;
+using ITI.MVC.LinkedIn.Web.Models.ViewModels;
 
 namespace ITI.MVC.LinkedIn.Web.Controllers
 {
@@ -19,6 +22,8 @@ namespace ITI.MVC.LinkedIn.Web.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+
+        ApplicationDbContext context = new ApplicationDbContext();
 
         public AccountController()
         {
@@ -141,7 +146,13 @@ namespace ITI.MVC.LinkedIn.Web.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            CountryManager countryMg = new CountryManager(context);
+            var countries = countryMg.GetAllBind();
+            SignUpVM signUpVM = new SignUpVM
+            {
+                Countries = countries.ToList()
+            };
+            return View(signUpVM);
         }
 
         //
@@ -149,11 +160,12 @@ namespace ITI.MVC.LinkedIn.Web.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(SignUpVM model)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email,
+                FirstName = model.FirstName, LastName = model.LastName ,CountryName= model.Country,BirthDate = model.BirthDate};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
