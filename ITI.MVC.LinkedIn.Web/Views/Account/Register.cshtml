@@ -81,7 +81,9 @@
                 @Html.ValidationMessageFor(e => e.PostalCode, null, new { @class = "text-danger" })
             </div>
             <div class="signup-form-input-container signup-upload">
-                <label for="UploadPhoto"><i class="fas fa-camera"></i></label>
+                <label for="UploadPhoto" ><i id="uploadImagelabel" class="fas fa-camera"></i>
+                                         <img src="" id="outImage" />
+                </label>
                 <input class="signup-form-input" id="UploadPhoto" type="file" accept="image/*" name="ImageFile">
             </div>
 
@@ -101,5 +103,29 @@
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script>
+        document.getElementById('UploadPhoto').onchange = function (evt) {
+    var tgt = evt.target || window.event.srcElement,
+        files = tgt.files;
+
+    // FileReader support
+    if (FileReader && files && files.length) {
+        var fr = new FileReader();
+        fr.onload = function () {
+             document.getElementById("outImage").style.display  = "block";
+            document.getElementById("outImage").src = fr.result;
+            document.getElementById("uploadImagelabel").style.display = "none";
+
+        }
+        fr.readAsDataURL(files[0]);
+    }
+
+    // Not supported
+    else {
+        // fallback -- perhaps submit the input to an iframe and temporarily store
+        // them on the server until the user's session ends.
+    }
+}
+    </script>
 </body>
 </html>
