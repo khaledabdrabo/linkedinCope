@@ -33,5 +33,16 @@ namespace ITI.MVC.LinkedIn.Web.Models.Enums
             }
             return years;
         }
+
+        public static List<int> DaysListFun()
+        {
+            List<int> Days = new List<int>();
+
+            for (int i = 1; i <= 31; i++)
+            {
+                Days.Add(i);
+            }
+            return Days;
+        }
     }
 }

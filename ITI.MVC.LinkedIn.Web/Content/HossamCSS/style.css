@@ -364,3 +364,7 @@ label.required::after {
 
 .modal-body {
   padding: 2rem; }
+
+.dropdown-menu-width{
+    width:300px;
+}

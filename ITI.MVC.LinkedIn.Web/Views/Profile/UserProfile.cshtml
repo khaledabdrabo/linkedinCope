@@ -32,7 +32,7 @@
                 <div class="col-sm-12">
                     <!-- upper section -->
                     <div class="row pt-sm-3 pb-sm-3">
-                        <div class="col-sm-6 offset-6 dropdown">
+                        <div class="col-sm-6 offset-6 dropdown mx-50">
                             <div class="d-flex justify-content-end align-items-center edit-profile">
                                 <div class="p-2">
                                     <a role="button" href="#" class="dropdown-toggle btn-primary btn-lg add-section"
@@ -40,9 +40,9 @@
                                         Add Profile Section <!-- <i class="fas fa-sort-down"></i> -->
                                     </a>
                                     <!-- Add Profile Section Modal -->
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <div class="dropdown-menu dropdown-menu-width " aria-labelledby="dropdownMenu1">
                                         <!-- Add Profile Section form -->
-                                        <form class="accordion list " id="accordionExample">
+                                        <form class="accordion list  " id="accordionExample">
                                             <!-- intro card -->
                                             <div class="card">
                                                 <div class="card-header" id="headingOne">
@@ -91,17 +91,26 @@
                                                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
                                                      data-parent="#accordionExample">
                                                     <div class="card-body">
+                                                        @*About Summary*@
+                                                        <a class="work text-reset" href="#">
+                                                            <div class="d-flex m-auto p-2">
+                                                                <div class="p-2" style=" display: flex; align-items: center; ">
+                                                                    <i class="fas fa-indent"></i>
+                                                                    <div class="d-block">
+                                                                        <p>Add Summary </p>
+                                                                        <p class=" font-weight-light p-0 m-0">Use summary to share what you do or the opportunities you’re looking for.</p>
 
-                                                        <div style=" display: flex; align-items: center; font-size: 2rem;">
-                                                            <i class="fas fa-indent"></i>
-                                                            <div class="d-block">
-                                                                <p>Education</p>
-                                                                <p class=" font-weight-lighter p-0 m-0">
-                                                                    Use summary to share what you do or the opportunities you’re looking for.
-                                                                </p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="p-2" style="margin: auto 0;">
+                                                                    <a href="" class="col-sm-1 text-right " data-toggle="modal" data-target="#Summary">
+                                                                        <i class="fas fa-plus p-3 profile-icon "></i>
+                                                                    </a>
+                                                                </div>
                                                             </div>
-                                                            <a> <i class="far fa-plus-square p-2"></i></a>
-                                                        </div>
+                                                        </a>
+
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -216,19 +225,25 @@
                                                 <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
                                                      data-parent="#accordionExample">
                                                     <div class="card-body">
+                                                        @*Skills*@
+                                                        
+                                                        <a class="volunteer  text-reset" href="# ">
+                                                            <div class="d-flex j m-auto p-2">
+                                                                <div class="p-2" style=" display: flex; align-items: center; ">
+                                                                    <i class="fas fa-medal"></i>
+                                                                    <div class="d-block">
+                                                                        <p>Skills</p>
+                                                                        <p class=" font-weight-light p-0 m-0">Add Skills</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="p-2" style="margin: auto 0;">
+                                                                    <a href="" class="col-sm-1 text-right " data-toggle="modal" data-target="#SkillsModal">
+                                                                        <i class="fas fa-plus p-3 profile-icon "></i>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </a>
 
-                                                        <div style=" display: flex;  justify-content:space-between; align-items: center; font-size: 2rem;">
-                                                            <i class="fas fa-medal"></i>
-                                                            <div class="d-block">
-                                                                <p class=" font-weight-bold">Slills</p>
-                                                                <p class=" font-weight-lighter p-0 m-0">
-                                                                    11 skills on your profile.
-                                                                </p>
-                                                            </div>
-                                                            <div class="p-2" style="margin: auto 0;">
-                                                                <i class="far fa-plus-square"></i>
-                                                            </div>
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -261,7 +276,9 @@
                                                                 </div>
                                                             </div>
                                                             <div class="p-2" style="margin: auto 0;">
-                                                                <i class="far fa-plus-square"></i>
+                                                                <a href="" class="col-sm-1 text-right " data-toggle="modal" data-target="#Publications">
+                                                                    <i class="fas fa-plus p-3 profile-icon "></i>
+                                                                </a>
                                                             </div>
                                                         </div>
                                                     </a>
@@ -277,7 +294,9 @@
                                                                 </div>
                                                             </div>
                                                             <div class="p-2" style="margin: auto 0;">
-                                                                <i class="far fa-plus-square"></i>
+                                                                <a href="" class="col-sm-1 text-right " data-toggle="modal" data-target="#Patents">
+                                                                    <i class="fas fa-plus p-3 profile-icon "></i>
+                                                                </a>
                                                             </div>
                                                         </div>
                                                     </a>
@@ -487,7 +506,7 @@
             <div class="row u-border pt-5 pb-5 pr-3 pl-3">
                 <header class="col-12 d-flex justify-content-between">
                     <h2>About</h2>
-                    <a href="#" data-toggle="modal" data-target="#FullModal">
+                    <a href="#" data-toggle="modal" data-target="#Summary">
                         <i class="fas fa-pencil-alt profile-icon"></i>
                     </a>
                 </header>
@@ -531,7 +550,7 @@
             <div class="p-4">
                 <div class="row">
                     <h2 class="col-sm-11 background__section-heading">Experience</h2>
-                    <a href="" class="col-sm-1 text-right " data-toggle="modal" data-target="#FullModal">
+                    <a href="" class="col-sm-1 text-right " data-toggle="modal" data-target="#WorkExperince">
                         <i class="fas fa-plus p-3 profile-icon "></i>
                     </a>
                 </div>
@@ -586,7 +605,7 @@
             <div class="p-4">
                 <div class="row">
                     <h2 class="col-sm-11 background__section-heading">Education</h2>
-                    <a href="" class="col-sm-1 text-right " data-toggle="modal" data-target="#FullModal">
+                    <a href="" class="col-sm-1 text-right " data-toggle="modal" data-target="#Education">
                         <i class="fas fa-plus p-3 profile-icon "></i>
                     </a>
                 </div>
@@ -643,7 +662,7 @@
             <div class="p-4">
                 <div class="row">
                     <h2 class="col-sm-11 background__section-heading">Volunteer Experience</h2>
-                    <a href="" class="col-sm-1 text-right " data-toggle="modal" data-target="#FullModal">
+                    <a href="" class="col-sm-1 text-right " data-toggle="modal" data-target="#volunteer">
                         <i class="fas fa-plus p-3 profile-icon "></i>
                     </a>
                 </div>
@@ -694,7 +713,7 @@
             <div class="p-4">
                 <div class="row">
                     <h2 class="col-sm-11 background__section-heading">licenses & certifications</h2>
-                    <a href="" class="col-sm-1 text-right " data-toggle="modal" data-target="#FullModal">
+                    <a href="" class="col-sm-1 text-right " data-toggle="modal" data-target="#Licenses1">
                         <i class="fas fa-plus p-3 profile-icon "></i>
                     </a>
                 </div>
@@ -1447,36 +1466,6 @@
         </div>
     </div>
 
-    <!-- Skills Modal -->
-    <div class="modal fade" id="SkillsModal" tabindex="-1" role="dialog" aria-labelledby="SkillsModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content row">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="SkillsModalLabel">Add Some SKills N00B</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="">
-                        <div class="form-controls">
-
-                            <div class="taged-textbox form-group">
-
-                                <input class="taged-textbox__textbox form-control" type="text" name="" id=""
-                                       placeholder="Add Some Skills N00B">
-                            </div>
-
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Save</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Add Profile Section Modal -->
     <div class=" dropdown-menu " aria-labelledby="opaDropDown">
@@ -1536,7 +1525,9 @@
                                     Use summary to share what you do or the opportunities you’re looking for.
                                 </p>
                             </div>
-                            <a> <i class="far fa-plus-square p-2"></i></a>
+                            <a href="" class="col-sm-1 text-right " data-toggle="modal" data-target="#Summary">
+                                <i class="fas fa-plus p-3 profile-icon "></i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -1760,6 +1751,14 @@
         </div>
         <div>
             @Html.Partial("_TestScores")
+        </div>
+
+        <div>
+            @Html.Partial("_Summary")
+        </div>
+
+        <div>
+            @Html.Partial("_Skills")
         </div>
 
 
