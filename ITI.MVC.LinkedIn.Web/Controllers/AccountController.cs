@@ -14,6 +14,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using ITI.MVC.LinkedIn.DbLayer;
 using ITI.MVC.LinkedIn.Store.DbManagers;
 using ITI.MVC.LinkedIn.Web.Models.ViewModels;
+using ITI.MVC.LinkedIn.Store;
+using System.IO;
+using System.Collections.Generic;
 
 namespace ITI.MVC.LinkedIn.Web.Controllers
 {
@@ -23,7 +26,14 @@ namespace ITI.MVC.LinkedIn.Web.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        ApplicationDbContext context = new ApplicationDbContext();
+        private DbStore store;
+
+        public DbStore Store
+        {
+            get => store ?? HttpContext.GetOwinContext().Get<DbStore>();
+
+            private set => store = value;
+        }
 
         public AccountController()
         {
@@ -146,7 +156,7 @@ namespace ITI.MVC.LinkedIn.Web.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            CountryManager countryMg = new CountryManager(context);
+            CountryManager countryMg = Store.CountryManager;
             var countries = countryMg.GetAllBind();
             SignUpVM signUpVM = new SignUpVM
             {
@@ -164,8 +174,48 @@ namespace ITI.MVC.LinkedIn.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email,
-                FirstName = model.FirstName, LastName = model.LastName ,CountryName= model.Country,BirthDate = model.BirthDate};
+                ApplicationUser user;
+                if (model.ImageFile != null)
+                {
+                    //Get file name without extention
+                    string fileName = Path.GetFileNameWithoutExtension(model.ImageFile.FileName);
+                    //get extention
+                    string extention = Path.GetExtension(model.ImageFile.FileName);
+                    //name the file
+                    fileName = fileName + DateTime.Now.ToString("yymmssfff") + extention;
+                    //save image path
+                    model.ImagePath = "~/Images/" + fileName;
+                    //Save the image in the server in the images folder
+                    fileName = Path.Combine(Server.MapPath("~/Images/"), fileName);
+                    model.ImageFile.SaveAs(fileName);
+                    Image image = new Image { ImageRole = DbLayer.Enums.ImageRole.Profile, Url = fileName };
+                    List<Image> UserImages = new List<Image>()
+                {
+                    image
+                };
+                     user = new ApplicationUser
+                    {
+                        UserName = model.Email,
+                        Email = model.Email,
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        CountryName = model.Country,
+                        BirthDate = model.BirthDate,
+                        Images = UserImages
+                    };
+                }
+                else
+                {
+                     user = new ApplicationUser
+                    {
+                        UserName = model.Email,
+                        Email = model.Email,
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        CountryName = model.Country,
+                        BirthDate = model.BirthDate
+                    };
+                }
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -179,7 +229,27 @@ namespace ITI.MVC.LinkedIn.Web.Controllers
 
                     return RedirectToAction("Index", "Home");
                 }
+                else
+                {
+                    CountryManager countryMg = Store.CountryManager;
+                    var countries = countryMg.GetAllBind();
+                    SignUpVM signUpVM = new SignUpVM
+                    {
+                        Countries = countries.ToList()
+                    };
+                    return View(signUpVM);
+                }
                 AddErrors(result);
+            }
+            else
+            {
+                CountryManager countryMg = Store.CountryManager;
+                var countries = countryMg.GetAllBind();
+                SignUpVM signUpVM = new SignUpVM
+                {
+                    Countries = countries.ToList()
+                };
+                return View(signUpVM);
             }
 
             // If we got this far, something failed, redisplay form
