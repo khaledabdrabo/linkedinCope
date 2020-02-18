@@ -7,13 +7,13 @@ namespace ITI.MVC.LinkedIn.DbLayer.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.0")]
-    public sealed partial class birdatefix5 : IMigrationMetadata
+    public sealed partial class FixSharedPostFKs : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(birdatefix5));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(FixSharedPostFKs));
         
         string IMigrationMetadata.Id
         {
-            get { return "202002161230309_birdatefix5"; }
+            get { return "202002181615126_FixSharedPostFKs"; }
         }
         
         string IMigrationMetadata.Source

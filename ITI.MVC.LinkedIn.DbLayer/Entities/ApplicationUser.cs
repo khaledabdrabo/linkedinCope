@@ -14,6 +14,7 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
         public string Summary { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string Headline { get; set; }
 
         [Column(TypeName = "datetime2")]
         public DateTime? BirthDate { get; set; }
