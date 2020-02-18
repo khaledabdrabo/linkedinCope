@@ -181,8 +181,13 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ViewModels\AboutVM.cs" />
     <Compile Include="Models\ViewModels\CertificationsVM.cs" />
+    <Compile Include="Models\ViewModels\CoursesVM.cs" />
     <Compile Include="Models\ViewModels\EducationVM.cs" />
+    <Compile Include="Models\ViewModels\HonorVM.cs" />
+    <Compile Include="Models\ViewModels\LanguageVM.cs" />
+    <Compile Include="Models\ViewModels\OrganizationVM.cs" />
     <Compile Include="Models\ViewModels\PatentVM.cs" />
+    <Compile Include="Models\ViewModels\ProjectsVM.cs" />
     <Compile Include="Models\ViewModels\PublicationVM.cs" />
     <Compile Include="Models\ViewModels\SignUpVM.cs" />
     <Compile Include="Models\ViewModels\SkillsVM.cs" />
@@ -386,7 +391,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Images\" />
     <Folder Include="Views\Default\" />
-    <Folder Include="Views\Profile\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
