@@ -23,7 +23,7 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
         public string CountryName { get; set; }
 
         [ForeignKey("CurrentPosition")]
-        public int? WorkExperienceId { get; set; }
+        public int? CurrentWorkExperienceId { get; set; }
 
         [ForeignKey("Industry")]
         public string IndustryName { get; set; }

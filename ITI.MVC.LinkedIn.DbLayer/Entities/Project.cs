@@ -24,9 +24,11 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
         [ForeignKey("User")]
         public string UserId { get; set; }
 
-        public DataType StartDate { get; set; }
+        [Column(TypeName = "datetime2")]
+        public DateTime? StartDate { get; set; }
 
-        public DataType EndDate { get; set; }
+        [Column(TypeName = "datetime2")]
+        public DateTime? EndDate { get; set; }
 
         public string Creator { get; set; }
 
