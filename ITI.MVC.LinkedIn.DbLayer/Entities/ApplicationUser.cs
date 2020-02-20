@@ -38,6 +38,8 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
         public virtual ICollection<UserLanguage> UserLanguages { get; set; }
         public virtual ICollection<UserSkill> UserSkills { get; set; }
         public virtual ICollection<Experience> Experiences { get; set; }
+
+        [InverseProperty("User")]
         public virtual ICollection<Work> WorkExperiences { get; set; }
         public virtual ICollection<Volunteer> VolunteerExperiences { get; set; }
         public virtual ICollection<Education> EducationExperiences { get; set; }

@@ -38,9 +38,6 @@
     <Reference Include="DbManager">
       <HintPath>..\ITI.MVC.LinkedIn.DbManager\bin\Debug\DbManager.dll</HintPath>
     </Reference>
-    <Reference Include="DbManager.Fakes">
-      <HintPath>FakesAssemblies\DbManager.Fakes.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -131,7 +128,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <Fakes Include="Fakes\DbManager.fakes" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

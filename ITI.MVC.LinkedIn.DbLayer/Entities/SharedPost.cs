@@ -26,6 +26,7 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
         [InverseProperty("SharedPost")]
         public virtual Post Post { get; set; }
 
+        [InverseProperty("Shares")]
         public virtual Post OriginalPost { get; set; }
     }
 }
