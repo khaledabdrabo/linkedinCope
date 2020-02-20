@@ -202,6 +202,8 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\HossamCSS\style.css" />
     <Content Include="Content\images\client-3.jpg" />
     <Content Include="Content\images\Cover.PNG" />
@@ -215,8 +217,10 @@
     <Content Include="Content\images\profile.png" />
     <Content Include="Content\images\ProfilePic.jpg" />
     <Content Include="Content\Feed\post.css" />
+    <Content Include="Content\layout.css" />
     <Content Include="Content\MoahamedCss\style.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\images\Thumbs.db" />
@@ -243,6 +247,11 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\HossamJs\script.js" />
     <Content Include="Scripts\Feed\post.js" />
@@ -389,6 +398,7 @@
     <Content Include="Views\Profile\_Skills.cshtml" />
     <Content Include="Views\Feed\Index.cshtml" />
     <Content Include="Views\Feed\_Post.cshtml" />
+    <Content Include="Views\Feed\_SharedPost.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
