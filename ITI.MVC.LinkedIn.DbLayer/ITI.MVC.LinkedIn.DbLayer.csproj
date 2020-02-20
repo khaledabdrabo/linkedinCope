@@ -117,9 +117,49 @@
     <Compile Include="Migrations\202002161345082_fix1.designer.cs">
       <DependentUpon>202002161345082_fix1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002161920051_fix-image-id.cs" />
-    <Compile Include="Migrations\202002161920051_fix-image-id.designer.cs">
-      <DependentUpon>202002161920051_fix-image-id.cs</DependentUpon>
+    <Compile Include="Migrations\202002192142167_Project-DateTime-Fix.cs" />
+    <Compile Include="Migrations\202002192142167_Project-DateTime-Fix.designer.cs">
+      <DependentUpon>202002192142167_Project-DateTime-Fix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002192207380_work-fix.cs" />
+    <Compile Include="Migrations\202002192207380_work-fix.designer.cs">
+      <DependentUpon>202002192207380_work-fix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002192218285_fix-WORK1.cs" />
+    <Compile Include="Migrations\202002192218285_fix-WORK1.designer.cs">
+      <DependentUpon>202002192218285_fix-WORK1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002192226291_workfix2.cs" />
+    <Compile Include="Migrations\202002192226291_workfix2.designer.cs">
+      <DependentUpon>202002192226291_workfix2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002192233562_workfix3.cs" />
+    <Compile Include="Migrations\202002192233562_workfix3.designer.cs">
+      <DependentUpon>202002192233562_workfix3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002192242537_workfix4.cs" />
+    <Compile Include="Migrations\202002192242537_workfix4.designer.cs">
+      <DependentUpon>202002192242537_workfix4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002192246381_workfix5.cs" />
+    <Compile Include="Migrations\202002192246381_workfix5.designer.cs">
+      <DependentUpon>202002192246381_workfix5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002192252507_workfix6.cs" />
+    <Compile Include="Migrations\202002192252507_workfix6.designer.cs">
+      <DependentUpon>202002192252507_workfix6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002192308378_drop-work1.cs" />
+    <Compile Include="Migrations\202002192308378_drop-work1.designer.cs">
+      <DependentUpon>202002192308378_drop-work1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002192310545_re-addWork.cs" />
+    <Compile Include="Migrations\202002192310545_re-addWork.designer.cs">
+      <DependentUpon>202002192310545_re-addWork.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002201028199_FixProjectDateTime2.cs" />
+    <Compile Include="Migrations\202002201028199_FixProjectDateTime2.designer.cs">
+      <DependentUpon>202002201028199_FixProjectDateTime2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -144,8 +184,38 @@
     <EmbeddedResource Include="Migrations\202002161345082_fix1.resx">
       <DependentUpon>202002161345082_fix1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002161920051_fix-image-id.resx">
-      <DependentUpon>202002161920051_fix-image-id.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202002192142167_Project-DateTime-Fix.resx">
+      <DependentUpon>202002192142167_Project-DateTime-Fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002192207380_work-fix.resx">
+      <DependentUpon>202002192207380_work-fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002192218285_fix-WORK1.resx">
+      <DependentUpon>202002192218285_fix-WORK1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002192226291_workfix2.resx">
+      <DependentUpon>202002192226291_workfix2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002192233562_workfix3.resx">
+      <DependentUpon>202002192233562_workfix3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002192242537_workfix4.resx">
+      <DependentUpon>202002192242537_workfix4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002192246381_workfix5.resx">
+      <DependentUpon>202002192246381_workfix5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002192252507_workfix6.resx">
+      <DependentUpon>202002192252507_workfix6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002192308378_drop-work1.resx">
+      <DependentUpon>202002192308378_drop-work1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002192310545_re-addWork.resx">
+      <DependentUpon>202002192310545_re-addWork.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002201028199_FixProjectDateTime2.resx">
+      <DependentUpon>202002201028199_FixProjectDateTime2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

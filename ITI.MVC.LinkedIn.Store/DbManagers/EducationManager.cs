@@ -14,5 +14,11 @@ namespace ITI.MVC.LinkedIn.Store.DbManagers
         public EducationManager(DbContext ctx) : base(ctx)
         {
         }
+        public List<Education> GetAllBindByUserID(string id)
+        {
+
+            List<Education> Educationexperiences = this.Set.Where(e => e.UserId == id).Include(e => e.Experience).ToList();
+            return Educationexperiences;
+        }
     }
 }

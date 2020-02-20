@@ -1,4 +1,31 @@
 ﻿@model ITI.MVC.LinkedIn.Web.Models.ViewModels.ProjectsVM
+@{
+    AjaxOptions opts = new AjaxOptions
+    {
+        HttpMethod = "POST"
+
+    };
+    List<SelectListItem> items = new List<SelectListItem>();
+
+
+    foreach (var item in Model.Experiences)
+    {
+        SelectListItem Selecteditem;
+        if (item.WorkExperience != null)
+        {
+            Selecteditem = new SelectListItem { Text = ("Worked As " + item.WorkExperience.Title + " at " + item.Organization.Name), Value = item.Id.ToString() };
+        }
+        else
+        {
+            Selecteditem = new SelectListItem { Text = ("Student At " + item.Organization.Name + " , " + item.EducationExperience.Degree), Value = item.Id.ToString() };
+
+        }
+        items.Add(Selecteditem);
+    }
+
+    SelectList selectListItems = new SelectList(
+items, "Value", "Text");
+}
 <div class="modal fade" id="Projects" tabindex="-1" role="dialog" aria-labelledby="FullModalLabel"
      aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -10,11 +37,14 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="">
+                    
+                    @using (Ajax.BeginForm("AddProject", "Profile", opts))
+                    {
                     <div class="form-controls">
                         <div class="form-group">
                             <label for="" class="required">Project name </label>
-                            <input class="form-control" type="text" name="" id="" placeholder="">
+                            @Html.EditorFor(e => e.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(e => e.Name, null, new { @class = "text-danger" })
                         </div>
 
                         <div class="form-group">
@@ -55,37 +85,32 @@
 
                         <div class="form-group">
                             <label for="" class="">Creator</label>
-                            <input class="form-control" type="text" name="" id="" placeholder="">
+                            @Html.EditorFor(e => e.Creator, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                            @Html.ValidationMessageFor(e => e.Creator, null, new { @class = "text-danger" })
                         </div>
 
                         <div class="form-group">
                             <label for="">Associated with</label>
-                            <select class="form-control" name="" id="">
-                                <option value="" disabled selected hidden>-</option>
-                                <option value="">Opa</option>
-                                <option value="">Opaa</option>
-                                <option value="">Opaaa</option>
-                                <option value="">Opaaaa</option>
-                                <option value="">Opaaaaa</option>
-                            </select>
+                            @Html.DropDownListFor(e => e.ExperinceId, selectListItems, "-", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(e => e.ExperinceId, null, new { @class = "text-danger" })
                         </div>
-                        <div class="form-group">
-                            <label for="" class="required">Company</label>
-                            <input class="form-control" type="text" name="" id="" placeholder="Company">
-                        </div>
+
                         <div class="form-group">
                             <label for="" class="">Project URL</label>
-                            <input class="form-control" type="text" name="" id="" placeholder="Location">
+                            @Html.EditorFor(e => e.Creator, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                            @Html.ValidationMessageFor(e => e.Url, null, new { @class = "text-danger" })
+
                         </div>
                         <div class="form-group">
                             <label for="">Description</label>
-                            <textarea class="form-control" name="" id="" cols="30" rows="4"></textarea>
+                            @Html.TextAreaFor(e => e.Creator, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(e => e.Creator, null, new { @class = "text-danger" , cols="30" , rows="4" })
                         </div>
-                    </div>
-                </form>
-            </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+                    </div>
+                    }
             </div>
         </div>
     </div>

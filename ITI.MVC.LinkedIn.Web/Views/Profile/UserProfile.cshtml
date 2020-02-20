@@ -1,4 +1,5 @@
-﻿
+﻿@model ITI.MVC.LinkedIn.Web.Models.ViewModels.ProfileVM
+@using ITI.MVC.LinkedIn.Web.Models.ViewModels
 @{
     Layout = null;
 }
@@ -226,7 +227,7 @@
                                                      data-parent="#accordionExample">
                                                     <div class="card-body">
                                                         @*Skills*@
-                                                        
+
                                                         <a class="volunteer  text-reset" href="# ">
                                                             <div class="d-flex j m-auto p-2">
                                                                 <div class="p-2" style=" display: flex; align-items: center; ">
@@ -1724,68 +1725,62 @@
         </form>
     </div>
     <div>
-        @Html.Partial("_WorkExperince")
+        @Html.Partial("_WorkExperince",new WorkExperinceVM())
     </div>
     <div>
-        @Html.Partial("_Education");
+        @Html.Partial("_Education",new EducationVM());
     </div>
     <div>
-        @{ Html.RenderPartial("_Certfications"); }
+        @{ Html.RenderPartial("_Certfications",new CertificationsVM()); }
     </div>
     <div>
-        @Html.Partial("_Voulanteer")
-    </div>
-
-    <div>
-        @Html.Partial("_CoursesModal")
+        @Html.Partial("_Voulanteer",new VoulanteerVM())
     </div>
 
     <div>
-        @Html.Partial("_Honor")
+        @Html.Partial("_CoursesModal",new CoursesVM() { Experiences = Model.Experiences})
+    </div>
+
+    <div>
+        @Html.Partial("_Honor",new HonorVM())
     </div>
     <div>
-        @Html.Partial("_Laungauges")
+        @Html.Partial("_Laungauges",new LanguageVM())
     </div>
 
-        <div>
-            @Html.Partial("_Orgnizations")
-        </div>
-        <div>
-            @Html.Partial("_Patents")
-        </div>
-        <div>
-            @Html.Partial("_Projects")
-        </div>
-        <div>
-            @Html.Partial("_Publications")
-        </div>
-        <div>
-            @Html.Partial("_TestScores")
-        </div>
+    <div>
+        @Html.Partial("_Orgnizations",new OrganizationVM())
+    </div>
+    <div>
+        @Html.Partial("_Patents",new PatentVM())
+    </div>
+    <div>
+        @Html.Partial("_Projects",new ProjectsVM{ Experiences = Model.Experiences})
+    </div>
+    <div>
+        @Html.Partial("_Publications",new PublicationVM())
+    </div>
+    <div>
+        @Html.Partial("_TestScores",new TestScores { })
+    </div>
 
-        <div>
-            @Html.Partial("_Summary")
-        </div>
+    <div>
+        @Html.Partial("_Summary",new AboutVM())
+    </div>
 
-        <div>
-            @Html.Partial("_Skills")
-        </div>
+    <div>
+        @Html.Partial("_Skills",new SkillsVM())
+    </div>
 
 
 
-                            <!-- Scripts -->
-                            @*<script src="~/Scripts/jquery-3.4.1.min.js"></script>
-            <script src="~/Scripts/popper.min.js"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-                    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-                    crossorigin="anonymous"></script>*@
+    
+    @Html.Partial("_Scripts")
 
-                            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-                            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-                            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-                            <script src="~/Scripts/HossamJs/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="~/Scripts/HossamJs/script.js"></script>
 </body>
 
 </html>

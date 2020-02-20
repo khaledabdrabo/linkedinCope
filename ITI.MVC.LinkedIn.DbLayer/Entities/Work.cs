@@ -19,7 +19,7 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
         [ForeignKey("Country")]
         public string CountryName { get; set; }
 
-        [ForeignKey("User")]
+        [ForeignKey("ApplicationUser")]
         public string UserId { get; set; }
 
         [StringLength(50, ErrorMessage = "The title can only be 2 to 50 characters long.", MinimumLength = 2)]
@@ -34,6 +34,7 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
 
         public virtual Experience Experience { get; set; }
         public virtual Country Country { get; set; }
-        public virtual ApplicationUser User { get; set; }
+        [InverseProperty("WorkExperiences")]
+        public virtual ApplicationUser ApplicationUser { get; set; }
     }
 }

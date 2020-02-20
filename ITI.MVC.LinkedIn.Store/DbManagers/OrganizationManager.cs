@@ -14,5 +14,7 @@ namespace ITI.MVC.LinkedIn.Store.DbManagers
         public OrganizationManager(DbContext ctx) : base(ctx)
         {
         }
+
+ 
     }
 }

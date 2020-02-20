@@ -187,10 +187,12 @@
     <Compile Include="Models\ViewModels\LanguageVM.cs" />
     <Compile Include="Models\ViewModels\OrganizationVM.cs" />
     <Compile Include="Models\ViewModels\PatentVM.cs" />
+    <Compile Include="Models\ViewModels\ProfileVM.cs" />
     <Compile Include="Models\ViewModels\ProjectsVM.cs" />
     <Compile Include="Models\ViewModels\PublicationVM.cs" />
     <Compile Include="Models\ViewModels\SignUpVM.cs" />
     <Compile Include="Models\ViewModels\SkillsVM.cs" />
+    <Compile Include="Models\ViewModels\TestScores.cs" />
     <Compile Include="Models\ViewModels\VoulanteerVM.cs" />
     <Compile Include="Models\ViewModels\WorkExperinceVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -250,6 +252,8 @@
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -386,6 +390,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Profile\_Summary.cshtml" />
     <Content Include="Views\Profile\_Skills.cshtml" />
+    <Content Include="Views\Shared\_Scripts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
