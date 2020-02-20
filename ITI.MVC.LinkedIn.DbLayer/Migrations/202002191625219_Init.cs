@@ -15,7 +15,7 @@ namespace ITI.MVC.LinkedIn.DbLayer.Migrations
                         Title = c.String(nullable: false),
                         Issuer = c.String(),
                         ExperienceId = c.Int(),
-                        IssueDate = c.DateTime(nullable: false),
+                        IssueDate = c.DateTime(precision: 7, storeType: "datetime2"),
                         Description = c.String(),
                         UserId = c.String(maxLength: 128),
                     })
@@ -32,8 +32,8 @@ namespace ITI.MVC.LinkedIn.DbLayer.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         UserId = c.String(maxLength: 128),
                         OrganizationId = c.Int(nullable: false),
-                        StartDate = c.DateTime(nullable: false),
-                        EndDate = c.DateTime(nullable: false),
+                        StartDate = c.DateTime(precision: 7, storeType: "datetime2"),
+                        EndDate = c.DateTime(precision: 7, storeType: "datetime2"),
                         Description = c.String(maxLength: 255),
                     })
                 .PrimaryKey(t => t.Id)
@@ -64,6 +64,14 @@ namespace ITI.MVC.LinkedIn.DbLayer.Migrations
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
+                        Summary = c.String(),
+                        FirstName = c.String(),
+                        LastName = c.String(),
+                        Headline = c.String(),
+                        BirthDate = c.DateTime(precision: 7, storeType: "datetime2"),
+                        CountryName = c.String(maxLength: 50),
+                        WorkExperienceId = c.Int(),
+                        IndustryName = c.String(maxLength: 128),
                         Email = c.String(maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),
@@ -77,6 +85,12 @@ namespace ITI.MVC.LinkedIn.DbLayer.Migrations
                         UserName = c.String(nullable: false, maxLength: 256),
                     })
                 .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Country", t => t.CountryName)
+                .ForeignKey("dbo.WorkExperience", t => t.WorkExperienceId)
+                .ForeignKey("dbo.Industry", t => t.IndustryName)
+                .Index(t => t.CountryName)
+                .Index(t => t.WorkExperienceId)
+                .Index(t => t.IndustryName)
                 .Index(t => t.UserName, unique: true, name: "UserNameIndex");
             
             CreateTable(
@@ -151,22 +165,17 @@ namespace ITI.MVC.LinkedIn.DbLayer.Migrations
                 "dbo.SharedPost",
                 c => new
                     {
-                        PostId = c.Int(nullable: false, identity: true),
+                        PostId = c.Int(nullable: false),
                         UserId = c.String(maxLength: 128),
                         OriginalPostId = c.Int(nullable: false),
-                        OriginalPost_TextId = c.Int(),
-                        Post_TextId = c.Int(),
-                        Post_TextId1 = c.Int(),
                     })
                 .PrimaryKey(t => t.PostId)
-                .ForeignKey("dbo.Post", t => t.OriginalPost_TextId)
-                .ForeignKey("dbo.Post", t => t.Post_TextId)
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId)
-                .ForeignKey("dbo.Post", t => t.Post_TextId1)
+                .ForeignKey("dbo.Post", t => t.PostId)
+                .ForeignKey("dbo.Post", t => t.OriginalPostId, cascadeDelete: true)
+                .Index(t => t.PostId)
                 .Index(t => t.UserId)
-                .Index(t => t.OriginalPost_TextId)
-                .Index(t => t.Post_TextId)
-                .Index(t => t.Post_TextId1);
+                .Index(t => t.OriginalPostId);
             
             CreateTable(
                 "dbo.Text",
@@ -174,7 +183,7 @@ namespace ITI.MVC.LinkedIn.DbLayer.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Content = c.String(nullable: false, maxLength: 255),
-                        Time = c.DateTime(nullable: false),
+                        Time = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
                         UserId = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
@@ -245,13 +254,60 @@ namespace ITI.MVC.LinkedIn.DbLayer.Migrations
                     {
                         SenderId = c.String(nullable: false, maxLength: 128),
                         ReceiverId = c.String(nullable: false, maxLength: 128),
-                        StartDate = c.DateTime(nullable: false),
+                        StartDate = c.DateTime(precision: 7, storeType: "datetime2"),
                     })
                 .PrimaryKey(t => new { t.SenderId, t.ReceiverId })
                 .ForeignKey("dbo.AspNetUsers", t => t.ReceiverId, cascadeDelete: false)
                 .ForeignKey("dbo.AspNetUsers", t => t.SenderId, cascadeDelete: false)
                 .Index(t => t.SenderId)
                 .Index(t => t.ReceiverId);
+            
+            CreateTable(
+                "dbo.Country",
+                c => new
+                    {
+                        Name = c.String(nullable: false, maxLength: 50),
+                    })
+                .PrimaryKey(t => t.Name);
+            
+            CreateTable(
+                "dbo.Patent",
+                c => new
+                    {
+                        Title = c.String(nullable: false, maxLength: 128),
+                        Number = c.Int(nullable: false),
+                        UserId = c.String(nullable: false, maxLength: 128),
+                        CountryName = c.String(nullable: false, maxLength: 50),
+                        Inventor = c.String(),
+                        Status = c.Int(nullable: false),
+                        Date = c.DateTime(precision: 7, storeType: "datetime2"),
+                        Url = c.String(),
+                        Description = c.String(),
+                    })
+                .PrimaryKey(t => new { t.Title, t.Number, t.UserId })
+                .ForeignKey("dbo.Country", t => t.CountryName, cascadeDelete: true)
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
+                .Index(t => t.UserId)
+                .Index(t => t.CountryName);
+            
+            CreateTable(
+                "dbo.WorkExperience",
+                c => new
+                    {
+                        ExperienceId = c.Int(nullable: false),
+                        CountryName = c.String(maxLength: 50),
+                        UserId = c.String(maxLength: 128),
+                        Title = c.String(nullable: false, maxLength: 50),
+                        EmploymentType = c.Int(),
+                        Headline = c.String(nullable: false, maxLength: 50),
+                    })
+                .PrimaryKey(t => t.ExperienceId)
+                .ForeignKey("dbo.Country", t => t.CountryName)
+                .ForeignKey("dbo.Experience", t => t.ExperienceId)
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId)
+                .Index(t => t.ExperienceId)
+                .Index(t => t.CountryName)
+                .Index(t => t.UserId);
             
             CreateTable(
                 "dbo.Course",
@@ -267,6 +323,14 @@ namespace ITI.MVC.LinkedIn.DbLayer.Migrations
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId)
                 .Index(t => t.ExperienceId)
                 .Index(t => t.UserId);
+            
+            CreateTable(
+                "dbo.Industry",
+                c => new
+                    {
+                        Name = c.String(nullable: false, maxLength: 128),
+                    })
+                .PrimaryKey(t => t.Name);
             
             CreateTable(
                 "dbo.AspNetUserLogins",
@@ -310,11 +374,10 @@ namespace ITI.MVC.LinkedIn.DbLayer.Migrations
                         Author = c.String(),
                         Url = c.String(),
                         Description = c.String(),
-                        User_Id = c.String(maxLength: 128),
                     })
-                .PrimaryKey(t => t.UserId)
-                .ForeignKey("dbo.AspNetUsers", t => t.User_Id)
-                .Index(t => t.User_Id);
+                .PrimaryKey(t => new { t.Title, t.UserId })
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
+                .Index(t => t.UserId);
             
             CreateTable(
                 "dbo.AspNetUserRoles",
@@ -338,7 +401,7 @@ namespace ITI.MVC.LinkedIn.DbLayer.Migrations
                         UserId = c.String(maxLength: 128),
                         ExperienceId = c.Int(),
                         Score = c.Int(nullable: false),
-                        TestDate = c.DateTime(nullable: false),
+                        TestDate = c.DateTime(precision: 7, storeType: "datetime2"),
                         Description = c.String(),
                     })
                 .PrimaryKey(t => t.Id)
@@ -354,8 +417,8 @@ namespace ITI.MVC.LinkedIn.DbLayer.Migrations
                         UserId = c.String(nullable: false, maxLength: 128),
                         CertificationId = c.Int(nullable: false),
                         OrganizationId = c.Int(nullable: false),
-                        IssueDate = c.DateTime(nullable: false),
-                        ExpirationDate = c.DateTime(nullable: false),
+                        IssueDate = c.DateTime(precision: 7, storeType: "datetime2"),
+                        ExpirationDate = c.DateTime(precision: 7, storeType: "datetime2"),
                         CredentialId = c.String(maxLength: 250),
                         CredentialUrl = c.String(maxLength: 250),
                     })
@@ -384,55 +447,6 @@ namespace ITI.MVC.LinkedIn.DbLayer.Migrations
                         Name = c.String(nullable: false, maxLength: 50),
                         Logo = c.String(),
                         Type = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "dbo.VolunteerExperience",
-                c => new
-                    {
-                        ExperienceId = c.Int(nullable: false),
-                        Role = c.String(maxLength: 50),
-                        UserId = c.String(maxLength: 128),
-                        VolunteeringCause = c.Int(),
-                        Organization_Id = c.Int(),
-                    })
-                .PrimaryKey(t => t.ExperienceId)
-                .ForeignKey("dbo.Experience", t => t.ExperienceId)
-                .ForeignKey("dbo.AspNetUsers", t => t.UserId)
-                .ForeignKey("dbo.Organization", t => t.Organization_Id)
-                .Index(t => t.ExperienceId)
-                .Index(t => t.UserId)
-                .Index(t => t.Organization_Id);
-            
-            CreateTable(
-                "dbo.WorkExperience",
-                c => new
-                    {
-                        ExperienceId = c.Int(nullable: false),
-                        CountryId = c.Int(),
-                        UserId = c.String(maxLength: 128),
-                        Title = c.String(nullable: false, maxLength: 50),
-                        EmploymentType = c.Int(),
-                        Headline = c.String(nullable: false, maxLength: 50),
-                        Organization_Id = c.Int(),
-                    })
-                .PrimaryKey(t => t.ExperienceId)
-                .ForeignKey("dbo.Country", t => t.CountryId)
-                .ForeignKey("dbo.Experience", t => t.ExperienceId)
-                .ForeignKey("dbo.AspNetUsers", t => t.UserId)
-                .ForeignKey("dbo.Organization", t => t.Organization_Id)
-                .Index(t => t.ExperienceId)
-                .Index(t => t.CountryId)
-                .Index(t => t.UserId)
-                .Index(t => t.Organization_Id);
-            
-            CreateTable(
-                "dbo.Country",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false, maxLength: 50),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -483,24 +497,19 @@ namespace ITI.MVC.LinkedIn.DbLayer.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.Patent",
+                "dbo.VolunteerExperience",
                 c => new
                     {
-                        Title = c.String(nullable: false, maxLength: 128),
-                        Number = c.Int(nullable: false),
-                        UserId = c.String(nullable: false, maxLength: 128),
-                        CountryId = c.Int(nullable: false),
-                        Inventor = c.String(),
-                        Status = c.Int(nullable: false),
-                        Date = c.DateTime(nullable: false),
-                        Url = c.String(),
-                        Description = c.String(),
+                        ExperienceId = c.Int(nullable: false),
+                        Role = c.String(maxLength: 50),
+                        UserId = c.String(maxLength: 128),
+                        VolunteeringCause = c.Int(),
                     })
-                .PrimaryKey(t => new { t.Title, t.Number, t.UserId })
-                .ForeignKey("dbo.Country", t => t.CountryId, cascadeDelete: true)
-                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
-                .Index(t => t.UserId)
-                .Index(t => t.CountryId);
+                .PrimaryKey(t => t.ExperienceId)
+                .ForeignKey("dbo.Experience", t => t.ExperienceId)
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId)
+                .Index(t => t.ExperienceId)
+                .Index(t => t.UserId);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -517,36 +526,37 @@ namespace ITI.MVC.LinkedIn.DbLayer.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
-            DropForeignKey("dbo.Patent", "UserId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.Patent", "CountryId", "dbo.Country");
             DropForeignKey("dbo.Award", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.Award", "ExperienceId", "dbo.Experience");
             DropForeignKey("dbo.Experience", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.Experience", "OrganizationId", "dbo.Organization");
             DropForeignKey("dbo.Education", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.WorkExperience", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.VolunteerExperience", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.VolunteerExperience", "ExperienceId", "dbo.Experience");
             DropForeignKey("dbo.UserSkill", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.UserSkill", "SkillId", "dbo.Skill");
             DropForeignKey("dbo.UserLanguage", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.UserLanguage", "LanguageId", "dbo.Language");
             DropForeignKey("dbo.UserCertification", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.UserCertification", "OrganizationId", "dbo.Organization");
-            DropForeignKey("dbo.WorkExperience", "Organization_Id", "dbo.Organization");
-            DropForeignKey("dbo.WorkExperience", "UserId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.WorkExperience", "ExperienceId", "dbo.Experience");
-            DropForeignKey("dbo.WorkExperience", "CountryId", "dbo.Country");
-            DropForeignKey("dbo.VolunteerExperience", "Organization_Id", "dbo.Organization");
-            DropForeignKey("dbo.VolunteerExperience", "UserId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.VolunteerExperience", "ExperienceId", "dbo.Experience");
             DropForeignKey("dbo.UserCertification", "CertificationId", "dbo.Certification");
             DropForeignKey("dbo.TestScore", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.TestScore", "ExperienceId", "dbo.Experience");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.Publication", "User_Id", "dbo.AspNetUsers");
+            DropForeignKey("dbo.Publication", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.Project", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.Project", "ExperienceId", "dbo.Experience");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.AspNetUsers", "IndustryName", "dbo.Industry");
+            DropForeignKey("dbo.AspNetUsers", "WorkExperienceId", "dbo.WorkExperience");
             DropForeignKey("dbo.Course", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.Course", "ExperienceId", "dbo.Experience");
+            DropForeignKey("dbo.AspNetUsers", "CountryName", "dbo.Country");
+            DropForeignKey("dbo.WorkExperience", "ExperienceId", "dbo.Experience");
+            DropForeignKey("dbo.WorkExperience", "CountryName", "dbo.Country");
+            DropForeignKey("dbo.Patent", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.Patent", "CountryName", "dbo.Country");
             DropForeignKey("dbo.Connection", "SenderId", "dbo.AspNetUsers");
             DropForeignKey("dbo.Connection", "ReceiverId", "dbo.AspNetUsers");
             DropForeignKey("dbo.ConnectionRequest", "SenderId", "dbo.AspNetUsers");
@@ -566,28 +576,20 @@ namespace ITI.MVC.LinkedIn.DbLayer.Migrations
             DropForeignKey("dbo.Reply", "CommentId", "dbo.Comment");
             DropForeignKey("dbo.Image", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.Image", "TextId", "dbo.Text");
-            DropForeignKey("dbo.SharedPost", "Post_TextId1", "dbo.Post");
+            DropForeignKey("dbo.SharedPost", "OriginalPostId", "dbo.Post");
+            DropForeignKey("dbo.SharedPost", "PostId", "dbo.Post");
             DropForeignKey("dbo.SharedPost", "UserId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.SharedPost", "Post_TextId", "dbo.Post");
-            DropForeignKey("dbo.SharedPost", "OriginalPost_TextId", "dbo.Post");
             DropForeignKey("dbo.PostLike", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.PostLike", "PostId", "dbo.Post");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.Education", "ExperienceId", "dbo.Experience");
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
-            DropIndex("dbo.Patent", new[] { "CountryId" });
-            DropIndex("dbo.Patent", new[] { "UserId" });
+            DropIndex("dbo.VolunteerExperience", new[] { "UserId" });
+            DropIndex("dbo.VolunteerExperience", new[] { "ExperienceId" });
             DropIndex("dbo.UserSkill", new[] { "SkillId" });
             DropIndex("dbo.UserSkill", new[] { "UserId" });
             DropIndex("dbo.UserLanguage", new[] { "LanguageId" });
             DropIndex("dbo.UserLanguage", new[] { "UserId" });
-            DropIndex("dbo.WorkExperience", new[] { "Organization_Id" });
-            DropIndex("dbo.WorkExperience", new[] { "UserId" });
-            DropIndex("dbo.WorkExperience", new[] { "CountryId" });
-            DropIndex("dbo.WorkExperience", new[] { "ExperienceId" });
-            DropIndex("dbo.VolunteerExperience", new[] { "Organization_Id" });
-            DropIndex("dbo.VolunteerExperience", new[] { "UserId" });
-            DropIndex("dbo.VolunteerExperience", new[] { "ExperienceId" });
             DropIndex("dbo.UserCertification", new[] { "OrganizationId" });
             DropIndex("dbo.UserCertification", new[] { "CertificationId" });
             DropIndex("dbo.UserCertification", new[] { "UserId" });
@@ -595,12 +597,17 @@ namespace ITI.MVC.LinkedIn.DbLayer.Migrations
             DropIndex("dbo.TestScore", new[] { "UserId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
-            DropIndex("dbo.Publication", new[] { "User_Id" });
+            DropIndex("dbo.Publication", new[] { "UserId" });
             DropIndex("dbo.Project", new[] { "UserId" });
             DropIndex("dbo.Project", new[] { "ExperienceId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.Course", new[] { "UserId" });
             DropIndex("dbo.Course", new[] { "ExperienceId" });
+            DropIndex("dbo.WorkExperience", new[] { "UserId" });
+            DropIndex("dbo.WorkExperience", new[] { "CountryName" });
+            DropIndex("dbo.WorkExperience", new[] { "ExperienceId" });
+            DropIndex("dbo.Patent", new[] { "CountryName" });
+            DropIndex("dbo.Patent", new[] { "UserId" });
             DropIndex("dbo.Connection", new[] { "ReceiverId" });
             DropIndex("dbo.Connection", new[] { "SenderId" });
             DropIndex("dbo.ConnectionRequest", new[] { "ReceiverId" });
@@ -613,10 +620,9 @@ namespace ITI.MVC.LinkedIn.DbLayer.Migrations
             DropIndex("dbo.Image", new[] { "UserId" });
             DropIndex("dbo.Image", new[] { "TextId" });
             DropIndex("dbo.Text", new[] { "UserId" });
-            DropIndex("dbo.SharedPost", new[] { "Post_TextId1" });
-            DropIndex("dbo.SharedPost", new[] { "Post_TextId" });
-            DropIndex("dbo.SharedPost", new[] { "OriginalPost_TextId" });
+            DropIndex("dbo.SharedPost", new[] { "OriginalPostId" });
             DropIndex("dbo.SharedPost", new[] { "UserId" });
+            DropIndex("dbo.SharedPost", new[] { "PostId" });
             DropIndex("dbo.PostLike", new[] { "UserId" });
             DropIndex("dbo.PostLike", new[] { "PostId" });
             DropIndex("dbo.Post", new[] { "UserId" });
@@ -628,6 +634,9 @@ namespace ITI.MVC.LinkedIn.DbLayer.Migrations
             DropIndex("dbo.CommentLike", new[] { "CommentId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
+            DropIndex("dbo.AspNetUsers", new[] { "IndustryName" });
+            DropIndex("dbo.AspNetUsers", new[] { "WorkExperienceId" });
+            DropIndex("dbo.AspNetUsers", new[] { "CountryName" });
             DropIndex("dbo.Education", new[] { "UserId" });
             DropIndex("dbo.Education", new[] { "ExperienceId" });
             DropIndex("dbo.Experience", new[] { "OrganizationId" });
@@ -635,14 +644,11 @@ namespace ITI.MVC.LinkedIn.DbLayer.Migrations
             DropIndex("dbo.Award", new[] { "UserId" });
             DropIndex("dbo.Award", new[] { "ExperienceId" });
             DropTable("dbo.AspNetRoles");
-            DropTable("dbo.Patent");
+            DropTable("dbo.VolunteerExperience");
             DropTable("dbo.Skill");
             DropTable("dbo.UserSkill");
             DropTable("dbo.Language");
             DropTable("dbo.UserLanguage");
-            DropTable("dbo.Country");
-            DropTable("dbo.WorkExperience");
-            DropTable("dbo.VolunteerExperience");
             DropTable("dbo.Organization");
             DropTable("dbo.Certification");
             DropTable("dbo.UserCertification");
@@ -651,7 +657,11 @@ namespace ITI.MVC.LinkedIn.DbLayer.Migrations
             DropTable("dbo.Publication");
             DropTable("dbo.Project");
             DropTable("dbo.AspNetUserLogins");
+            DropTable("dbo.Industry");
             DropTable("dbo.Course");
+            DropTable("dbo.WorkExperience");
+            DropTable("dbo.Patent");
+            DropTable("dbo.Country");
             DropTable("dbo.Connection");
             DropTable("dbo.ConnectionRequest");
             DropTable("dbo.ReplyLike");

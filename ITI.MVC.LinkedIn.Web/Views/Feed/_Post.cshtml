@@ -1,0 +1,29 @@
+﻿@model Post
+
+<div class="card post">
+    <div class="post-header card-header">
+        <img class="post-profile-img" src="unnamed.jpg">
+        <div class="post-header-creator-info">
+            <h6>@{Model.User.FirstName + " " + Model.User.LastName;}</h6>
+            <small class="text-muted">@Model.User.Headline</small>
+            <small class="text-muted">@Model.Text.Time</small>
+        </div>
+    </div>
+    <div class="post-body card-body">
+
+        <p class="card-text">@Model.Text.Content</p>
+    </div>
+    @{ 
+        if (Model.Text.Images.Count != 0) {
+            <img class="card-img-top" src="@Model.Text.Images.ToList()[0].Url" alt="Card image cap">
+        }
+    }
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/Feed/post.js"></script>
+}
+
+@section Styles {
+    <link href="~/Content/Feed/post.css" rel="stylesheet" />
+}
