@@ -161,6 +161,10 @@
     <Compile Include="Migrations\202002201028199_FixProjectDateTime2.designer.cs">
       <DependentUpon>202002201028199_FixProjectDateTime2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002201428243_FixProjectId.cs" />
+    <Compile Include="Migrations\202002201428243_FixProjectId.designer.cs">
+      <DependentUpon>202002201428243_FixProjectId.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -216,6 +220,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002201028199_FixProjectDateTime2.resx">
       <DependentUpon>202002201028199_FixProjectDateTime2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002201428243_FixProjectId.resx">
+      <DependentUpon>202002201428243_FixProjectId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

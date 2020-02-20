@@ -21,6 +21,11 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
         [ForeignKey("Experience")]
         public int? ExperienceId { get; set; }
 
+        [Key, Column(Order = 2)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
+
+
         [ForeignKey("User")]
         public string UserId { get; set; }
 
