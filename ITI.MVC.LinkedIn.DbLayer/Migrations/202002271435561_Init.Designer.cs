@@ -7,13 +7,13 @@ namespace ITI.MVC.LinkedIn.DbLayer.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.0")]
-    public sealed partial class workfix4 : IMigrationMetadata
+    public sealed partial class Init : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(workfix4));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Init));
         
         string IMigrationMetadata.Id
         {
-            get { return "202002192242537_workfix4"; }
+            get { return "202002271435561_Init"; }
         }
         
         string IMigrationMetadata.Source

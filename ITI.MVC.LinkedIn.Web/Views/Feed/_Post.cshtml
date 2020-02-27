@@ -1,10 +1,12 @@
-﻿@model Post
+﻿@*// <author>Ibrahim Farhan</author>*@
+
+@model Post
 
 <div class="card post">
     <div class="post-header card-header">
-        <img class="post-profile-img" src="unnamed.jpg">
+        <img class="post-profile-img" src="@(Model.User.Images.Count != 0 ? Model.User.Images.Where(i => i.ImageRole == ImageRole.Profile).First().Url : "")">
         <div class="post-header-creator-info">
-            <h6>@{Model.User.FirstName + " " + Model.User.LastName;}</h6>
+            <h6>@(Model.User.FirstName + " " + Model.User.LastName)</h6>
             <small class="text-muted">@Model.User.Headline</small>
             <small class="text-muted">@Model.Text.Time</small>
         </div>
@@ -13,17 +15,55 @@
 
         <p class="card-text">@Model.Text.Content</p>
     </div>
-    @{ 
-        if (Model.Text.Images.Count != 0) {
-            <img class="card-img-top" src="@Model.Text.Images.ToList()[0].Url" alt="Card image cap">
+    @{
+        if (Model.Text.Images.Count != 0)
+        {
+            <img class="card-img-top" src="@Model.Text.Images.ToList()[0].Url">
         }
     }
+
+    <div class="post-status">
+
+        <p class="card-text">
+            <small class="text-muted">
+                <small class="text-muted" data-toggle="modal" data-target=".bd-example-modal-sm">
+                    <i class="far fa-thumbs-up"></i>&nbsp;<i class="far fa-comments"></i>&nbsp;<i class="fas fa-share"></i>160
+                </small>
+                <small class="text-muted">150 Comment</small>
+            </small>
+        </p>
+
+    </div>
+    <div class="post-footer card-footer" style="display: flex;">
+        <div class="post-footer-action">
+            <div class="post-footer-like">
+
+                <button id="@Model.TextId" class="post-like-btn btn btn-light reactions-container btn-lg btn btn-secondary">
+                        <i class="far fa-thumbs-up container__Sign reaction-sign"></i> like
+                </button>
+            </div>
+            &nbsp;
+            <div>
+                <button class="btn btn-light btn-lg">
+                    <i class="far fa-comment-dots container__Sign comment-sign"></i>
+                    comment
+                </button>
+            </div>
+            &nbsp;
+            <div>
+                <button class="btn btn-light btn-lg" data-toggle="modal" data-target="#post">
+                    <i class="far fa-share-square container__Sign share-sign "></i>
+                    share
+                </button>
+            </div>
+        </div>
+        
+        @Html.Partial("_CreateComment", new CommentVM())
+        
+        @foreach (Comment comment in Model.Comments)
+        {
+            Html.Partial("_Comment", comment);
+        }
+
+    </div>
 </div>
-
-@section Scripts {
-    <script src="~/Scripts/Feed/post.js"></script>
-}
-
-@section Styles {
-    <link href="~/Content/Feed/post.css" rel="stylesheet" />
-}

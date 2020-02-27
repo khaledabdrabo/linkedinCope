@@ -1,9 +1,8 @@
-﻿
-var post = document.getElementById('textEditor');
+﻿var post = document.getElementById('textEditor');
 
 post.addEventListener('input', function (e) {
     var val = post.value;
-    if (val == null || val.trim() == "") {
+    if (!val || val.trim() === "") {
         document.querySelector('.mypost-footer_publish-btn').classList.remove('mypost-footer_publishEnable');
         document.querySelector('.mypost-footer_publish-btn').classList.add('mypost-footer_publishDisable');
         console.log("dakhlt")
@@ -36,7 +35,7 @@ document.addEventListener('keypress', function (event) {
 });
 
 document.querySelector('.comment-like').addEventListener('click', function () {
-    document.querySelector('.comment-like').classList.toggle('text-primary');
+    //document.querySelector('.comment-like').classList.toggle('text-primary');
     document.querySelector('.likes-no').classList.toggle('pr-2');
     document.querySelector('.likes-no').classList.toggle('d-inline');
 
@@ -77,3 +76,44 @@ $('body').on('click', '.popover', function (target) {
         $('.reactions-container').prepend('<i class="' + target.target.className + 'container__Sign reaction-sign"></i>');
     }
 });
+
+let postsContainer = document.getElementById("postsContainer");
+
+postsContainer.addEventListener("click", onPostsContainerClick);
+
+function onPostsContainerClick(e) {
+
+    if (!e.target) {
+        return;
+    }
+
+    if (e.target.classList.contains("post-like-btn")) {
+
+        toggleLike(e.target, "post");
+    }
+
+    if (e.target.classList.contains("comment-like")) {
+
+        toggleLike(e.target, "comment");
+    }
+}
+
+async function toggleLike(btn, entityType) {
+
+    let response = await fetch("/Feed/ToggleLike", { method: "POST", body: btn.id });
+    let success = await response.text();
+
+    if (success === "true") {
+
+        switch (entityType) {
+
+            case "post":
+                btn.style.backgroundColor === "blue" ? "black" : "blue";
+                break;
+
+            case "comment":
+                btn.classList.toggle("text-primary");
+                break;
+        }
+    }
+}

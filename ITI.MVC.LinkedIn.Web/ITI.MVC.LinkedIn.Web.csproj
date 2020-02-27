@@ -185,12 +185,15 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ViewModels\AboutVM.cs" />
     <Compile Include="Models\ViewModels\CertificationsVM.cs" />
+    <Compile Include="Models\ViewModels\CommentVM.cs" />
     <Compile Include="Models\ViewModels\CoursesVM.cs" />
     <Compile Include="Models\ViewModels\EducationVM.cs" />
     <Compile Include="Models\ViewModels\HonorVM.cs" />
     <Compile Include="Models\ViewModels\LanguageVM.cs" />
     <Compile Include="Models\ViewModels\OrganizationVM.cs" />
     <Compile Include="Models\ViewModels\PatentVM.cs" />
+    <Compile Include="Models\ViewModels\PostsVM.cs" />
+    <Compile Include="Models\ViewModels\PostVM.cs" />
     <Compile Include="Models\ViewModels\ProfileVM.cs" />
     <Compile Include="Models\ViewModels\ProjectsVM.cs" />
     <Compile Include="Models\ViewModels\PublicationVM.cs" />
@@ -239,6 +242,8 @@
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
     <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\Feed\create-comment.js" />
+    <Content Include="Scripts\Feed\create-post.js" />
     <Content Include="Scripts\index.js.flow" />
     <Content Include="Scripts\esm\popper.min.js.map" />
     <Content Include="Scripts\esm\popper.js.map" />
@@ -409,10 +414,15 @@
     <Content Include="Views\Feed\Index.cshtml" />
     <Content Include="Views\Feed\_Post.cshtml" />
     <Content Include="Views\Feed\_SharedPost.cshtml" />
+    <Content Include="Views\Feed\_CreatePost.cshtml" />
+    <Content Include="Views\Feed\_ProfilePreview.cshtml" />
+    <Content Include="Views\Feed\_CreateComment.cshtml" />
+    <Content Include="Views\Feed\_Comment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\" />
+    <Folder Include="Uploads\" />
     <Folder Include="Views\Default\" />
   </ItemGroup>
   <ItemGroup>

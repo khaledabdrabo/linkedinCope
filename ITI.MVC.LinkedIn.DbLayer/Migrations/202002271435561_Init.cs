@@ -1,4 +1,4 @@
-namespace ITI.MVC.LinkedIn.DbLayer.Migrations
+﻿namespace ITI.MVC.LinkedIn.DbLayer.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
@@ -70,7 +70,7 @@ namespace ITI.MVC.LinkedIn.DbLayer.Migrations
                         Headline = c.String(),
                         BirthDate = c.DateTime(precision: 7, storeType: "datetime2"),
                         CountryName = c.String(maxLength: 50),
-                        WorkExperienceId = c.Int(),
+                        CurrentWorkExperienceId = c.Int(),
                         IndustryName = c.String(maxLength: 128),
                         Email = c.String(maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
@@ -86,10 +86,10 @@ namespace ITI.MVC.LinkedIn.DbLayer.Migrations
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Country", t => t.CountryName)
-                .ForeignKey("dbo.WorkExperience", t => t.WorkExperienceId)
+                .ForeignKey("dbo.WorkExperience", t => t.CurrentWorkExperienceId)
                 .ForeignKey("dbo.Industry", t => t.IndustryName)
                 .Index(t => t.CountryName)
-                .Index(t => t.WorkExperienceId)
+                .Index(t => t.CurrentWorkExperienceId)
                 .Index(t => t.IndustryName)
                 .Index(t => t.UserName, unique: true, name: "UserNameIndex");
             
@@ -243,8 +243,8 @@ namespace ITI.MVC.LinkedIn.DbLayer.Migrations
                         ReceiverId = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => new { t.SenderId, t.ReceiverId })
-                .ForeignKey("dbo.AspNetUsers", t => t.ReceiverId, cascadeDelete: false)
-                .ForeignKey("dbo.AspNetUsers", t => t.SenderId, cascadeDelete: false)
+                .ForeignKey("dbo.AspNetUsers", t => t.ReceiverId)
+                .ForeignKey("dbo.AspNetUsers", t => t.SenderId)
                 .Index(t => t.SenderId)
                 .Index(t => t.ReceiverId);
             
@@ -257,8 +257,8 @@ namespace ITI.MVC.LinkedIn.DbLayer.Migrations
                         StartDate = c.DateTime(precision: 7, storeType: "datetime2"),
                     })
                 .PrimaryKey(t => new { t.SenderId, t.ReceiverId })
-                .ForeignKey("dbo.AspNetUsers", t => t.ReceiverId, cascadeDelete: false)
-                .ForeignKey("dbo.AspNetUsers", t => t.SenderId, cascadeDelete: false)
+                .ForeignKey("dbo.AspNetUsers", t => t.ReceiverId)
+                .ForeignKey("dbo.AspNetUsers", t => t.SenderId)
                 .Index(t => t.SenderId)
                 .Index(t => t.ReceiverId);
             
@@ -351,8 +351,8 @@ namespace ITI.MVC.LinkedIn.DbLayer.Migrations
                         Name = c.String(nullable: false, maxLength: 50),
                         ExperienceId = c.Int(nullable: false),
                         UserId = c.String(maxLength: 128),
-                        StartDate = c.Int(nullable: false),
-                        EndDate = c.Int(nullable: false),
+                        StartDate = c.DateTime(precision: 7, storeType: "datetime2"),
+                        EndDate = c.DateTime(precision: 7, storeType: "datetime2"),
                         Creator = c.String(),
                         Url = c.String(),
                         Description = c.String(),
@@ -549,7 +549,7 @@ namespace ITI.MVC.LinkedIn.DbLayer.Migrations
             DropForeignKey("dbo.Project", "ExperienceId", "dbo.Experience");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUsers", "IndustryName", "dbo.Industry");
-            DropForeignKey("dbo.AspNetUsers", "WorkExperienceId", "dbo.WorkExperience");
+            DropForeignKey("dbo.AspNetUsers", "CurrentWorkExperienceId", "dbo.WorkExperience");
             DropForeignKey("dbo.Course", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.Course", "ExperienceId", "dbo.Experience");
             DropForeignKey("dbo.AspNetUsers", "CountryName", "dbo.Country");
@@ -635,7 +635,7 @@ namespace ITI.MVC.LinkedIn.DbLayer.Migrations
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.AspNetUsers", new[] { "IndustryName" });
-            DropIndex("dbo.AspNetUsers", new[] { "WorkExperienceId" });
+            DropIndex("dbo.AspNetUsers", new[] { "CurrentWorkExperienceId" });
             DropIndex("dbo.AspNetUsers", new[] { "CountryName" });
             DropIndex("dbo.Education", new[] { "UserId" });
             DropIndex("dbo.Education", new[] { "ExperienceId" });
