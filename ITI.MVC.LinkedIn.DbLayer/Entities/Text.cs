@@ -19,6 +19,7 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
         public string Content { get; set; }
 
         [Required]
+        [Column(TypeName = "datetime2")]
         public DateTime? Time { get; set; }
 
         [ForeignKey("User")]

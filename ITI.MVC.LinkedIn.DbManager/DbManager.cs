@@ -18,31 +18,33 @@ namespace ITI.MVC.LinkedIn.DbManager
             set = ctx.Set<TEntity>();
         }
 
+        public DbSet<TEntity> Set { get => set; }
+
         public TEntity Add(TEntity entity)
         {
-            TEntity e = set.Add(entity);
+            TEntity e = Set.Add(entity);
 
             return ctx.SaveChanges() > 0 ? e : null;
         }
 
         public IQueryable<TEntity> GetAll()
         {
-            return set;
+            return Set;
         }
 
         public IEnumerable<TEntity> GetAllBind()
         {
-            return set.ToList();
+            return Set.ToList();
         }
 
         public TEntity GetById(params object[] id)
         {
-            return set.Find(id);
+            return Set.Find(id);
         }
 
         public bool Remove(TEntity entity)
         {
-            set.Attach(entity);
+            Set.Attach(entity);
             ctx.Entry(entity).State = EntityState.Deleted;
 
             return ctx.SaveChanges() > 0;
@@ -50,7 +52,7 @@ namespace ITI.MVC.LinkedIn.DbManager
 
         public bool Update(TEntity entity)
         {
-            set.Attach(entity);
+            Set.Attach(entity);
             ctx.Entry(entity).State = EntityState.Modified;
 
             return ctx.SaveChanges() > 0;

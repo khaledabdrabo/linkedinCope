@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.SqlTypes;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -13,13 +14,16 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
         public string Summary { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string Headline { get; set; }
+
+        [Column(TypeName = "datetime2")]
         public DateTime? BirthDate { get; set; }
 
         [ForeignKey("Country")]
         public string CountryName { get; set; }
 
         [ForeignKey("CurrentPosition")]
-        public int? WorkExperienceId { get; set; }
+        public int? CurrentWorkExperienceId { get; set; }
 
         [ForeignKey("Industry")]
         public string IndustryName { get; set; }
@@ -34,6 +38,8 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
         public virtual ICollection<UserLanguage> UserLanguages { get; set; }
         public virtual ICollection<UserSkill> UserSkills { get; set; }
         public virtual ICollection<Experience> Experiences { get; set; }
+
+        [InverseProperty("User")]
         public virtual ICollection<Work> WorkExperiences { get; set; }
         public virtual ICollection<Volunteer> VolunteerExperiences { get; set; }
         public virtual ICollection<Education> EducationExperiences { get; set; }
