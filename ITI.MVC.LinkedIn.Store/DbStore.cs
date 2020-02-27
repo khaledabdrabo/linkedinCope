@@ -14,7 +14,7 @@ namespace ITI.MVC.LinkedIn.Store
 {
     public class DbStore : IDisposable
     {
-        public DbContext DbContext { get; set; }
+        public ApplicationDbContext DbContext { get; set; }
         public ApplicationUserManager ApplicationUserManager { get; set; }
         public ApplicationSignInManager ApplicationSignInManager { get; set; }
         public AwardManager AwardManager { get; set; }

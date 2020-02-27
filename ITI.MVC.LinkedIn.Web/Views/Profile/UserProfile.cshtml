@@ -1,4 +1,5 @@
-﻿
+﻿@using Microsoft.AspNet.Identity;
+@{ string id = User.Identity.Name;}
 @{
     Layout = null;
 }
@@ -13,10 +14,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
     <script src="https://kit.fontawesome.com/5028f5981e.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="~/Content/HossamCSS/style.css" />
-    <title>LinkedIn</title>
+    
+     <title>LinkedIn</title>
 </head>
 
-<body>
+<body >
     <!-- Profile Header Section -->
     <section class="p-3" id="ProfileSummary">
         <div class="container u-border">
@@ -25,7 +27,7 @@
                 <div class="col-sm-12 profile-imgs">
                     <!--profile img -->
                     <div class="position-absolute profile-img">
-                        <img src="~/Content/images/ProfilePic.jpg" class="rounded-circle">
+                        <img src="~/Content/images/@ViewBag.imag" class="rounded-circle">
                     </div>
                 </div>
                 <!-- down div -->
@@ -139,7 +141,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="p-2" style="margin: auto 0;">
-                                                                    <a href="" class="col-sm-1 text-right " data-toggle="modal" data-target="#WorkExperince">
+                                                                    <a href="" onclick="addEperience( )" class="col-sm-1 text-right " data-toggle="modal" data-target="#myModalTest">
                                                                         <i class="fas fa-plus p-3 profile-icon "></i>
                                                                     </a>
                                                                 </div>
@@ -148,7 +150,7 @@
                                                         @*Education*@
                                                         <a class="education text-reset " href="# ">
                                                             <div class="d-flex m-auto p-2">
-                                                                <div class="p-2" style=" display: flex; align-items: center; ">
+                                                                <div class="p-2" style="display: flex; align-items: center; ">
                                                                     <i class="fas fa-university" style="margin-right: 1rem;"></i>
                                                                     <div class="d-block">
                                                                         <p>Education</p>
@@ -157,7 +159,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="p-2" style="margin: auto 0;">
-                                                                    <a href="" class="col-sm-1 text-right " data-toggle="modal" data-target="#Education">
+                                                                    <a href="#" onclick="addEducation()" class="col-sm-1 text-right " data-toggle="modal" data-target="">
                                                                         <i class="fas fa-plus p-3 profile-icon "></i>
                                                                     </a>
                                                                 </div>
@@ -180,7 +182,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="p-2" style="margin: auto 0;">
-                                                                    <a href="" class="col-sm-1 text-right " data-toggle="modal" data-target="#Licenses1">
+                                                                    <a href="#" onclick="()" class="col-sm-1 text-right " data-toggle="modal" data-target="#">
                                                                         <i class="fas fa-plus p-3 profile-icon "></i>
                                                                     </a>
                                                                 </div>
@@ -197,7 +199,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="p-2" style="margin: auto 0;">
-                                                                    <a href="" class="col-sm-1 text-right " data-toggle="modal" data-target="#volunteer">
+                                                                    <a href="#" onclick="AddVolunteer()" class="col-sm-1 text-right " data-toggle="modal" data-target="#">
                                                                         <i class="fas fa-plus p-3 profile-icon "></i>
                                                                     </a>
                                                                 </div>
@@ -471,10 +473,10 @@
                                     <h4> ITI Intake 40</h4>
                                 </div>
                                 <div class="d-flex">
-                                    <h4>Egypt </h4>
+                                    <h4>@ViewBag.country </h4>
                                     <ul class="info">
                                         <!-- Button trigger modal -->
-                                        <li id="connection"><a href="#" class="btn btn-link"> 500+ Connections </a></li>
+                                        <li id="connection"><a href="#" class="btn btn-link"> @ViewBag.connection+ Connections </a></li>
                                         <li id="contact">
                                             <a href="#" type="button" class="btn btn-link" data-toggle="modal" data-target="#Connection">
                                                 Contact info
@@ -550,32 +552,38 @@
             <div class="p-4">
                 <div class="row">
                     <h2 class="col-sm-11 background__section-heading">Experience</h2>
-                    <a href="" class="col-sm-1 text-right " data-toggle="modal" data-target="#WorkExperince">
+                    <a href="" onclick="addEperience( )" class="col-sm-1 text-right " data-toggle="modal" data-target="#myModalTest">
                         <i class="fas fa-plus p-3 profile-icon "></i>
                     </a>
                 </div>
-                <div class="background__hide-icon media row py-3 ">
-                    <div class="col-sm-1">
-                        <img src="~/Content/images/itiLogo.png" class="align-self-start background__img" />
-                    </div>
-                    <div class="media-body col-sm-10 ">
-                        <h3>Student</h3>
-                        <a href="http://" class="stretched-link text-decoration-none text-reset">
-                            <p class="mb-0 d-inline ">Information technology institute</p>
+                @foreach (var exper in ViewBag.getAllEperinec)
+                {
+                    <div class="background__hide-icon media row py-3 ">
+                        <div class="col-sm-1">
+                            <img src="~/Content/images/itiLogo.png" class="align-self-start background__img" />
+                        </div>
+                        <div class="media-body col-sm-10 ">
+                            <h3>@exper.Title</h3>
+                            <a href="http://" class="stretched-link text-decoration-none text-reset">
+                                <p class="mb-0 d-inline ">@exper.Organization.Name</p>
+                            </a>
+                            <p class="mb-0 d-inline ">@exper.EmploymentType</p>
+                            <br />
+                            <p class="mb-0 d-inline text-muted">@exper.Experience.Description</p>
+                            @*<p class="mb-0 d-inline text-muted">@exper.Experience.EndDate</p>*@
+                            <p class="mb-0 text-muted">@exper.CountryName</p>
+                            <p class="mb-0 text-muted">@exper.description</p>
+                        </div>
+                        
+                        <a href="#" onclick="getEperience(@exper.ExperienceId)" class="col-1 text-right" data-toggle="modal" @*data-toggle="modal" data-target="#myModalTest"*@>
+                            <i class="fas fa-pen p-3 profile-icon profile-icon--hide"></i>
                         </a>
-                        <p class="mb-0 d-inline ">. Full Time</p>
-                        <br />
-                        <p class="mb-0 d-inline text-muted">Oct2019</p>
-                        <p class="mb-0 d-inline text-muted">- Present</p>
-                        <p class="mb-0 text-muted">Egypt</p>
-                        <p class="mb-0 text-muted">Enterprise and web development track</p>
                     </div>
-                    <a href="" class="col-1 text-right" data-toggle="modal" data-target="#FullModal">
-                        <i class="fas fa-pen p-3 profile-icon profile-icon--hide"></i>
-                    </a>
-                </div>
-                <div class="u-border-bottom offset-1 row"></div>
-                <div class="background__hide-icon media row py-3 ">
+                    <div class="u-border-bottom offset-1 row"></div>
+                }
+                
+                
+                @*<div class="background__hide-icon media row py-3 ">
                     <div class="col-sm-1">
                         <img src="~/Content/images/itiLogo.png" class="align-self-start background__img" />
                     </div>
@@ -595,7 +603,7 @@
                         <i class="fas fa-pen p-3 profile-icon profile-icon--hide"></i>
                     </a>
 
-                </div>
+                </div>*@
             </div>
 
             <!-- hr -->
@@ -605,54 +613,35 @@
             <div class="p-4">
                 <div class="row">
                     <h2 class="col-sm-11 background__section-heading">Education</h2>
-                    <a href="" class="col-sm-1 text-right " data-toggle="modal" data-target="#Education">
+                    <a href="#" onclick="addEducation()" class="col-sm-1 text-right " data-toggle="modal" data-target="#">
                         <i class="fas fa-plus p-3 profile-icon "></i>
                     </a>
                 </div>
+                @foreach (var item in ViewBag.getAllEDucation) {
                 <div class="background__hide-icon media row py-3 ">
                     <div class="col-sm-1">
                         <img src="~/Content/images/itiLogo.png" class="align-self-start background__img" />
                     </div>
                     <div class="media-body col-sm-10 ">
                         <a href="http://" class="stretched-link text-decoration-none text-reset">
-                            <h3>School</h3>
+                            <h3>@item.Experience.Organization.Name</h3>
                         </a>
-                        <p class="mb-0 d-inline ">Degree</p>
-                        <p class="mb-0 d-inline ">. Field of study</p>
-                        <p class="mb-0 d-inline ">. Grade</p>
+                        <p class="mb-0 d-inline ">@item.Degree</p>
+                        <p class="mb-0 d-inline ">@item.FieldOfStudy</p>
+                        <p class="mb-0 d-inline ">@item.Grade</p>
                         <br />
-                        <p class="mb-0 d-inline text-muted">Oct2019</p>
-                        <p class="mb-0 d-inline text-muted">- Present</p>
-                        <p class="mb-0 text-muted">Activities and societies</p>
-                        <p class="mb-0 text-muted">Description</p>
+                        <p class="mb-0 d-inline text-muted">@item.Experience.StartDate</p>
+                        <p class="mb-0 d-inline text-muted">- @item.Experience.EndDate</p>
+                        <p class="mb-0 text-muted">@item.Activities</p>
+                        <p class="mb-0 text-muted">@item.Experience.Description</p>
                     </div>
-                    <a href="" class="col-1 text-right" data-toggle="modal" data-target="#FullModal">
+                    <a href="#" onclick="getEducation(@item.ExperienceId)" class="col-1 text-right" data-toggle="modal" >
                         <i class="fas fa-pen p-3 profile-icon profile-icon--hide"></i>
                     </a>
                 </div>
                 <div class="u-border-bottom offset-1 row"></div>
-                <div class="background__hide-icon media row py-3 ">
-                    <div class="col-sm-1">
-                        <img src="~/Content/images/itiLogo.png" class="align-self-start background__img" />
-                    </div>
-                    <div class="media-body col-sm-10 ">
-                        <a href="http://" class="stretched-link text-decoration-none text-reset">
-                            <h3>School</h3>
-                        </a>
-                        <p class="mb-0 d-inline ">Degree</p>
-                        <p class="mb-0 d-inline ">. Field of study</p>
-                        <p class="mb-0 d-inline ">. Grade</p>
-                        <br />
-                        <p class="mb-0 d-inline text-muted">Oct2019</p>
-                        <p class="mb-0 d-inline text-muted">- Present</p>
-                        <p class="mb-0 text-muted">Activities and societies</p>
-                        <p class="mb-0 text-muted">Description</p>
-                    </div>
-                    <a href="" class="col-1 text-right" data-toggle="modal" data-target="#FullModal">
-                        <i class="fas fa-pen p-3 profile-icon profile-icon--hide"></i>
-                    </a>
-
-                </div>
+                }
+                
             </div>
 
             <!-- hr -->
@@ -662,48 +651,31 @@
             <div class="p-4">
                 <div class="row">
                     <h2 class="col-sm-11 background__section-heading">Volunteer Experience</h2>
-                    <a href="" class="col-sm-1 text-right " data-toggle="modal" data-target="#volunteer">
+                    <a href="#" onclick="AddVolunteer()" class="col-sm-1 text-right " data-toggle="modal" data-target="#">
                         <i class="fas fa-plus p-3 profile-icon "></i>
                     </a>
                 </div>
+                @foreach (var item in ViewBag.getAllVolunteers) {
                 <div class="background__hide-icon media row py-3 ">
                     <div class="col-sm-1">
                         <img src="~/Content/images/itiLogo.png" class="align-self-start background__img" />
                     </div>
                     <div class="media-body col-sm-10 ">
-                        <h3>Role</h3>
+                        <h3>@item.Experience.Description</h3>
                         <a href="http://" class="stretched-link text-decoration-none text-reset">
-                            <p class="mb-0  ">Organization</p>
+                            <p class="mb-0  ">@item.Experience.Organization.Name</p>
                         </a>
-                        <p class="mb-0 d-inline text-muted">Oct2019</p>
-                        <p class="mb-0 d-inline text-muted">- Present</p>
-                        <p class="mb-0 text-muted">Cause</p>
-                        <p class="mb-0 text-muted">Description</p>
+                       
+                          <p class="mb-0 text-muted">@item.VolunteeringCause</p>
+                        
                     </div>
-                    <a href="" class="col-1 text-right" data-toggle="modal" data-target="#FullModal">
+                    <a href="#" onclick="EditVolunteer(@item.ExperienceId )" class="col-1 text-right" data-toggle="modal" data-target="#">
                         <i class="fas fa-pen p-3 profile-icon profile-icon--hide"></i>
                     </a>
                 </div>
                 <div class="u-border-bottom offset-1 row"></div>
-                <div class="background__hide-icon media row py-3 ">
-                    <div class="col-sm-1">
-                        <img src="~/Content/images/itiLogo.png" class="align-self-start background__img" />
-                    </div>
-                    <div class="media-body col-sm-10 ">
-                        <h3>Role</h3>
-                        <a href="http://" class="stretched-link text-decoration-none text-reset">
-                            <p class="mb-0  ">Organization</p>
-                        </a>
-                        <p class="mb-0 d-inline text-muted">Oct2019</p>
-                        <p class="mb-0 d-inline text-muted">- Present</p>
-                        <p class="mb-0 text-muted">Cause</p>
-                        <p class="mb-0 text-muted">Description</p>
-                    </div>
-                    <a href="" class="col-1 text-right" data-toggle="modal" data-target="#FullModal">
-                        <i class="fas fa-pen p-3 profile-icon profile-icon--hide"></i>
-                    </a>
-
-                </div>
+                }
+                
             </div>
 
             <!-- hr -->
@@ -713,48 +685,33 @@
             <div class="p-4">
                 <div class="row">
                     <h2 class="col-sm-11 background__section-heading">licenses & certifications</h2>
-                    <a href="" class="col-sm-1 text-right " data-toggle="modal" data-target="#Licenses1">
+                    <a href="#" onclick="AddCertification()" class="col-sm-1 text-right " data-toggle="modal" data-target="#">
                         <i class="fas fa-plus p-3 profile-icon "></i>
                     </a>
                 </div>
+                @foreach (var item in ViewBag.getAllCertificates)
+                {
                 <div class="background__hide-icon media row py-3 ">
                     <div class="col-sm-1">
                         <img src="~/Content/images/itiLogo.png" class="align-self-start background__img" />
                     </div>
                     <div class="media-body col-sm-10 ">
-                        <h3>Name</h3>
+                        <h3>@item.Certification.Name</h3>
                         <a href="http://" class="stretched-link text-decoration-none text-reset">
-                            <p class="mb-0  ">Issuing Organization </p>
+                            <p class="mb-0  ">@item.Organization.Name </p>
                         </a>
-                        <p class="mb-0 d-inline text-muted">Issued Oct2019</p>
-                        <p class="mb-0 d-inline text-muted">. Expired Jun2020</p>
-                        <p class="mb-0 text-muted">Credntial ID</p>
-                        <a href="http://" class="mb-0 text-muted">See Credntial</a>
+                        <p class="mb-0 d-inline text-muted">Issued @item.IssueDate</p>
+                        <p class="mb-0 d-inline text-muted"> Expired @item.ExpirationDate</p>
+                        <p class="mb-0 text-muted">@item.CredentialId</p>
+                        <a href="http://" class="mb-0 text-muted">@item.CredentialUrl</a>
                     </div>
-                    <a href="" class="col-1 text-right" data-toggle="modal" data-target="#FullModal">
+                    <a href="#" onclick="getCertification(@item.CertificationId )" class="col-1 text-right" data-toggle="modal" data-target="#">
                         <i class="fas fa-pen p-3 profile-icon profile-icon--hide"></i>
                     </a>
                 </div>
                 <div class="u-border-bottom offset-1 row"></div>
-                <div class="background__hide-icon media row py-3 ">
-                    <div class="col-sm-1">
-                        <img src="~/Content/images/itiLogo.png" class="align-self-start background__img" />
-                    </div>
-                    <div class="media-body col-sm-10 ">
-                        <h3>Name</h3>
-                        <a href="http://" class="stretched-link text-decoration-none text-reset">
-                            <p class="mb-0  ">Issuing Organization </p>
-                        </a>
-                        <p class="mb-0 d-inline text-muted">Issued Oct2019</p>
-                        <p class="mb-0 d-inline text-muted">. Expired Jun2020</p>
-                        <p class="mb-0 text-muted">Credntial ID</p>
-                        <a href="http://" class="mb-0 text-muted">See Credntial</a>
-                    </div>
-                    <a href="" class="col-1 text-right" data-toggle="modal" data-target="#FullModal">
-                        <i class="fas fa-pen p-3 profile-icon profile-icon--hide"></i>
-                    </a>
-
-                </div>
+                }
+                
             </div>
         </div>
     </section>
@@ -1250,7 +1207,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Nora Mohamed</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">@ViewBag.name</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -1713,69 +1670,370 @@
             </div>
         </form>
     </div>
-    <div>
-        @Html.Partial("_WorkExperince")
+    <div >
+        <div class="modal fade" id="WorkExperince" tabindex="-1" role="dialog" aria-labelledby="FullModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content row">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="FullModalLabel">Add experience</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="ModelBody">
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        @*@Html.Partial("_WorkExperince")*@
     </div>
     <div>
-        @Html.Partial("_Education");
+        <div class="modal fade" id="Education" tabindex="-1" role="dialog" aria-labelledby="FullModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content row">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="FullModalLabel">Add education</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="EducationBody">
+                    </div>
+                    
+
+                </div>
+            </div>
+        </div>
+       @*// @Html.Partial("_Education");*@
     </div>
     <div>
-        @{ Html.RenderPartial("_Certfications"); }
-    </div>
+
+        <div class="modal fade" id="Licenses1" tabindex="-1" role="dialog" aria-labelledby="Licenses1Label" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content row">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="Licenses1Label">Add education</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="certificates">
+                    </div>
+
+
+                </div>
+            </div>
+
+            @*<div class="modal fade" id="Licenses1" tabindex="-1" role="dialog" aria-labelledby="Licenses1"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content row">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="FullModalLabel">Add licenses & certifications</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body" id="certificates">
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>*@
+            @*@{ Html.RenderPartial("_Certfications"); }*@
+        </div>
+        </div>
     <div>
-        @Html.Partial("_Voulanteer")
+        <div class="modal fade" id="volunteer" tabindex="-1" role="dialog" aria-labelledby="FullModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content row">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="FullModalLabel">Add volunteer experience</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="VolunteerBody">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        @*@Html.Partial("_Voulanteer")*@
     </div>
 
-    <div>
-        @Html.Partial("_CoursesModal")
-    </div>
+                    <div>
+                        @Html.Partial("_CoursesModal")
+                    </div>
 
-    <div>
-        @Html.Partial("_Honor")
-    </div>
-    <div>
-        @Html.Partial("_Laungauges")
-    </div>
+                    <div>
+                        @Html.Partial("_Honor")
+                    </div>
+                    <div>
+                        @Html.Partial("_Laungauges")
+                    </div>
 
-        <div>
-            @Html.Partial("_Orgnizations")
-        </div>
-        <div>
-            @Html.Partial("_Patents")
-        </div>
-        <div>
-            @Html.Partial("_Projects")
-        </div>
-        <div>
-            @Html.Partial("_Publications")
-        </div>
-        <div>
-            @Html.Partial("_TestScores")
-        </div>
+                    <div>
+                        @Html.Partial("_Orgnizations")
+                    </div>
+                    <div>
+                        @Html.Partial("_Patents")
+                    </div>
+                    <div>
+                        @Html.Partial("_Projects")
+                    </div>
+                    <div>
+                        @Html.Partial("_Publications")
+                    </div>
+                    <div>
+                        @Html.Partial("_TestScores")
+                    </div>
 
-        <div>
-            @Html.Partial("_Summary")
-        </div>
+                    <div>
+                        @Html.Partial("_Summary")
+                    </div>
 
-        <div>
-            @Html.Partial("_Skills")
-        </div>
+                    <div>
+                        @Html.Partial("_Skills")
+                    </div>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    
+    <script>
 
 
 
-                            <!-- Scripts -->
-                            @*<script src="~/Scripts/jquery-3.4.1.min.js"></script>
-            <script src="~/Scripts/popper.min.js"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-                    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-                    crossorigin="anonymous"></script>*@
 
-                            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-                            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-                            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-                            <script src="~/Scripts/HossamJs/script.js"></script>
+                        function addEperience() {
+                            debugger;
+                            var ajaxCallURL = '/Profile/AddWorkExperience/';
+                            var options = {
+                                "backdrop": "static",
+                                keyboard: true
+                            };
+                            $.ajax({
+                                type: "GET",
+                                url: ajaxCallURL,
+                                contentType: "application/json; charset=utf-8",
+                                datatype: "json",
+                                success: function (data) {
+                                    debugger;
+                                    console.log(data);
+
+                                    $('#ModelBody').html(data);
+                                    $('#WorkExperince').modal(options);
+                                    $('#WorkExperince').modal('show');
+                                },
+                                error: function () {
+                                    alert("Content load failed.");
+                                }
+                            });
+
+                        }
+                        function getEperience(id) {
+                            debugger;
+                            var ajaxCallURL = '/Profile/EditExperience/' + id;
+                            var options = {
+                                "backdrop": "static",
+                                keyboard: true
+                            };
+                            $.ajax({
+                                type: "GET",
+                                url: ajaxCallURL,
+                                contentType: "application/json; charset=utf-8",
+                                datatype: "json",
+                                success: function (data) {
+                                    debugger;
+                                    console.log(data);
+
+                                    $('#ModelBody').html(data);
+                                    $('#WorkExperince').modal(options);
+                                    $('#WorkExperince').modal('show');
+                                },
+                                error: function () {
+                                    alert("Content load failed.");
+                                }
+                            });
+
+                        }
+                        function addEducation() {
+                            debugger;
+                            var ajaxCallURL = '/Profile/AddEducation/';
+                            var options = {
+                                "backdrop": "static",
+                                keyboard: true
+                            };
+                            $.ajax({
+                                type: "GET",
+                                url: ajaxCallURL,
+                                contentType: "application/json; charset=utf-8",
+                                datatype: "json",
+                                success: function (data) {
+                                    debugger;
+                                    console.log(data);
+
+                                    $('#EducationBody').html(data);
+                                    $('#Education').modal(options);
+                                    $('#Education').modal('show');
+                                },
+                                error: function () {
+                                    alert("Content load failed.");
+                                }
+                            });
+
+                        }
+                        function getEducation(id) {
+                            debugger;
+                            var ajaxCallURL = '/Profile/editEducation/' + id;
+                            var options = {
+                                "backdrop": "static",
+                                keyboard: true
+                            };
+                            $.ajax({
+                                type: "GET",
+                                url: ajaxCallURL,
+                                contentType: "application/json; charset=utf-8",
+                                datatype: "json",
+                                success: function (data) {
+                                    debugger;
+                                    console.log(data);
+
+                                    $('#EducationBody').html(data);
+                                    $('#Education').modal(options);
+                                    $('#Education').modal('show');
+                                },
+                                error: function () {
+                                    alert("Content load failed.");
+                                }
+                            });
+
+                        }
+                        function AddCertification() {
+                            debugger;
+                            var ajaxCallURL = '/Profile/AddCertification/';
+                            var options = {
+                                "backdrop": "static",
+                                keyboard: true
+                            };
+                            $.ajax({
+                                type: "GET",
+                                url: ajaxCallURL,
+                                contentType: "application/json; charset=utf-8",
+                                datatype: "json",
+                                success: function (data) {
+                                    debugger;
+                                    console.log(data);
+
+                                    $('#certificates').html(data);
+                                    $('#Licenses1').modal(options);
+                                    $('#Licenses1').modal('show');
+                                },
+                                error: function () {
+                                    alert("Content load failed.");
+                                }
+                            });
+
+                        }
+                        function getCertification(id) {
+                            debugger;
+                            var ajaxCallURL = '/Profile/EditCertification/' + id;
+                            var options = {
+                                "backdrop": "static",
+                                keyboard: true
+                            };
+                            $.ajax({
+                                type: "GET",
+                                url: ajaxCallURL,
+                                contentType: "application/json; charset=utf-8",
+                                datatype: "json",
+                                success: function (data) {
+                                    debugger;
+                                    console.log(data);
+
+                                    $('#certificates').html(data);
+                                    $('#Licenses1').modal(options);
+                                    $('#Licenses1').modal('show');
+                                },
+                                error: function () {
+                                    alert("Content load failed.");
+                                }
+                            });
+
+                        }
+                        function AddVolunteer() {
+                            debugger;
+                            var ajaxCallURL = '/Profile/AddVoulanteer/';
+                            var options = {
+                                "backdrop": "static",
+                                keyboard: true
+                            };
+                            $.ajax({
+                                type: "GET",
+                                url: ajaxCallURL,
+                                contentType: "application/json; charset=utf-8",
+                                datatype: "json",
+                                success: function (data) {
+                                    debugger;
+                                    console.log(data);
+
+                                    $('#VolunteerBody').html(data);
+                                    $('#volunteer').modal(options);
+                                    $('#volunteer').modal('show');
+                                },
+                                error: function () {
+                                    alert("Content load failed.");
+                                }
+                            });
+
+                        }
+                        function EditVolunteer(Id ) {
+                           
+                            debugger;
+                            var ajaxCallURL = '/Profile/EditVolunteer/' + Id;
+                            var options = {
+                                "backdrop": "static",
+                                keyboard: true
+                            };
+                            $.ajax({
+                                type: "GET",
+                                url: ajaxCallURL,
+                                contentType: "application/json; charset=utf-8",
+                                datatype: "json",
+                                success: function (data) {
+                                    debugger;
+                                    console.log(data);
+
+                                    $('#VolunteerBody').html(data);
+                                    $('#volunteer').modal(options);
+                                    $('#volunteer').modal('show');
+                                },
+                                error: function () {
+                                    alert("Content load failed.");
+                                }
+                            });
+
+                        }
+                    </script>
+                    @*@Html.Partial("_Scripts")*@
+
+
+                    
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+    
+                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+                    <script src="~/Scripts/HossamJs/script.js"></script>
 </body>
 
 </html>

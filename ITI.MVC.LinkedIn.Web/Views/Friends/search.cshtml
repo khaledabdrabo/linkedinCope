@@ -1,0 +1,370 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>test</title>
+    <link href="~/Content/css/search.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+          crossorigin="anonymous">
+</head>
+<body>
+
+    <div class="header">
+
+        <div class="d1">
+            <div class="logo">
+                <div class="logo--back"></div>
+                <div class="logo--icon"><a><i class="fab fa-linkedin"></i></a></div>
+            </div>
+        </div>
+
+        <div class="d2">
+            <div class="search__control">
+                <div class="search">
+
+                    
+
+                    <a  href="#" onclick="getUsers()" class="search__icon"><i class="fas fa-search"></i></a><input type="text" id="searchBox" placeholder="Search">
+                </div>
+
+                <div class="search1 hide">
+                    @* <input type="text" placeholder="Search" autofocus<a class="search1__icon" href="https://www.google.com/"><i class="fas fa-search"></i></a>*@
+                    <form action="Search" method="POST" style="display:flex">
+                        <input  type="text" placeholder="Search" name="name" autofocus style="width:210px"><input class="search1__icon" type="submit" value="search" style="background-color:lavender; width:20px">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        @{ Dictionary<string, string> dic = new Dictionary<string, string>() { { "home", "Home" }, { "user-friends", "My Network" }, { "briefcase", "Jobs" }, { "comment-dots", "Messaging" }, { "bell", "Notifications" }, { "caret-down", "Me" } };};
+
+        <div class="d3">
+
+            <div class="nav__item">
+                <ul>
+                    <li></li>
+                    @{ int x = 0;}
+                    @foreach (KeyValuePair<string, string> item in dic)
+                    {
+                        string cla = x == 3 || x == 4 ? "far fa-" + item.Key : "fas fa-" + item.Key;
+                        <li>
+                            <a href="#" onclick="getallRequests()">
+                                <span class="appear">
+                                    @if (x == 5)
+                                    {
+                                        <div class="personal-photo"></div>
+                                        <span>@item.Value <i class="@cla"></i></span>
+                                        continue;
+                                    }
+                                    @if (x == 4)
+                                    {
+                                        <span id="friendNotification" class="num-count"></span>
+                                    }
+                                    <i class="@cla"></i><br>
+                                    <span>@item.Value</span>
+                                </span>
+                            </a>
+                        </li>
+
+                        x++;
+                    }
+
+                    <li class="nav__item--right">
+                        <a href=""><i class="fas fa-th"></i><br> Work<i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li><a class="premium" href="">Try Premium Free<br>for 1 Month</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div style="width: 100%; height: 58px; background-color: #E1E9EE;"></div>
+    <div style="width: 100%; height: 57px; margin-bottom: 20px; background-color: white; border: 0.5px solid #CFCFCF;"></div>
+
+
+    <div class="container">
+        <div class="container--left">
+            <h3 class="No-result">Showing 2,189 results</h3>
+            <ul id="listOfUsers">
+                @*@for (int i = 0; i < 11; i++)
+                {
+                    <li>
+                        <div class="search-result">
+
+                            <div class="search-result__img">
+                                <a href=""></a>
+                            </div>
+
+                            <div class="search-result__info">
+                                <a href="" class="name">Ahmed Fathy</a>
+                                <p class="data"> benha university jjhkjhkj</p>
+                                <p class="country">Egypt</p>
+                            </div>
+
+                            <div class="search-result__action">
+                                <button class="connect">Connect</button>
+                            </div>
+                        </div>
+                    </li>
+                }*@
+
+            </ul>
+
+            <div class="pages-number">
+                <a href="" class="previous"><i class="fas fa-chevron-left"></i> Previous</a>
+                <span>
+                    @{ List<string> num = new List<string> { "1", "2", "3", "4", "5", "6", "7", "8", "...", "100" }; }
+                    @foreach (string n in num)
+                    {
+                        @Html.ActionLink(n, null);
+                    }
+                </span>
+                <a href="" class="next">Next <i class="fas fa-chevron-right"></i></a>
+            </div>
+
+            <div class="bottom-img">
+                <a href=""><img src="~/Content/images/img2.jpg" /></a>
+            </div>
+
+        </div>
+        <div class="container--right">
+            <a href=""><img src="~/Content/images/img1.jpg" /></a>
+        </div>
+    </div>
+
+    <div class="Footer">
+
+        <div class="Footer__title">Linked<i class="fab fa-linkedin"></i></div>
+        <div class="Footer__content--container">
+            @{string[] list1 = new string[] { "About", "Careers", "Advertising", "Small Business" };}
+            <div class="Footer__content">
+                @for (int i = 0; i < list1.Length; i++)
+                {
+                    <span> @Html.ActionLink(list1[i], null)</span>
+                }
+                <span class="Footer--Corporation">LinkedIn corp © 2020</span>
+            </div>
+
+            @{ string[] list2 = new string[] { "Talent Solutions", "Marketing Solutions", "Sales Solutions", "Safety Center" };}
+            <div class="Footer__content">
+                @for (int i = 0; i < list2.Length; i++)
+                {
+                    <span> @Html.ActionLink(list2[i], null)</span>
+                }
+            </div>
+
+            @{ List<string> list3 = new List<string> { "Community Guidelines", "Privacy & Terms", "Mobile" };}
+
+            <div class="Footer__content">
+                <span><a href="">Community Guidelines</a></span>
+                <span><a href="">Privacy & Terms &nbsp;<i class="fas fa-chevron-down"></i></a></span>
+                <span><a href="">Mobile</a></span>
+            </div>
+
+            <div class="Footer__content">
+                <span><a href=""><i class="far fa-question-circle"></i>&nbsp; Questions?<br><span class="detail">Visit our Help Center.</span></a></span>
+                <span><a href=""><i class="fas fa-cog"></i>&nbsp; Manage your account and privacy.<br><span class="detail">Go to your Settings.</span></a></span>
+            </div>
+
+            <div class="Footer__content">
+                <span class="select-title">Select Language</span>
+                <select name="" id="">
+                    @{string[] list4 = new string[] { "English (English)", "French", "Italy", "العربيه" };}
+                    @for (int i = 0; i < list4.Length; i++)
+                    {
+                        <option>@list4[i]</option>
+                    }
+                </select>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Scripts/src/app.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script>
+        var value = $("#friendNotification").text
+        console.log("value is:",value)
+        debugger
+       if (value ==="0") {
+            debugger
+            $("#friendNotification").hide();
+
+        }
+        $("#searchBox").autocomplete({
+            source: function (request, response) {
+                if ($("#searchBox").val() != null) {
+                    $.ajax({
+                        url: "/Friends/getUsers",
+                        type: "POST",
+                        dataType: "json",
+                        data: { Prefix: $("#searchBox").val() },
+                        success: function (data) {
+                            debugger
+                            
+                                response($.map(data, function (item) {
+                                    return { url: item.url, id: item.id, name: item.name, json: item };
+                                }));
+                            
+                        },
+                        error: function (xhr, status, error) {
+                            debugger
+                            alert(status);
+                            
+                        }
+
+                    }).then(data => console.log(data))
+                };
+            },
+            focus: function (event, ui) {
+                // this is for when focus of autocomplete item 
+                $('#searchBox').val(ui.item.name);
+                return false;
+            },
+            select: function (event, ui) {
+                // this is for when select autocomplete item
+                $('#searchBox').val(ui.item.name);
+                return false;
+            }
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            // here return item for autocomplete text box, Here is the place 
+            // where we can modify data as we want to show as autocomplete item
+            
+            debugger
+            var i = "dummy";
+            if (item.id != i) {
+                return $("<li>")
+                .append("<a  ><img  src='/Content/images/" + (item.url) + "' style=';height: 50px; width: 50px; border-radius: 50%;'/><span style='margin: 0px 10px 10px 10px;'>" + item.name + "</span></a>").appendTo(ul);
+
+                
+            } else {
+                return $("<li>")
+                .append(" name  not found").appendTo(ul);
+            }
+                
+            
+        };
+
+
+        function getUsers() {
+            var prefix=$("#searchBox").val()
+            $.post("/Friends/getUsers/",  {Prefix:prefix} , function (data, status) {
+                $("#listOfUsers").empty()
+                for (var i = 0; i < data.length; i++) {
+                    debugger
+                    
+                    $("#listOfUsers").append(` <li>
+                        <div class="search-result">
+
+                            <div class="search-result__img">
+                                <a href=""><img  src="/Content/images/${(data[i].url)} " style='height: 50px; width: 50px; border-radius: 50%;'/></a>
+                            </div>
+
+                            <div class="search-result__info">
+                                <a href="#" onclick="getUserProfile('${data[i].id}')"  class ="name">${data[i].name}</a>
+                                <p class="data"> benha university jjhkjhkj</p>
+                                <p class="country">Egypt</p>
+                            </div>
+                           ${  (!data[i].friend) ?`
+                            <div class ="search-result__action">
+                            <a href="#" onclick="sendFriendRequest('${data[i].id}')" class ="connect" id="connect">Connect</a>
+
+                            </div>`:''
+                    }
+                    
+                        </div>
+                    </li>`);
+                }
+                
+                
+            });
+
+        }
+        function sendFriendRequest(id) {
+            debugger
+            $.post("/Friends/AddFriendRequest/", { FriendID: id }, function (data, status) {
+                
+            }).success(function () {
+                alert("done")
+                $("#connect").text("pending")
+            })
+        }
+        $.get("/Friends/getFriendRequest/", function (data,status) {
+            debugger
+            if (data !=="0") {
+                $("#friendNotification").text(data)
+            } else {
+                $("#friendNotification").hide()
+            }
+            console.log(data);
+        })
+        function getallRequests() {
+
+            $("#listOfUsers").empty()
+            $.post("/Friends/getAllFriendRequest/", function (data, status) {
+                debugger
+                for (var i = 0; i < data.length; i++) {
+                    debugger
+                    
+                    $("#listOfUsers").append(` <li id=${data[i].id}>
+                        <div class="search-result">
+
+                            <div class="search-result__img">
+                                <a href=""><img  src="/Content/images/${(data[i].url).substring(1, (data[i].url).length)} " style='height: 50px; width: 50px; border-radius: 50%;'/></a>
+                            </div>
+
+                            <div class="search-result__info">
+                                <a href="#" onclick="getUserProfile('${data[i].id}')" class ="name">${data[i].name}</a>
+                                <p class="data"> benha university jjhkjhkj</p>
+                                <p class="country">Egypt</p>
+                            </div>
+
+                            <div class ="search-result__action">
+                            <a href="#" onclick="acceptResuest('${data[i].id}')" class ="connect" id="connect">pending</a>
+
+                            </div>
+                        </div>
+                    </li>`);
+                }
+
+
+            })
+        }
+        function acceptResuest(id) {
+            debugger
+            $.post("/Friends/AcceptRequest/",{SenderId : id} ,function (data, status) {
+                debugger
+                $("#"+id).remove();
+                
+            }).success(function () {
+                
+                $("#friendNotification").hide();
+            })
+        }
+        function getUserProfile(id) {
+            debugger
+            $.post("/Profile/UserProfile/", { userId: id }, function (data, status) {
+                
+
+            }).success(function () {
+
+                window.location.href = "http://localhost:44351/Profile/UserProfile?userId=" + id;
+            })
+        }
+    </script>
+</body>
+</html> 
+<img src="~/Content/images/12194855_752324661563499_3923251269933861549_o200830320.jpg" style="height: 50px; width: 50px;">
+

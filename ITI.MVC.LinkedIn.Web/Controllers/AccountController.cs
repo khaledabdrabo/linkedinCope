@@ -30,9 +30,9 @@ namespace ITI.MVC.LinkedIn.Web.Controllers
 
         public DbStore Store
         {
-            get => store ?? HttpContext.GetOwinContext().Get<DbStore>();
+            get { return store ?? HttpContext.GetOwinContext().Get<DbStore>(); }
 
-            private set => store = value;
+            private set { store = value; }
         }
 
         public AccountController()

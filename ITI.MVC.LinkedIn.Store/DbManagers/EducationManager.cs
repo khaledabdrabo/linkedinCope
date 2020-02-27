@@ -1,4 +1,5 @@
-﻿using ITI.MVC.LinkedIn.DbLayer.Entities;
+﻿using ITI.MVC.LinkedIn.DbLayer;
+using ITI.MVC.LinkedIn.DbLayer.Entities;
 using ITI.MVC.LinkedIn.DbManager;
 using System;
 using System.Collections.Generic;
@@ -11,8 +12,20 @@ namespace ITI.MVC.LinkedIn.Store.DbManagers
 {
     public class EducationManager : DbManager<Education>
     {
-        public EducationManager(DbContext ctx) : base(ctx)
+        ApplicationDbContext db;
+        public EducationManager(ApplicationDbContext ctx) : base(ctx)
         {
+            db = ctx;
+        }
+
+        public Education getEducationData(int id)
+        {
+            return db.EducationExperiences.Include(e => e.Experience).Where(e => e.ExperienceId == id).FirstOrDefault();
+        }
+
+        public Education GetSpecificRecord(int id)
+        {
+           return db.EducationExperiences.Where(w => w.ExperienceId == id).FirstOrDefault();
         }
     }
 }

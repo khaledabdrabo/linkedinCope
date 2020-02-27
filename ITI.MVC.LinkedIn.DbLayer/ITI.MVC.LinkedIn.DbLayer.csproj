@@ -97,10 +97,6 @@
     <Compile Include="Enums\EmploymentType.cs" />
     <Compile Include="Enums\OrganizationType.cs" />
     <Compile Include="ApplicationDbContext.cs" />
-    <Compile Include="Migrations\202002150041091_Init.cs" />
-    <Compile Include="Migrations\202002150041091_Init.Designer.cs">
-      <DependentUpon>202002150041091_Init.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\202002151311035_AddAdditionalUserProps.cs" />
     <Compile Include="Migrations\202002151311035_AddAdditionalUserProps.Designer.cs">
       <DependentUpon>202002151311035_AddAdditionalUserProps.cs</DependentUpon>
@@ -121,6 +117,34 @@
     <Compile Include="Migrations\202002161920051_fix-image-id.designer.cs">
       <DependentUpon>202002161920051_fix-image-id.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002181628153_init.cs" />
+    <Compile Include="Migrations\202002181628153_init.designer.cs">
+      <DependentUpon>202002181628153_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002181700560_UpdateWorkExperienceTable.cs" />
+    <Compile Include="Migrations\202002181700560_UpdateWorkExperienceTable.designer.cs">
+      <DependentUpon>202002181700560_UpdateWorkExperienceTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002181738436_UpdateWorkRelations.cs" />
+    <Compile Include="Migrations\202002181738436_UpdateWorkRelations.designer.cs">
+      <DependentUpon>202002181738436_UpdateWorkRelations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002181810559_addworkDescription.cs" />
+    <Compile Include="Migrations\202002181810559_addworkDescription.designer.cs">
+      <DependentUpon>202002181810559_addworkDescription.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002182056128_commentheadline.cs" />
+    <Compile Include="Migrations\202002182056128_commentheadline.designer.cs">
+      <DependentUpon>202002182056128_commentheadline.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002191738477_reset.cs" />
+    <Compile Include="Migrations\202002191738477_reset.designer.cs">
+      <DependentUpon>202002191738477_reset.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002222228572_set_ExperienceId_nullable.cs" />
+    <Compile Include="Migrations\202002222228572_set_ExperienceId_nullable.designer.cs">
+      <DependentUpon>202002222228572_set_ExperienceId_nullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -129,9 +153,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202002150041091_Init.resx">
-      <DependentUpon>202002150041091_Init.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002151311035_AddAdditionalUserProps.resx">
       <DependentUpon>202002151311035_AddAdditionalUserProps.cs</DependentUpon>
     </EmbeddedResource>
@@ -146,6 +167,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002161920051_fix-image-id.resx">
       <DependentUpon>202002161920051_fix-image-id.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002181628153_init.resx">
+      <DependentUpon>202002181628153_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002181700560_UpdateWorkExperienceTable.resx">
+      <DependentUpon>202002181700560_UpdateWorkExperienceTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002181738436_UpdateWorkRelations.resx">
+      <DependentUpon>202002181738436_UpdateWorkRelations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002181810559_addworkDescription.resx">
+      <DependentUpon>202002181810559_addworkDescription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002182056128_commentheadline.resx">
+      <DependentUpon>202002182056128_commentheadline.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002191738477_reset.resx">
+      <DependentUpon>202002191738477_reset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002222228572_set_ExperienceId_nullable.resx">
+      <DependentUpon>202002222228572_set_ExperienceId_nullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
