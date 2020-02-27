@@ -1,0 +1,64 @@
+﻿@model ITI.MVC.LinkedIn.Web.Models.ViewModels.TestScoresVM
+@{ if (Model.TestScoreCount > 0)
+    {
+        <div id="TestScore-read-body" class="body-container h4">
+            <div class="float-right">
+                <a onclick="EditTestScore(@Model.id)" class="btn btn--plus" style="color:#0E7BB5"><i class="fas fa-pencil-alt"></i> </a>
+            </div>
+            <div class="course-Name font-weight-bold"> @Model.TestName</div>
+            <div class="course-number font-weight-normal p">@Model.TestDate.GetValueOrDefault().ToString("MMM yyyy") </div>
+            <div class="course-number font-weight-normal p">@Model.Score</div>
+            <hr />
+        </div>
+    }
+    else
+    {
+
+<div id="TestScore-read" class="accomplishment">
+    <div class="accomplishment__section accomplishment__section1">
+        <p id="TestScore-read-count" class="accomplishment__number">1</p>
+    </div>
+    <div class="accomplishment__section accomplishment__section2 mr-3">
+        <h4 class="accomplishment__type">
+            Test Score
+        </h4>
+        <p id="TestScore-read-names" class="accomplishment__description">
+                @Model.TestName
+        </p>
+    </div>
+    <div class="accomplishment__section accomplishment__section3 float-md-right">
+        <button class="btn " data-toggle="collapse" data-target="#TestScoreColl" id="TestScore-button"><i class="fas fa-chevron-down"></i></button>
+        <a class="btn btn--arrow" id="btn-2"> <i class="fas fa-chevron-up"></i></a>
+    </div>
+
+    <div id="TestScoreColl" class="collapse">
+      
+        <div id="TestScore-read-body" class="body-container h4">
+            <div class="float-right">
+                <a onclick="EditTestScore(@Model.id)" class="btn btn--plus" style="color:#0E7BB5"><i class="fas fa-pencil-alt"></i> </a>
+
+            </div>
+            <div class="course-Name font-weight-bold"> @Model.TestName</div>
+            <div class="course-number font-weight-normal p">@Model.TestDate.GetValueOrDefault().ToString("MMM yyyy") </div>
+            <div class="course-number font-weight-normal p">@Model.Score</div>
+            <hr />
+        </div>
+    </div>
+
+</div>
+    }
+}
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        if (@Model.TestScoreCount > 0) {
+            $("#TestScore-read-names").append(`<i class="fas fa-circle" style="font-size: 5px"></i> @Model.TestName`);
+            document.getElementById("TestScore-read-count").innerHTML = @Model.TestScoreCount +1;
+        }
+
+
+
+    });
+</script>
+

@@ -1,6 +1,7 @@
 ﻿@model ITI.MVC.LinkedIn.Web.Models.ViewModels.ProfileVM
 @using ITI.MVC.LinkedIn.Web.Models.ViewModels
 @{
+    int? coursesCount = 0;
     Layout = null;
 }
 
@@ -12,6 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="https://kit.fontawesome.com/5028f5981e.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="~/Content/HossamCSS/style.css" />
     <title>LinkedIn</title>
@@ -313,7 +315,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="p-2" style="margin: auto 0;">
-                                                                <a href="" class="col-sm-1 text-right " data-toggle="modal" data-target="#CoursesModal">
+                                                                <a id="course-button" class="col-sm-1 text-right " data-toggle="modal" data-target="#">
                                                                     <i class="fas fa-plus p-3 profile-icon "></i>
                                                                 </a>
                                                             </div>
@@ -331,7 +333,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="p-2" style="margin: auto 0;">
-                                                                <a href="" class="col-sm-1 text-right " data-toggle="modal" data-target="#Projects">
+                                                                <a href="" id="project-btn" col-sm-1 text-right btn " data-toggle="modal" data-target="">
                                                                     <i class="fas fa-plus p-3 profile-icon "></i>
                                                                 </a>
                                                             </div>
@@ -349,7 +351,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="p-2" style="margin: auto 0;">
-                                                                <a href="" class="col-sm-1 text-right " data-toggle="modal" data-target="#Honor">
+                                                                <a href="" id="award-btn" class="col-sm-1 text-right btn" data-toggle="modal" data-target="">
                                                                     <i class="fas fa-plus p-3 profile-icon "></i>
                                                                 </a>
                                                             </div>
@@ -367,7 +369,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="p-2" style="margin: auto 0;">
-                                                                <a href="" class="col-sm-1 text-right " data-toggle="modal" data-target="#Test">
+                                                                <a id="testScore-add-button" href="" class="col-sm-1 text-right " data-toggle="modal" data-target="">
                                                                     <i class="fas fa-plus p-3 profile-icon "></i>
                                                                 </a>
                                                             </div>
@@ -385,7 +387,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="p-2" style="margin: auto 0;">
-                                                                <a href="" class="col-sm-1 text-right " data-toggle="modal" data-target="#Language">
+                                                                <a id="User-langauge-btn" href="" class="col-sm-1 text-right " data-toggle="modal" data-target="">
                                                                     <i class="fas fa-plus p-3 profile-icon "></i>
                                                                 </a>
                                                             </div>
@@ -1005,58 +1007,284 @@
 
     <!-- Accomplishments -->
     <section class="p-3" id="Accomplishments">
-        <div class="container section accomplishments u-border">
+        <div class="container section accomplishments u-border ">
             <div class="row">
-                <div class="col-md-12">
+                <div id="acc-container" class="col-md-12">
                     <h2>Accomplishments </h2>
-                    <div href="" class="btn btn--inline float-md-right btn--plus mr-4" data-toggle="tooltip"
+                    <div href="" class="btn btn--inline float-md-right btn--plus mr-4 accordion" data-toggle="tooltip"
                          data-placement="bottom"><i class="fas fa-plus"></i></div>
+                    @*courses*@
+                    @if (Model.courses.Count != 0)
+                    {
+                        coursesCount = Model.courses.Count;
+                        <div id="Courses-Acc" class="accomplishment">
+                            <div class="accomplishment__section accomplishment__section1">
+                                <p class="accomplishment__number" id="courses-count">@Model.courses.Count</p>
+                            </div>
+                            <div class="accomplishment__section accomplishment__section2 mr-3">
+                                <h4 class="accomplishment__type">
+                                    Courses
+                                </h4>
+                                <p id="Courses-Names" class="accomplishment__description">
+                                    @{if (Model.courses.Count != 0)
+                                        {
+                                            Course last = Model.courses.Last();
 
-                    <div class="accomplishment">
+
+                                            foreach (var item in Model.courses)
+                                            {
+                                                if (item.Equals(last))
+                                                {
+                                                    @item.Name
+                                                }
+                                                else
+                                                {
+                                                    @item.Name
+                                                    <i class="fas fa-circle" style="font-size: 5px"></i>
+                                                }
+
+
+                                            }
+                                        }
+                                    }
+
+
+
+                                </p>
+                            </div>
+                            <div class="accomplishment__section accomplishment__section3 float-md-right">
+                                <button type="button" class="btn btn--arrow  btn--active" data-toggle="collapse" data-target="#CoursesColl"><i class="fas fa-chevron-down"></i></button>
+                                <a class="btn btn--arrow" id="btn-2"> <i class="fas fa-chevron-up"></i></a>
+                            </div>
+
+                            <div id="CoursesColl" class="collapse h5 font-weight-bold">
+                                @foreach (var e in Model.courses)
+                                {
+                                    <div id="courses-body-@e.Id" class="body-container h4">
+                                        <div class="float-right">
+                                            <a onclick="EditCourse(@e.Id)" class="btn btn--plus" style="color:#0E7BB5"><i class="fas fa-pencil-alt"></i> </a>
+                                        </div>
+                                        <div class="course-Name font-weight-bold"> @e.Name</div>
+                                        <div class="course-number font-weight-normal p">@e.Number</div>
+                                        <hr />
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                    @*Projects*@
+                    @if (Model.projects.Count != 0)
+                    {
+                        Project lastProject = Model.projects.Last();
+                <div id="project-read-container">
+                    <div id="projects-read" class="accomplishment">
                         <div class="accomplishment__section accomplishment__section1">
-                            <p class="accomplishment__number">1</p>
+                            <p id="project-read-count" class="accomplishment__number">@Model.projects.Count</p>
                         </div>
                         <div class="accomplishment__section accomplishment__section2 mr-3">
                             <h4 class="accomplishment__type">
                                 Project
                             </h4>
-                            <p class="accomplishment__description">Test Description</p>
+                            <p id="project-read-names" class="accomplishment__description">
+                                @foreach (var item in Model.projects)
+                                {
+                                    if (item.Equals(lastProject))
+                                    {
+                                        @item.Name
+                                    }
+                                    else
+                                    {
+                                        @item.Name
+                                        <i class="fas fa-circle" style="font-size: 5px"></i>
+                                    }
+
+
+                                }
+                            </p>
                         </div>
                         <div class="accomplishment__section accomplishment__section3 float-md-right">
-                            <a class="btn btn--arrow  btn--active" id="btn-1"><i class="fas fa-chevron-down"></i></a>
+                            <button class="btn " data-toggle="collapse" data-target="#ProjectColl" id="Project-button"><i class="fas fa-chevron-down"></i></button>
                             <a class="btn btn--arrow" id="btn-2"> <i class="fas fa-chevron-up"></i></a>
                         </div>
+
+                        <div id="ProjectColl" class="collapse">
+                            @foreach (var e in Model.projects)
+                            {
+                                <div id="projects-read-body" class="body-container h4">
+                                    <div class="float-right">
+                                        <a onclick="EditProject(@e.Id)" class="btn btn--plus" style="color:#0E7BB5"><i class="fas fa-pencil-alt"></i> </a>
+                                    </div>
+                                    <div class="course-Name font-weight-bold"> @e.Name</div>
+                                    <div class="course-number font-weight-normal p">@e.StartDate.GetValueOrDefault().ToString("MMM yyyy") - @e.EndDate.GetValueOrDefault().ToString("MMM yyyy")</div>
+                                    <div class="course-number font-weight-normal p">@e.Description</div>
+                                    <hr />
+                                </div>
+                            }
+                        </div>
+
                     </div>
-                    <div class="accomplishment">
+                </div>
+                    }
+                    @*languagesRead*@
+                    @if (Model.UserLanguages.Count != 0)
+                    {
+                        UserLanguage LuserLanguage = Model.UserLanguages.Last();
+                <div id="language-read-container">
+                    <div id="language-read" class="accomplishment">
                         <div class="accomplishment__section accomplishment__section1">
-                            <p class="accomplishment__number">1</p>
+                            <p id="language-read-count" class="accomplishment__number">@Model.UserLanguages.Count</p>
                         </div>
                         <div class="accomplishment__section accomplishment__section2 mr-3">
                             <h4 class="accomplishment__type">
-                                Project
+                                Languages
                             </h4>
-                            <p class="accomplishment__description">Test Description</p>
+                            <p id="language-read-names" class="accomplishment__description">
+                                @foreach (var item in Model.UserLanguages)
+                                {
+                                    if (item.Equals(LuserLanguage))
+                                    {
+                                        @item.Language.Name
+                                    }
+                                    else
+                                    {
+                                        @item.Language.Name
+                                        <i class="fas fa-circle" style="font-size: 5px"></i>
+                                    }
+
+
+                                }
+                            </p>
                         </div>
                         <div class="accomplishment__section accomplishment__section3 float-md-right">
-                            <a class="btn btn--arrow  btn--active" id="btn-1"><i class="fas fa-chevron-down"></i></a>
+                            <button class="btn btn--arrow  btn--active" id="language-button" data-toggle="collapse" data-target="#LanguageColl"><i class="fas fa-chevron-down"></i></button>
                             <a class="btn btn--arrow" id="btn-2"> <i class="fas fa-chevron-up"></i></a>
                         </div>
+                        <div id="LanguageColl" class="collapse">
+                            @foreach (var e in Model.UserLanguages)
+                            {
+                                <div id="language-read-body" class="body-container h4">
+                                    <div class="float-right">
+                                        <a onclick="EditUserLanguage(@e.Id)" class="btn btn--plus" style="color:#0E7BB5"><i class="fas fa-pencil-alt"></i> </a>
+                                    </div>
+                                    <div class="course-Name font-weight-bold"> @e.Language.Name</div>
+                                    <div class="course-number font-weight-normal p">@e.Proficiency</div>
+                                    <hr />
+                                </div>
+                            }
+                        </div>
                     </div>
-                    <div class="accomplishment">
+                </div>
+                    }
+                    @*AwardsRead*@
+                    @if (Model.Awards.Count != 0)
+                    {
+                        Award lastAward = Model.Awards.Last();
+                <div id="awards-read-container">
+                    <div id="awards-read" class="accomplishment">
                         <div class="accomplishment__section accomplishment__section1">
-                            <p class="accomplishment__number">1</p>
+                            <p id="awards-read-count" class="accomplishment__number">@Model.Awards.Count</p>
                         </div>
                         <div class="accomplishment__section accomplishment__section2 mr-3">
                             <h4 class="accomplishment__type">
-                                Project
+                                Honor & Award
                             </h4>
-                            <p class="accomplishment__description">Test Description</p>
+                            <p id="awards-read-names" class="accomplishment__description">
+                                @foreach (var item in Model.Awards)
+                                {
+                                    if (item.Equals(lastAward))
+                                    {
+                                        @item.Title
+                                    }
+                                    else
+                                    {
+                                        @item.Title
+                                        <i class="fas fa-circle" style="font-size: 5px"></i>
+                                    }
+
+
+                                }
+                            </p>
                         </div>
                         <div class="accomplishment__section accomplishment__section3 float-md-right">
-                            <a class="btn btn--arrow  btn--active" id="btn-1"><i class="fas fa-chevron-down"></i></a>
+                            <button class="btn " data-toggle="collapse" data-target="#awardsColl" id="awards-button"><i class="fas fa-chevron-down"></i></button>
                             <a class="btn btn--arrow" id="btn-2"> <i class="fas fa-chevron-up"></i></a>
                         </div>
+
+                        <div id="awardsColl" class="collapse">
+                            @foreach (var e in Model.Awards)
+                            {
+                                <div id="awards-read-body" class="body-container h4">
+                                    <div class="float-right">
+                                        <a onclick="EditUserAwards(@e.Id)" class="btn btn--plus" style="color:#0E7BB5"><i class="fas fa-pencil-alt"></i> </a>
+                                    </div>
+                                    <div class="course-Name font-weight-bold"> @e.Title</div>
+                                    <div class="course-number font-weight-normal p">@e.IssueDate.GetValueOrDefault().ToString("MMM yyyy") </div>
+                                    <div class="course-number font-weight-normal p">@e.Description</div>
+                                    <hr />
+                                </div>
+                            }
+                        </div>
+
                     </div>
+                </div>
+                    }
+
+                    @*testscore*@
+
+                    @if (Model.TestScores.Count != 0)
+                    {
+                        TestScore lastTestScore = Model.TestScores.Last();
+                <div id="TestScore-read-Container">
+
+
+                    <div id="TestScore-read" class="accomplishment">
+                        <div class="accomplishment__section accomplishment__section1">
+                            <p id="TestScore-read-count" class="accomplishment__number">@Model.TestScores.Count</p>
+                        </div>
+                        <div class="accomplishment__section accomplishment__section2 mr-3">
+                            <h4 class="accomplishment__type">
+                                Test Score
+                            </h4>
+                            <p id="TestScore-read-names" class="accomplishment__description">
+                                @foreach (var item in Model.TestScores)
+                                {
+                                    if (item.Equals(lastTestScore))
+                                    {
+                                        @item.TestName
+                                    }
+                                    else
+                                    {
+                                        @item.TestName
+                                        <i class="fas fa-circle" style="font-size: 5px"></i>
+                                    }
+
+
+                                }
+                            </p>
+                        </div>
+                        <div class="accomplishment__section accomplishment__section3 float-md-right">
+                            <button class="btn " data-toggle="collapse" data-target="#TestScoreColl" id="TestScore-button"><i class="fas fa-chevron-down"></i></button>
+                            <a class="btn btn--arrow" id="btn-2"> <i class="fas fa-chevron-up"></i></a>
+                        </div>
+
+                        <div id="TestScoreColl" class="collapse">
+                            @foreach (var e in Model.TestScores)
+                            {
+                                <div id="TestScore-read-body" class="body-container h4">
+                                    <div class="float-right">
+                                        <a onclick="EditTestScore(@e.Id)" class="btn btn--plus" style="color:#0E7BB5"><i class="fas fa-pencil-alt"></i> </a>
+                                    </div>
+                                    <div class="course-Name font-weight-bold"> @e.TestName</div>
+                                    <div class="course-number font-weight-normal p">@e.TestDate.GetValueOrDefault().ToString("MMM yyyy") </div>
+                                    <div class="course-number font-weight-normal p">@e.Score</div>
+                                    <hr />
+                                </div>
+                            }
+                        </div>
+
+                    </div>
+                </div>
+                    }
                 </div>
             </div>
         </div>
@@ -1372,116 +1600,13 @@
         </div>
     </div>
 
-    <!-- Full Modal -->
-    <div class="modal fade" id="FullModal" tabindex="-1" role="dialog" aria-labelledby="FullModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content row">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="FullModalLabel">Add Bla Bla Bla</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="">
-                        <div class="form-controls">
-                            <div class="form-group">
-                                <label for="" class="required">Title</label>
-                                <input class="form-control" type="text" name="" id="" placeholder="Bla Bla Bla">
-                            </div>
-                            <div class="form-group">
-                                <label for="">Employment type</label>
-                                <select class="form-control" name="" id="">
-                                    <option value="" disabled selected hidden>-</option>
-                                    <option value="">Opa</option>
-                                    <option value="">Opaa</option>
-                                    <option value="">Opaaa</option>
-                                    <option value="">Opaaaa</option>
-                                    <option value="">Opaaaaa</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="">Description</label>
-                                <textarea class="form-control" name="" id="" cols="30" rows="4"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <div>
-                                    <input type="checkbox" name="" id="CurrentlyWorking"><span>
-                                        I am
-                                        currently working in this role
-                                        Transfare
-                                    </span>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <label for="" class="required">Start Date</label>
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <select class="form-control" name="" id="">
-                                                    <option value="" disabled selected hidden>Month</option>
-                                                    <option value="">Opa</option>
-                                                    <option value="">Opaa</option>
-                                                    <option value="">Opaaa</option>
-                                                    <option value="">Opaaaa</option>
-                                                    <option value="">Opaaaaa</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-sm-12">
-                                                <select class="form-control" name="" id="">
-                                                    <option value="" disabled selected hidden>Year</option>
-                                                    <option value="">Opa</option>
-                                                    <option value="">Opaa</option>
-                                                    <option value="">Opaaa</option>
-                                                    <option value="">Opaaaa</option>
-                                                    <option value="">Opaaaaa</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <label for="" class="required">End Date</label>
-                                        <h4 id="PresentWorkDate">Present</h4>
-                                        <div class="row" id="EndWorkDate">
-                                            <div class="col-sm-12">
-                                                <select class="form-control" name="" id="">
-                                                    <option value="" disabled selected hidden>Month</option>
-                                                    <option value="">Opa</option>
-                                                    <option value="">Opaa</option>
-                                                    <option value="">Opaaa</option>
-                                                    <option value="">Opaaaa</option>
-                                                    <option value="">Opaaaaa</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-sm-12">
-                                                <select class="form-control" name="" id="">
-                                                    <option value="" disabled selected hidden>Year</option>
-                                                    <option value="">Opa</option>
-                                                    <option value="">Opaa</option>
-                                                    <option value="">Opaaa</option>
-                                                    <option value="">Opaaaa</option>
-                                                    <option value="">Opaaaaa</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Save</button>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
 
     <!-- Add Profile Section Modal -->
     <div class=" dropdown-menu " aria-labelledby="opaDropDown">
         <!-- Add Profile Section form -->
-        <form class="accordion list " id="accordionExample">
+        <form class="accordion list ">
             <!-- intro card -->
             <div class="card">
                 <div class="card-header" id="headingOne">
@@ -1724,63 +1849,147 @@
             </div>
         </form>
     </div>
-    <div>
-        @Html.Partial("_WorkExperince",new WorkExperinceVM())
-    </div>
-    <div>
-        @Html.Partial("_Education",new EducationVM());
-    </div>
-    <div>
-        @{ Html.RenderPartial("_Certfications",new CertificationsVM()); }
-    </div>
-    <div>
-        @Html.Partial("_Voulanteer",new VoulanteerVM())
-    </div>
 
+ 
     <div>
-        @Html.Partial("_CoursesModal",new CoursesVM() { Experiences = Model.Experiences})
-    </div>
-
-    <div>
-        @Html.Partial("_Honor",new HonorVM())
+        @Html.Partial("_WorkExperince", new WorkExperinceVM())
     </div>
     <div>
-        @Html.Partial("_Laungauges",new LanguageVM())
-    </div>
-
-    <div>
-        @Html.Partial("_Orgnizations",new OrganizationVM())
-    </div>
-    <div>
-        @Html.Partial("_Patents",new PatentVM())
-    </div>
-    <div>
-        @Html.Partial("_Projects",new ProjectsVM{ Experiences = Model.Experiences})
-    </div>
-    <div>
-        @Html.Partial("_Publications",new PublicationVM())
-    </div>
-    <div>
-        @Html.Partial("_TestScores",new TestScores { })
-    </div>
-
-    <div>
-        @Html.Partial("_Summary",new AboutVM())
-    </div>
-
-    <div>
-        @Html.Partial("_Skills",new SkillsVM())
+        @Html.Partial("_Education", new EducationVM())
     </div>
 
 
+    <div>
+        @Html.Partial("_Certfications", new CertificationsVM());
+    </div>
+    <div>
+        @Html.Partial("_Voulanteer", new VoulanteerVM())
+    </div>
 
-    
-    @Html.Partial("_Scripts")
+    <div>
+        <div class="modal fade" id="CoursesModal" tabindex="-1" role="dialog" aria-labelledby="FullModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content row">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="FullModalLabel">Add Course</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div id="course-body" class="modal-body">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="~/Scripts/HossamJs/script.js"></script>
+    <div>
+        @*@Html.Partial("_Honor", new HonorVM { Experiences = Model.Experiences })*@
+        <div class="modal fade" id="AwardModal" tabindex="-1" role="dialog" aria-labelledby="FullModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content row">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="FullModalLabel">Add honors & awards</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div id="awards-body" class="modal-body">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+                    <div>
+                        @*@Html.Partial("_wauges", new LanguageVM())*@
+                        <div class="modal fade" id="LanguageModal" tabindex="-1" role="dialog" aria-labelledby="FullModalLabel"
+                             aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content row">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="FullModalLabel">Add language</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div id="userlanguage-body" class="modal-body">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div>
+                        @Html.Partial("_Orgnizations", new OrganizationVM())
+                    </div>
+                    <div>
+                        @Html.Partial("_Patents", new PatentVM())
+                    </div>
+                    <div>
+                        @*@Html.Partial("_Projects", new ProjectsVM { Experiences = Model.Experiences })*@
+
+                        <div class="modal fade" id="Projects-Modal" tabindex="-1" role="dialog" aria-labelledby="FullModalLabel"
+                             aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content row">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="FullModalLabel">Add project</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div id="project-body" class="modal-body">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div>
+                        @Html.Partial("_Publications", new PublicationVM())
+                    </div>
+                    <div>
+                        <div class="modal fade" id="testScoreModal" tabindex="-1" role="dialog" aria-labelledby="FullModalLabel"
+                             aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content row">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="FullModalLabel">Add test score</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div id="testScore-body" class="modal-body">
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                                    <div>
+                                        @Html.Partial("_Summary", new AboutVM())
+                                    </div>
+
+                                    <div>
+                                        @Html.Partial("_Skills", new SkillsVM())
+                                    </div>
+
+
+
+                                    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+                                    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+                                    <script src="~/Scripts/jquery.validate.min.js"></script>
+                                    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+                                    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+                                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+                                    <script src="~/Scripts/Profile/Profile.js"></script>
 </body>
 
 </html>

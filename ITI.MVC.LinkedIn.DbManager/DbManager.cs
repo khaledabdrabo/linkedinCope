@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +21,8 @@ namespace ITI.MVC.LinkedIn.DbManager
         }
 
         public DbSet<TEntity> Set { get => set; }
+
+        public DbContext Ctx { get => ctx; }
 
         public TEntity Add(TEntity entity)
         {
@@ -52,10 +56,12 @@ namespace ITI.MVC.LinkedIn.DbManager
 
         public bool Update(TEntity entity)
         {
-            Set.Attach(entity);
-            ctx.Entry(entity).State = EntityState.Modified;
+            //Set.Attach(entity);
+            //ctx.Entry(entity).State = EntityState.Modified;
+                set.AddOrUpdate(entity);
 
-            return ctx.SaveChanges() > 0;
+                return ctx.SaveChanges() > 0;
+            
         }
     }
 }

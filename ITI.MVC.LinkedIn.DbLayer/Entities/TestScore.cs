@@ -23,7 +23,7 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
         public int? ExperienceId { get; set; }
 
         [Required(ErrorMessage = "Score is required")]
-        public int Score { get; set; }
+        public string Score { get; set; }
 
         [Column(TypeName = "datetime2")]
         public DateTime? TestDate { get; set; }

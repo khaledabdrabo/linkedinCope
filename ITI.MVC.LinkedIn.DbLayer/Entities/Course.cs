@@ -11,10 +11,12 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
     [Table("Course")]
     public class Course
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
         [Required(ErrorMessage = "Name is required")]
         public string Name { get; set; }
 
-        [Key]
         [Required(ErrorMessage = "Number is required")]
         public int Number { get; set; }
 
