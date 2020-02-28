@@ -53,7 +53,7 @@
         if (@Model.CoursesCount > 0) {
             if ("@action" == "EditCourse") {
                 var content = $("#Courses-Names").html();
-                var newContent = content.replace(/@Model.OldName/,"@Model.Name");
+                var newContent = content.replace(`@Model.OldName`,`@Model.Name`);
                     $("#Courses-Names").html(newContent);
             }
             else {

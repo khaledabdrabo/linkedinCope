@@ -18,7 +18,7 @@
         }).then(data => console.log(data));
     }
 });
-function SucessCourse(data) {
+function SucessCourse() {
     $("#CoursesModal").modal("hide");
     document.getElementById("form0").reset();
 }

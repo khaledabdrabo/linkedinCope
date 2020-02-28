@@ -98,6 +98,11 @@
     <Compile Include="Enums\EmploymentType.cs" />
     <Compile Include="Enums\OrganizationType.cs" />
     <Compile Include="ApplicationDbContext.cs" />
+    <Compile Include="Migrations\202002280143444_init.cs" />
+    <Compile Include="Migrations\202002280143444_init.designer.cs">
+      <DependentUpon>202002280143444_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -106,6 +111,11 @@
     </None>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202002280143444_init.resx">
+      <DependentUpon>202002280143444_init.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

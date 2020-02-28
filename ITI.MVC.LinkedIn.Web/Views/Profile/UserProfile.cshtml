@@ -2013,7 +2013,7 @@
                                     </div>
 
                     <div>
-                        @Html.Partial("_Skills")
+                        @Html.Partial("_Skills",new SkillsVM ())
                     </div>
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     
@@ -2023,7 +2023,7 @@
 
 
                         function addEperience() {
-                            debugger;
+                             ;
                             var ajaxCallURL = '/Profile/AddWorkExperience/';
                             var options = {
                                 "backdrop": "static",
@@ -2035,8 +2035,8 @@
                                 contentType: "application/json; charset=utf-8",
                                 datatype: "json",
                                 success: function (data) {
-                                    debugger;
-                                    console.log(data);
+                                    
+                                     
 
                                     $('#ModelBody').html(data);
                                     $('#WorkExperince').modal(options);
@@ -2049,7 +2049,7 @@
 
                         }
                         function getEperience(id) {
-                            debugger;
+                             ;
                             var ajaxCallURL = '/Profile/EditExperience/' + id;
                             var options = {
                                 "backdrop": "static",
@@ -2061,8 +2061,8 @@
                                 contentType: "application/json; charset=utf-8",
                                 datatype: "json",
                                 success: function (data) {
-                                    debugger;
-                                    console.log(data);
+                                     ;
+                                     
 
                                     $('#ModelBody').html(data);
                                     $('#WorkExperince').modal(options);
@@ -2075,7 +2075,7 @@
 
                         }
                         function addEducation() {
-                            debugger;
+                             ;
                             var ajaxCallURL = '/Profile/AddEducation/';
                             var options = {
                                 "backdrop": "static",
@@ -2087,8 +2087,8 @@
                                 contentType: "application/json; charset=utf-8",
                                 datatype: "json",
                                 success: function (data) {
-                                    debugger;
-                                    console.log(data);
+                                     ;
+                                     
 
                                     $('#EducationBody').html(data);
                                     $('#Education').modal(options);
@@ -2101,7 +2101,7 @@
 
                         }
                         function getEducation(id) {
-                            debugger;
+                             ;
                             var ajaxCallURL = '/Profile/editEducation/' + id;
                             var options = {
                                 "backdrop": "static",
@@ -2113,8 +2113,8 @@
                                 contentType: "application/json; charset=utf-8",
                                 datatype: "json",
                                 success: function (data) {
-                                    debugger;
-                                    console.log(data);
+                                     ;
+                                     
 
                                     $('#EducationBody').html(data);
                                     $('#Education').modal(options);
@@ -2127,7 +2127,7 @@
 
                         }
                         function AddCertification() {
-                            debugger;
+                             ;
                             var ajaxCallURL = '/Profile/AddCertification/';
                             var options = {
                                 "backdrop": "static",
@@ -2139,8 +2139,8 @@
                                 contentType: "application/json; charset=utf-8",
                                 datatype: "json",
                                 success: function (data) {
-                                    debugger;
-                                    console.log(data);
+                                     ;
+                                     
 
                                     $('#certificates').html(data);
                                     $('#Licenses1').modal(options);
@@ -2153,7 +2153,7 @@
 
                         }
                         function getCertification(id) {
-                            debugger;
+                             ;
                             var ajaxCallURL = '/Profile/EditCertification/' + id;
                             var options = {
                                 "backdrop": "static",
@@ -2165,8 +2165,8 @@
                                 contentType: "application/json; charset=utf-8",
                                 datatype: "json",
                                 success: function (data) {
-                                    debugger;
-                                    console.log(data);
+                                     ;
+                                     
 
                                     $('#certificates').html(data);
                                     $('#Licenses1').modal(options);
@@ -2179,7 +2179,7 @@
 
                         }
                         function AddVolunteer() {
-                            debugger;
+                             ;
                             var ajaxCallURL = '/Profile/AddVoulanteer/';
                             var options = {
                                 "backdrop": "static",
@@ -2191,8 +2191,8 @@
                                 contentType: "application/json; charset=utf-8",
                                 datatype: "json",
                                 success: function (data) {
-                                    debugger;
-                                    console.log(data);
+                                     ;
+                                     
 
                                     $('#VolunteerBody').html(data);
                                     $('#volunteer').modal(options);
@@ -2206,7 +2206,6 @@
                         }
                         function EditVolunteer(Id ) {
                            
-                            debugger;
                             var ajaxCallURL = '/Profile/EditVolunteer/' + Id;
                             var options = {
                                 "backdrop": "static",
@@ -2218,8 +2217,7 @@
                                 contentType: "application/json; charset=utf-8",
                                 datatype: "json",
                                 success: function (data) {
-                                    debugger;
-                                    console.log(data);
+                                     
 
                                     $('#VolunteerBody').html(data);
                                     $('#volunteer').modal(options);
@@ -2235,15 +2233,8 @@
                     @*@Html.Partial("_Scripts")*@
 
 
-                    
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 
     
-    @Html.Partial("_Scripts")
 
                                     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
                                     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
