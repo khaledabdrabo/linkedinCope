@@ -98,57 +98,29 @@
     <Compile Include="Enums\EmploymentType.cs" />
     <Compile Include="Enums\OrganizationType.cs" />
     <Compile Include="ApplicationDbContext.cs" />
-    <Compile Include="Migrations\202002150041091_Init.cs" />
-    <Compile Include="Migrations\202002150041091_Init.Designer.cs">
-      <DependentUpon>202002150041091_Init.cs</DependentUpon>
+    <Compile Include="Migrations\202002201616561_pull-Mig.cs" />
+    <Compile Include="Migrations\202002201616561_pull-Mig.designer.cs">
+      <DependentUpon>202002201616561_pull-Mig.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002151311035_AddAdditionalUserProps.cs" />
-    <Compile Include="Migrations\202002151311035_AddAdditionalUserProps.Designer.cs">
-      <DependentUpon>202002151311035_AddAdditionalUserProps.cs</DependentUpon>
+    <Compile Include="Migrations\202002202123122_fix-TestScore.cs" />
+    <Compile Include="Migrations\202002202123122_fix-TestScore.designer.cs">
+      <DependentUpon>202002202123122_fix-TestScore.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002161212456_UpdateNullableProps.cs" />
-    <Compile Include="Migrations\202002161212456_UpdateNullableProps.Designer.cs">
-      <DependentUpon>202002161212456_UpdateNullableProps.cs</DependentUpon>
+    <Compile Include="Migrations\202002271109033_add-identitytolanguage.cs" />
+    <Compile Include="Migrations\202002271109033_add-identitytolanguage.designer.cs">
+      <DependentUpon>202002271109033_add-identitytolanguage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002161219526_FixDateTimeError.cs" />
-    <Compile Include="Migrations\202002161219526_FixDateTimeError.Designer.cs">
-      <DependentUpon>202002161219526_FixDateTimeError.cs</DependentUpon>
+    <Compile Include="Migrations\202002271343267_change-coruse-PrimaryKey.cs" />
+    <Compile Include="Migrations\202002271343267_change-coruse-PrimaryKey.designer.cs">
+      <DependentUpon>202002271343267_change-coruse-PrimaryKey.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002161345082_fix1.cs" />
-    <Compile Include="Migrations\202002161345082_fix1.designer.cs">
-      <DependentUpon>202002161345082_fix1.cs</DependentUpon>
+    <Compile Include="Migrations\202002272118377_fix-project.cs" />
+    <Compile Include="Migrations\202002272118377_fix-project.designer.cs">
+      <DependentUpon>202002272118377_fix-project.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002161920051_fix-image-id.cs" />
-    <Compile Include="Migrations\202002161920051_fix-image-id.designer.cs">
-      <DependentUpon>202002161920051_fix-image-id.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002181628153_init.cs" />
-    <Compile Include="Migrations\202002181628153_init.designer.cs">
-      <DependentUpon>202002181628153_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002181700560_UpdateWorkExperienceTable.cs" />
-    <Compile Include="Migrations\202002181700560_UpdateWorkExperienceTable.designer.cs">
-      <DependentUpon>202002181700560_UpdateWorkExperienceTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002181738436_UpdateWorkRelations.cs" />
-    <Compile Include="Migrations\202002181738436_UpdateWorkRelations.designer.cs">
-      <DependentUpon>202002181738436_UpdateWorkRelations.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002181810559_addworkDescription.cs" />
-    <Compile Include="Migrations\202002181810559_addworkDescription.designer.cs">
-      <DependentUpon>202002181810559_addworkDescription.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002182056128_commentheadline.cs" />
-    <Compile Include="Migrations\202002182056128_commentheadline.designer.cs">
-      <DependentUpon>202002182056128_commentheadline.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002191738477_reset.cs" />
-    <Compile Include="Migrations\202002191738477_reset.designer.cs">
-      <DependentUpon>202002191738477_reset.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002222228572_set_ExperienceId_nullable.cs" />
-    <Compile Include="Migrations\202002222228572_set_ExperienceId_nullable.designer.cs">
-      <DependentUpon>202002222228572_set_ExperienceId_nullable.cs</DependentUpon>
+    <Compile Include="Migrations\202002272152471_ay7aga.cs" />
+    <Compile Include="Migrations\202002272152471_ay7aga.designer.cs">
+      <DependentUpon>202002272152471_ay7aga.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -161,23 +133,23 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202002150041091_Init.resx">
-      <DependentUpon>202002150041091_Init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202002201616561_pull-Mig.resx">
+      <DependentUpon>202002201616561_pull-Mig.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002151311035_AddAdditionalUserProps.resx">
-      <DependentUpon>202002151311035_AddAdditionalUserProps.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202002202123122_fix-TestScore.resx">
+      <DependentUpon>202002202123122_fix-TestScore.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002161212456_UpdateNullableProps.resx">
-      <DependentUpon>202002161212456_UpdateNullableProps.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202002271109033_add-identitytolanguage.resx">
+      <DependentUpon>202002271109033_add-identitytolanguage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002161219526_FixDateTimeError.resx">
-      <DependentUpon>202002161219526_FixDateTimeError.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202002271343267_change-coruse-PrimaryKey.resx">
+      <DependentUpon>202002271343267_change-coruse-PrimaryKey.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002161345082_fix1.resx">
-      <DependentUpon>202002161345082_fix1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202002272118377_fix-project.resx">
+      <DependentUpon>202002272118377_fix-project.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002161920051_fix-image-id.resx">
-      <DependentUpon>202002161920051_fix-image-id.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202002272152471_ay7aga.resx">
+      <DependentUpon>202002272152471_ay7aga.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

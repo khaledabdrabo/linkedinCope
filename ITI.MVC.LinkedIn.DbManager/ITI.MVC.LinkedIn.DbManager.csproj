@@ -64,7 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ITI.MVC.LinkedIn.DbLayer\ITI.MVC.LinkedIn.DbLayer.csproj">
-      <Project>{874597CF-4E43-4064-8C13-F7E86E5B554A}</Project>
+      <Project>{874597cf-4e43-4064-8c13-f7e86e5b554a}</Project>
       <Name>ITI.MVC.LinkedIn.DbLayer</Name>
     </ProjectReference>
   </ItemGroup>
