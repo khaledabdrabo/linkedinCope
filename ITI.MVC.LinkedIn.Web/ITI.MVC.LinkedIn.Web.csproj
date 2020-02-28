@@ -21,9 +21,12 @@
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort>44350</IISExpressSSLPort>
-    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
-    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
-    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
+    <IISExpressAnonymousAuthentication>
+    </IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>
+    </IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>
+    </IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -170,6 +173,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\FeedController.cs" />
     <Compile Include="Controllers\FriendsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LinkedInAccountController.cs" />
@@ -183,11 +187,21 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ViewModels\AboutVM.cs" />
     <Compile Include="Models\ViewModels\CertificationsVM.cs" />
+    <Compile Include="Models\ViewModels\CommentVM.cs" />
+    <Compile Include="Models\ViewModels\CoursesVM.cs" />
     <Compile Include="Models\ViewModels\EducationVM.cs" />
+    <Compile Include="Models\ViewModels\HonorVM.cs" />
+    <Compile Include="Models\ViewModels\LanguageVM.cs" />
+    <Compile Include="Models\ViewModels\OrganizationVM.cs" />
     <Compile Include="Models\ViewModels\PatentVM.cs" />
+    <Compile Include="Models\ViewModels\PostsVM.cs" />
+    <Compile Include="Models\ViewModels\PostVM.cs" />
+    <Compile Include="Models\ViewModels\ProfileVM.cs" />
+    <Compile Include="Models\ViewModels\ProjectsVM.cs" />
     <Compile Include="Models\ViewModels\PublicationVM.cs" />
     <Compile Include="Models\ViewModels\SignUpVM.cs" />
     <Compile Include="Models\ViewModels\SkillsVM.cs" />
+    <Compile Include="Models\ViewModels\TestScores.cs" />
     <Compile Include="Models\ViewModels\VoulanteerVM.cs" />
     <Compile Include="Models\ViewModels\WorkExperinceVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -200,6 +214,8 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\css\search.css" />
     <Content Include="Content\HossamCSS\style.css" />
     <Content Include="Content\images\12194855_752324661563499_3923251269933861549_o200830320.jpg" />
@@ -241,12 +257,15 @@
     <Content Include="Content\images\people.svg" />
     <Content Include="Content\images\profile.png" />
     <Content Include="Content\images\ProfilePic.jpg" />
+    <Content Include="Content\Feed\post.css" />
+    <Content Include="Content\layout.css" />
     <Content Include="Content\images\sec1.png" />
     <Content Include="Content\images\sec1.svg" />
     <Content Include="Content\images\whoislinkedinfor.jfif" />
     <Content Include="Content\MoahamedCss\style.css" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\images\Thumbs.db" />
@@ -280,6 +299,8 @@
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
     <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\Feed\create-comment.js" />
+    <Content Include="Scripts\Feed\create-post.js" />
     <Content Include="Scripts\index.js.flow" />
     <Content Include="Scripts\esm\popper.min.js.map" />
     <Content Include="Scripts\esm\popper.js.map" />
@@ -295,8 +316,14 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\HossamJs\script.js" />
+    <Content Include="Scripts\Feed\post.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -441,13 +468,22 @@
     <Content Include="Views\Profile\_Summary.cshtml" />
     <Content Include="Views\Profile\_Skills.cshtml" />
     <Content Include="Views\Shared\_Scripts.cshtml" />
+    <Content Include="Views\Feed\Index.cshtml" />
+    <Content Include="Views\Feed\_Post.cshtml" />
+    <Content Include="Views\Feed\_SharedPost.cshtml" />
+    <Content Include="Views\Feed\_CreatePost.cshtml" />
+    <Content Include="Views\Feed\_ProfilePreview.cshtml" />
+    <Content Include="Views\Feed\_CreateComment.cshtml" />
+    <Content Include="Views\Feed\_Comment.cshtml" />
+    <Content Include="Views\Shared\_Scripts.cshtml" />
     <Content Include="Views\Profile\UpdateExperience.cshtml" />
     <Content Include="Views\Friends\search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\" />
+    <Folder Include="Uploads\" />
     <Folder Include="Views\Default\" />
-    <Folder Include="Views\Profile\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

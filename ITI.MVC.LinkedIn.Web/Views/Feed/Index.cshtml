@@ -1,0 +1,39 @@
+﻿@model PostsVM
+
+@{
+    ViewBag.Title = "Feed";
+}
+
+<div class=" container row mt-5 mx-auto">
+
+    @Html.Partial("_ProfilePreview", Model.User)
+
+    <div class="col-md-6 col-lg-6 col-sm-6">
+
+        @Html.Partial("_CreatePost", new PostVM())
+
+        <div id="postsContainer" class="posts mt-5">
+
+            @foreach (Post post in Model.Posts)
+            {
+                @Html.Partial("_Post", post)
+            }
+
+            @foreach (SharedPost sharedPost in Model.SharedPosts)
+            {
+                @Html.Partial("_SharedPost", sharedPost)
+            }
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/Feed/post.js"></script>
+    <script src="~/Scripts/Feed/create-post.js"></script>
+    <script src="~/Scripts/Feed/create-comment.js"></script>
+}
+
+@section Styles {
+    <link href="~/Content/Feed/post.css" rel="stylesheet" />
+}

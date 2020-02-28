@@ -22,5 +22,7 @@ namespace ITI.MVC.LinkedIn.Store.DbManagers
         {
             return dbc.Organizations.Where(o => o.Name == organization_name).FirstOrDefault();
         }
+
+ 
     }
 }

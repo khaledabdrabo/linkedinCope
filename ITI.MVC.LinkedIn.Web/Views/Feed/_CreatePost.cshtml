@@ -1,0 +1,253 @@
+﻿@model PostVM
+
+@using (Ajax.BeginForm("CreatePost", "Feed", new AjaxOptions
+{
+    OnSuccess = "onPostSuccess",
+    OnFailure = "onPostFailure"
+}))
+{
+    <div class="create-post ">
+        <div class="writePost">
+            <button type="button" class="button button-post button-border" data-toggle="modal" data-target="#post">
+                <i class="far fa-edit post-icon"></i>
+                <span>Start a post</span>
+            </button>
+            <button type="button" class="button button-icons button-border">
+                <label class="mypost-label" data-toggle="modal" data-target="#picture">
+                    <i class="fas fa-camera"></i>
+                    @Html.TextBoxFor(m => m.File, new { type = "file", formmethod = "post" })
+                </label>
+            </button>
+            <button type="button" class="button button-icons button-border">
+                <label class="mypost-label" data-toggle="modal" data-target="#video">
+                    <i class="fas fa-video"></i>
+                    <input type="file" multiple />
+                </label>
+            </button>
+            <button type="button" class="button button-icons">
+                <label class="mypost-label" data-toggle="modal" data-target="#document">
+                    <i class="far fa-file-alt"></i>
+                    <input type="file" multiple />
+                </label>
+            </button>
+        </div>
+        <div class="article">
+            <a href="#">Write an article </a>on LinkedIn
+        </div>
+        <div class="modal fade" id="post" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="mypost">
+                            <div class="mypost-header">
+                                <h2>Create a post</h2>
+                                <button type="button" class="close mypost-close" data-dismiss="modal"
+                                        aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <!-- <div class="post-close">
+                                    <i class="fas fa-times"></i>
+                                </div> -->
+                            </div>
+                            <div class="mypost-body">
+                                <div class="mypost-body_top">
+                                    <div class="mypost-profilepic"></div>
+                                    <span>UserName</span>
+                                </div>
+                                <div class="mypost-body_middle">
+                                    @Html.TextAreaFor(m => m.PostContent)
+                                </div>
+                                <div class="mypost-body_bottom">
+                                    <div class="mypost-body_bottomContent">
+                                        <button type="button" class="mypost-hashtag">Add hashtag</button>
+                                        <span>Help the right people see your post</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mypost-footer">
+                                <div class="mypost-footer_media">
+                                    <button type="button" class="button button-icons button-footer">
+                                        <label class="mypost-label" data-toggle="modal" data-target="#picture">
+                                            <i class="fas fa-camera"></i>
+                                            <input type="file" multiple />
+                                        </label>
+                                    </button>
+                                    <button type="button" class="button button-icons button-footer">
+                                        <label class="mypost-label" data-toggle="modal" data-target="#video">
+                                            <i class="fas fa-video"></i>
+                                            <input type="file" multiple />
+                                        </label>
+                                    </button>
+                                    <button type="button" class="button button-icons button-footer">
+                                        <label class="mypost-label" data-toggle="modal" data-target="#document">
+                                            <i class="far fa-file-alt"></i>
+                                            <input type="file" multiple />
+                                        </label>
+                                    </button>
+                                </div>
+                                <div id="postFailureMsg" class="mypost-footer_error-msg hide"></div>
+                                <div class="mypost-footer_publish">
+                                    <button type="submit" class="mypost-footer_publish-btn mypost-footer_publishEnabele mypost-footer_publishDisable">
+                                        Post
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="picture" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-body">
+                        <div class="postattach">
+                            <div class="postattach--header">
+                                <div class="postattach--back" data-dismiss="modal" aria-label="Close">
+                                    <i class="fas fa-arrow-left"></i>
+                                </div>
+                                <h2 class="postattach__Title">Edit your photo</h2>
+                            </div>
+                            <div class="postattach--select">
+                                <button type="button" class="postattach--select--content">
+                                    <label class="mypost-label">
+                                        @Html.TextBoxFor(m => m.File, new { type = "file", formmethod = "post" })
+                                        Select images to share
+                                    </label>
+                                </button>
+                            </div>
+                            <div class="postattach--footer">
+                                <button type="button" class="postattach--footer--btn postattach--footer--nextenabled">
+                                    Next
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="video" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-body">
+                        <div class="postattach">
+                            <div class="postattach--header">
+                                <div class="postattach--back" data-dismiss="modal" aria-label="Close">
+                                    <i class="fas fa-arrow-left"></i>
+                                </div>
+                                <h2 class="postattach__Title">Select/Edit your video</h2>
+                            </div>
+                            <div class="postattach--select">
+                                <button type="button" class="postattach--select--content">
+                                    <label class="mypost-label">
+                                        <input type="file" multiple />
+                                        Select video to share
+                                    </label>
+                                </button>
+                            </div>
+                            <div class="postattach--footer">
+                                <button type="button" class="postattach--footer--btn postattach--footer--nextenabled">
+                                    Next
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="document" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-body">
+                        <div class="postattach">
+                            <div class="postattach--header">
+                                <div class="postattach--back" data-dismiss="modal" aria-label="Close">
+                                    <i class="fas fa-arrow-left"></i>
+                                </div>
+                                <h2 class="postattach__Title">Share a document</h2>
+                            </div>
+                            <div class="postattach--select">
+                                <!-- <button class = "postattach--select--content">Select video to share</button> -->
+                                <div class="postattach--select_file">
+                                    <label class="mypost-footer_publish-btn chooseFile">
+                                        <input type="file" multiple />
+                                        Choose File
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="postattach--footer">
+                                <button type="button" class="postattach--footer--btn postattach--footer--nextenabled">
+                                    Next
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog"
+             aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title mt-1 font-weight-bolder">All (150)</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span style="color: black;" aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-borderless">
+
+                            <tbody>
+                                <tr>
+
+                                    <td>
+                                        <div class="card-header post-header">
+                                            <img class="post-profile-img" src="unnamed.jpg">
+                                            <div class="post-header-creator-info mt-2 ">
+                                                <h6>john wick</h6>
+                                                <small class="text-muted">software engineer</small>
+                                                <small class="text-muted">Last updated 3 mins ago</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><i class="far fa-thumbs-up mt-4 fa-2x"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="card-header post-header">
+                                            <img class="post-profile-img" src="unnamed.jpg">
+                                            <div class="post-header-creator-info mt-2">
+                                                <h6>john wick</h6>
+                                                <small class="text-muted">software engineer</small>
+                                                <small class="text-muted">Last updated 3 mins ago</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><i class="far fa-thumbs-up mt-4 fa-2x"></i></td>
+
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script src="~/Scripts/Feed/create-post.js"></script>
+}

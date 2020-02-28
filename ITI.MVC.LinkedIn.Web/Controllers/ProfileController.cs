@@ -1,7 +1,8 @@
 ﻿using ITI.MVC.LinkedIn.DbLayer.Entities;
 using ITI.MVC.LinkedIn.Store;
-using ITI.MVC.LinkedIn.Web.Models.ViewModels;
+using ITI.MVC.LinkedIn.Store.DbManagers;
 using Microsoft.AspNet.Identity.Owin;
+using ITI.MVC.LinkedIn.Web.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,10 @@ using ITI.MVC.LinkedIn.DbLayer.Enums;
 using System.ComponentModel.DataAnnotations;
 using ITI.MVC.LinkedIn.Web.Models.Enums;
 using System.Web.Services;
-
+using System.Threading.Tasks;
 namespace ITI.MVC.LinkedIn.Web.Controllers
 {
+    [Authorize]
     public class ProfileController : Controller
     {
         private DbStore store;
@@ -28,25 +30,107 @@ namespace ITI.MVC.LinkedIn.Web.Controllers
         }
         // GET: Profile
         [WebMethod]
-        public ActionResult UserProfile( string userId)
-       {
-            string id=userId;
+        public ActionResult UserProfile(string userId)
+        {
+            string id = userId;
             if (userId == null)
             {
                 id = User.Identity.GetUserId();
             }
             var user = Store.ApplicationUserManager.FindById(User.Identity.GetUserId());
-            ViewBag.getAllEperinec = Store.WorkManager.GetAll().Include(e=>e.Organization).Include(e=>e.Experience).Where(ex=>ex.UserId== id).ToList();
-             ViewBag.imag=user.Images.ToList()[0].Url.Replace("C:\\Users\\khaled abdrabo\\Desktop\\LatestVersion\\newversion\\iti-mvc-linkedin\\ITI.MVC.LinkedIn.Web\\Images\\", "");
-            ViewBag.name=user.FirstName + user.LastName;
-            ViewBag.country=user.CountryName;
-            ViewBag.connection = Store.ConnectionManager.GetAllBind().Where(c => c.SenderId == id ||  c.ReceiverId == id).Count();
-            
+            ViewBag.getAllEperinec = Store.WorkManager.GetAll().Include(e => e.Organization).Include(e => e.Experience).Where(ex => ex.UserId == id).ToList();
+            ViewBag.imag = user.Images.ToList()[0].Url.Replace("C:\\Users\\khaled abdrabo\\Desktop\\LatestVersion\\newversion\\iti-mvc-linkedin\\ITI.MVC.LinkedIn.Web\\Images\\", "");
+            ViewBag.name = user.FirstName + user.LastName;
+            ViewBag.country = user.CountryName;
+            ViewBag.connection = Store.ConnectionManager.GetAllBind().Where(c => c.SenderId == id || c.ReceiverId == id).Count();
+
             ViewBag.getAllEDucation = Store.EducationManager.GetAll().Include(e => e.Experience).Where(ex => ex.UserId == id).ToList();
             ViewBag.getAllCertificates = Store.UserCertificationManager.GetAll().Include(e => e.Certification).Where(c => c.UserId == id).ToList();
             ViewBag.getAllVolunteers = Store.VolunteerManager.GetAll().Include(v => v.Experience).Where(v => v.UserId == id).ToList();
 
-            return View();
+            ExperienceManager experienceManager = Store.ExperienceManager;
+
+            List<Experience> experiences = experienceManager.GetAllBindByUserID(User.Identity.GetUserId());
+
+            ProfileVM profileVM = new ProfileVM
+            {
+                Experiences = experiences
+        };
+            return View(profileVM);
+        }
+
+        [HttpPost]
+        public ActionResult AddCourse(CoursesVM model)
+        {
+            if (ModelState.IsValid)
+            {
+                CourseManager courseManager = Store.CourseManager;
+                Course course = new Course { ExperienceId = model.ExperinceId, Name = model.Name, Number = model.Number, UserId = User.Identity.GetUserId() };
+
+                courseManager.Add(course);
+                
+            }
+                return (null);
+        }
+
+        [HttpPost]
+        public ActionResult AddProject(ProjectsVM model)
+        {
+            if (ModelState.IsValid)
+            {
+                ProjectManager projectManager = Store.ProjectManager;
+                Project project;
+                int day = 1;
+                string id = User.Identity.GetUserId();
+                if (model.StartMonth == null || model.StartYear == null)
+                {
+                    project = new Project
+                    {
+                        ExperienceId = model.ExperinceId,
+                        Name = model.Name,
+                        UserId = id,
+                        Creator = model.Creator,
+                        Description = model.Description,
+                        Url = model.Url
+                    };
+                    projectManager.Add(project);
+                }
+                else if (model.EndMonth == null || model.EndYear == null)
+                {
+                    int month = Convert.ToInt32(model.StartMonth);
+                    int year = Convert.ToInt32(model.StartYear.ToString());
+                    DateTime StartDate = new DateTime(year, month, day);
+
+                    project = new Project
+                    {
+                        ExperienceId = model.ExperinceId,
+                        Name = model.Name,
+                        UserId = id,
+                        Creator = model.Creator,
+                        Description = model.Description,
+                        StartDate = StartDate,
+                        Url = model.Url
+                    };
+                    projectManager.Add(project);
+                }
+                else
+                {
+                    int month = Convert.ToInt32(model.StartMonth);
+                    int year = Convert.ToInt32(model.StartYear.ToString());
+                    int Emonth = Convert.ToInt32(model.EndMonth);
+                    int Eyear = Convert.ToInt32(model.EndYear.ToString());
+                    DateTime StartDate = new DateTime(year, month, day);
+                    DateTime EndDate = new DateTime(Eyear, Emonth, day);
+                 project = new Project { ExperienceId = model.ExperinceId, Name = model.Name, UserId = id ,
+                Creator = model.Creator , Description = model.Description, StartDate = StartDate , EndDate = EndDate,
+                  Url = model.Url};
+                    projectManager.Add(project);
+                }
+               
+
+
+            }
+            return (null);
         }
         [HttpGet]
         public ActionResult AddWorkExperience()

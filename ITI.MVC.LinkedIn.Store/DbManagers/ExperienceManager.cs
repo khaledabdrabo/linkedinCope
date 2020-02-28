@@ -12,15 +12,12 @@ namespace ITI.MVC.LinkedIn.Store.DbManagers
 {
     public class ExperienceManager : DbManager<Experience>
     {
-        ApplicationDbContext dbc;
-        public ExperienceManager(ApplicationDbContext ctx) : base(ctx)
+        public int MyProperty { get; set; }
+        public ExperienceManager(DbContext ctx) : base(ctx)
         {
-            this.dbc = ctx;
-        }
 
-        public Work GetByeperienceId(int id)
-        {
-            return dbc.WorkExperiences.Where(w => w.ExperienceId == id).Include(w => w.Organization).Include(w => w.Experience).FirstOrDefault();
+            public Work GetByeperienceId(int id) { 
+            return Set.WorkExperiences.Where(w => w.ExperienceId == id).Include(w => w.Organization).Include(w => w.Experience).FirstOrDefault();
         }
     }
 }

@@ -239,7 +239,6 @@ namespace ITI.MVC.LinkedIn.Web.Controllers
                     };
                     return View(signUpVM);
                 }
-                AddErrors(result);
             }
             else
             {
@@ -253,7 +252,6 @@ namespace ITI.MVC.LinkedIn.Web.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
         }
 
         //

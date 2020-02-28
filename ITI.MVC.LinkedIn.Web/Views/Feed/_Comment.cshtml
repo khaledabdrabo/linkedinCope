@@ -1,0 +1,80 @@
+﻿@model Comment
+
+<div class="comment-sec pl-5">
+    <!--Comment-->
+    <div class="row ">
+
+        <!-- hshel ml-3 , mt-3 de fl a5er w h5li col-sm-6=> col-sm-12 -->
+
+        <img class="post-profile-img mt-4 " src="@(Model.User.Images.Count != 0 ? Model.User.Images.Where(i => i.ImageRole == ImageRole.Profile).First().Url : "")">
+        <div class="col-sm-10 mt-3 mr-0">
+
+            <div class="card comment">
+                <div class="card-body">
+                    <div class=" comment--header ">
+                        <a class="card-title comment--auther " href="#">
+                            @(Model.User.FirstName + " " + Model.User.LastName)
+                        </a>
+                        <div class=" options-sec">
+                            <p class="text-right font-weight-light comment--operation">
+                                @Model.Text.Time
+                                <i class="fas fa-ellipsis-h option-click "></i>
+                            </p>
+                            <div class="card comment-options  " style="width: 15rem;">
+                                <div class="card-body pt-2 pb-1 ">
+                                    <p class="card-text ">
+                                        <i class="fas fa-link"></i> Copy
+                                        Link to Comment
+                                    </p>
+                                    <p class="card-text">
+                                        <i class="far fa-flag"></i> Report
+                                    </p>
+                                    <p class="card-text">
+                                        <i class="fas fa-pen"></i> Edit
+                                    </p>
+                                    <p class="card-text" data-toggle="modal"
+                                       data-target="#exampleModalScrollable">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="font-weight-light comment--auth-job">@Model.User.Headline</p>
+
+                    <p class="card-text comment--text">@Model.Text.Content</p>
+
+                    @{
+                        if (Model.Text.Images.Count != 0)
+                        {
+                            <img class="card-img-top" src="@Model.Text.Images.ToList()[0].Url">
+                        }
+                    }
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!--End Comment-->
+    <!-- React-->
+
+    <div class="row ">
+
+        <div class="col-sm-6 ml-5 ">
+            <div class="card comment-bar ">
+                <div class="card-body pt-1">
+                    <i class="far fa-thumbs-up pr-2 comment-like" id="@Model.TextId"></i>
+                    <span class="line">
+                        <span class="font-weight-light likes-no">
+                            @Model.Likes.Count
+                        </span>
+                    </span>
+                    <i class="far fa-comment-alt pl-3"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End React-->
+</div>

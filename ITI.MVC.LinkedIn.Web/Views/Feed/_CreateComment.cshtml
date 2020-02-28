@@ -1,0 +1,24 @@
+﻿@model CommentVM
+
+@using (Ajax.BeginForm("CreateComment", "Feed", new AjaxOptions
+{
+    OnSuccess = "onCommentSuccess",
+    OnFailure = "onCommentFailure"
+}))
+{
+}
+<div class="col-md-12 col-lg-12 col-sm-12">
+
+    <div class="input-group mt-2 ml-0">
+        <img class="post-profile-img mr-3" src="unnamed.jpg">
+        <input type="text" class=" inputComment form-control" name="@Model.CommentContent" id="validationCustomUsername"
+               placeholder="Add new comment..." aria-describedby="inputGroupPrepend" required>
+        <div class="comment-failure-msg" id="commentFailureMsg"></div>
+        <div class="input-group-append">
+            <label class="comment-image mt-2 mr-1" for="customFileLang">
+                <input type="file" id="customFileLang" name="@Model.File" lang="es" style="display: none;">
+                <i class="fas fa-images pr-3"></i>
+            </label>
+        </div>
+    </div>
+</div>

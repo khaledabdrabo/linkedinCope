@@ -27,5 +27,11 @@ namespace ITI.MVC.LinkedIn.Store.DbManagers
         {
            return db.EducationExperiences.Where(w => w.ExperienceId == id).FirstOrDefault();
         }
+        public List<Education> GetAllBindByUserID(string id)
+        {
+
+            List<Education> Educationexperiences = this.Set.Where(e => e.UserId == id).Include(e => e.Experience).ToList();
+            return Educationexperiences;
+        }
     }
 }

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace ITI.MVC.LinkedIn.Store.DbManagers
 {
     
@@ -22,6 +23,13 @@ namespace ITI.MVC.LinkedIn.Store.DbManagers
         public Work GetSpecificRecord( int id)
         {
            return db.WorkExperiences.Where(w => w.ExperienceId == id).FirstOrDefault();
+        }
+
+        public List<Work> GetAllBindByUserID(string id)
+        {
+
+            List<Work> Workexperiences = this.Set.Where(e => e.UserId == id).Include(e=> e.Experience).ToList();
+            return Workexperiences;
         }
     }
 }
