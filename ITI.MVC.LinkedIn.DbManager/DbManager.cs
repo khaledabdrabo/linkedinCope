@@ -22,7 +22,8 @@ namespace ITI.MVC.LinkedIn.DbManager
             set = ctx.Set<TEntity>();
         }
 
-        public DbSet<TEntity> Set { get => set; }
+        public DbSet<TEntity> Set { get {return set; } }
+        public DbContext Ctx { get { return this.ctx; } }
 
         public TEntity Add(TEntity entity)
         {
