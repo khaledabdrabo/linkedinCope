@@ -39,7 +39,11 @@ namespace ITI.MVC.LinkedIn.Web.Controllers
             }
             var user = Store.ApplicationUserManager.FindById(User.Identity.GetUserId());
             ViewBag.getAllEperinec = Store.WorkManager.GetAll().Include(e => e.Organization).Include(e => e.Experience).Where(ex => ex.UserId == id).ToList();
-            //ViewBag.imag = user.Images.ToList()[0] != null ? user.Images.ToList()[0].Url.Replace("C:\\Users\\khaled abdrabo\\Desktop\\LatestVersion\\newversion\\iti-mvc-linkedin\\ITI.MVC.LinkedIn.Web\\Images\\", ""): null;
+            if (user.Images.ToList()[0] != null)
+            {
+                ViewBag.imag = user.Images.ToList()[0].Url.Replace("C:\\Users\\khaled abdrabo\\Desktop\\LatestVersion\\newversion\\iti-mvc-linkedin\\ITI.MVC.LinkedIn.Web\\Images\\", "") : null;
+
+            }
             ViewBag.name = user.FirstName + user.LastName;
             ViewBag.country = user.CountryName;
             ViewBag.connection = Store.ConnectionManager.GetAllBind().Where(c => c.SenderId == id || c.ReceiverId == id).Count();
