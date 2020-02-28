@@ -209,6 +209,34 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Antlr3.Runtime.dll" />
+    <Content Include="bin\DbManager.dll" />
+    <Content Include="bin\EntityFramework.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.dll" />
+    <Content Include="bin\ITI.MVC.LinkedIn.DbLayer.dll" />
+    <Content Include="bin\Microsoft.AspNet.Identity.Core.dll" />
+    <Content Include="bin\Microsoft.AspNet.Identity.EntityFramework.dll" />
+    <Content Include="bin\Microsoft.AspNet.Identity.Owin.dll" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
+    <Content Include="bin\Microsoft.Owin.dll" />
+    <Content Include="bin\Microsoft.Owin.Host.SystemWeb.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.Facebook.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.Google.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.MicrosoftAccount.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.OAuth.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.Twitter.dll" />
+    <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="bin\Newtonsoft.Json.dll" />
+    <Content Include="bin\Owin.dll" />
+    <Content Include="bin\System.Web.Helpers.dll" />
+    <Content Include="bin\System.Web.Mvc.dll" />
+    <Content Include="bin\System.Web.Optimization.dll" />
+    <Content Include="bin\System.Web.Razor.dll" />
+    <Content Include="bin\System.Web.WebPages.Deployment.dll" />
+    <Content Include="bin\System.Web.WebPages.dll" />
+    <Content Include="bin\System.Web.WebPages.Razor.dll" />
+    <Content Include="bin\WebGrease.dll" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -322,6 +350,7 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="bin\roslyn.rar" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\Feed\post.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -487,7 +516,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\" />
+    <Folder Include="bin\roslyn\" />
     <Folder Include="Uploads\" />
     <Folder Include="Views\Default\" />
   </ItemGroup>
@@ -495,20 +524,6 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ITI.MVC.LinkedIn.DbLayer\ITI.MVC.LinkedIn.DbLayer.csproj">
-      <Project>{874597CF-4E43-4064-8C13-F7E86E5B554A}</Project>
-      <Name>ITI.MVC.LinkedIn.DbLayer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ITI.MVC.LinkedIn.DbManager\ITI.MVC.LinkedIn.DbManager.csproj">
-      <Project>{2C3BE841-B0BB-423B-B738-77938DC63D28}</Project>
-      <Name>ITI.MVC.LinkedIn.DbManager</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ITI.MVC.LinkedIn.Store\ITI.MVC.LinkedIn.Store.csproj">
-      <Project>{476F7252-13C0-4D68-9272-0B64E2F9DC02}</Project>
-      <Name>ITI.MVC.LinkedIn.Store</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
@@ -526,6 +541,20 @@
     <Analyzer Include="..\packages\Microsoft.NetCore.Analyzers.2.9.8\analyzers\dotnet\cs\Microsoft.NetCore.CSharp.Analyzers.dll" />
     <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.2.9.8\analyzers\dotnet\cs\Microsoft.NetFramework.Analyzers.dll" />
     <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.2.9.8\analyzers\dotnet\cs\Microsoft.NetFramework.CSharp.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ITI.MVC.LinkedIn.DbLayer\ITI.MVC.LinkedIn.DbLayer.csproj">
+      <Project>{874597cf-4e43-4064-8c13-f7e86e5b554a}</Project>
+      <Name>ITI.MVC.LinkedIn.DbLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ITI.MVC.LinkedIn.DbManager\ITI.MVC.LinkedIn.DbManager.csproj">
+      <Project>{2c3be841-b0bb-423b-b738-77938dc63d28}</Project>
+      <Name>ITI.MVC.LinkedIn.DbManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ITI.MVC.LinkedIn.Store\ITI.MVC.LinkedIn.Store.csproj">
+      <Project>{476f7252-13c0-4d68-9272-0b64e2f9dc02}</Project>
+      <Name>ITI.MVC.LinkedIn.Store</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

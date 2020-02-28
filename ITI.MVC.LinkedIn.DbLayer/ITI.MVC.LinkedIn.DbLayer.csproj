@@ -98,31 +98,6 @@
     <Compile Include="Enums\EmploymentType.cs" />
     <Compile Include="Enums\OrganizationType.cs" />
     <Compile Include="ApplicationDbContext.cs" />
-    <Compile Include="Migrations\202002201616561_pull-Mig.cs" />
-    <Compile Include="Migrations\202002201616561_pull-Mig.designer.cs">
-      <DependentUpon>202002201616561_pull-Mig.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002202123122_fix-TestScore.cs" />
-    <Compile Include="Migrations\202002202123122_fix-TestScore.designer.cs">
-      <DependentUpon>202002202123122_fix-TestScore.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002271109033_add-identitytolanguage.cs" />
-    <Compile Include="Migrations\202002271109033_add-identitytolanguage.designer.cs">
-      <DependentUpon>202002271109033_add-identitytolanguage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002271343267_change-coruse-PrimaryKey.cs" />
-    <Compile Include="Migrations\202002271343267_change-coruse-PrimaryKey.designer.cs">
-      <DependentUpon>202002271343267_change-coruse-PrimaryKey.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002272118377_fix-project.cs" />
-    <Compile Include="Migrations\202002272118377_fix-project.designer.cs">
-      <DependentUpon>202002272118377_fix-project.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002272152471_ay7aga.cs" />
-    <Compile Include="Migrations\202002272152471_ay7aga.designer.cs">
-      <DependentUpon>202002272152471_ay7aga.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -131,26 +106,6 @@
     </None>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202002201616561_pull-Mig.resx">
-      <DependentUpon>202002201616561_pull-Mig.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002202123122_fix-TestScore.resx">
-      <DependentUpon>202002202123122_fix-TestScore.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002271109033_add-identitytolanguage.resx">
-      <DependentUpon>202002271109033_add-identitytolanguage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002271343267_change-coruse-PrimaryKey.resx">
-      <DependentUpon>202002271343267_change-coruse-PrimaryKey.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002272118377_fix-project.resx">
-      <DependentUpon>202002272118377_fix-project.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002272152471_ay7aga.resx">
-      <DependentUpon>202002272152471_ay7aga.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

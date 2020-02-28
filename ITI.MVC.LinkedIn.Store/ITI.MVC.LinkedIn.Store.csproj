@@ -81,7 +81,9 @@
   <ItemGroup>
     <Compile Include="DbManagers\ApplicationSignInManager.cs" />
     <Compile Include="DbManagers\ApplicationUserManager.cs" />
+    <Compile Include="DbManagers\ImageManager.cs" />
     <Compile Include="DbManagers\IndustryManager.cs" />
+    <Compile Include="DbManagers\TextManager.cs" />
     <Compile Include="DbManagers\WorkManager.cs" />
     <Compile Include="DbManagers\VolunteerManager.cs" />
     <Compile Include="DbManagers\UserSkillManager.cs" />
