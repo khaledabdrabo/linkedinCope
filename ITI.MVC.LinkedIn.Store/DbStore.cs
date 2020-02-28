@@ -14,7 +14,7 @@ namespace ITI.MVC.LinkedIn.Store
 {
     public class DbStore : IDisposable
     {
-        public DbContext DbContext { get; set; }
+        public ApplicationDbContext DbContext { get; set; }
         public ApplicationUserManager ApplicationUserManager { get; set; }
         public ApplicationSignInManager ApplicationSignInManager { get; set; }
         public AwardManager AwardManager { get; set; }
@@ -28,6 +28,7 @@ namespace ITI.MVC.LinkedIn.Store
         public EducationManager EducationManager { get; set; }
         public ExperienceManager ExperienceManager { get; set; }
         public IndustryManager IndustryManager { get; set; }
+        public ImageManager ImageManager { get; set; }
         public LanguageManager LanguageManager { get; set; }
         public OrganizationManager OrganizationManager { get; set; }
         public PatentManager PatentManager { get; set; }
@@ -40,6 +41,7 @@ namespace ITI.MVC.LinkedIn.Store
         public SharedPostManager SharedPostManager { get; set; }
         public SkillManager SkillManager { get; set; }
         public TestScoreManager TestScoreManager { get; set; }
+        public TextManager TextManager { get; set; }
         public UserCertificationManager UserCertificationManager { get; set; }
         public UserLanguageManager UserLanguageManager { get; set; }
         public UserSkillManager UserSkillManager { get; set; }
@@ -62,6 +64,7 @@ namespace ITI.MVC.LinkedIn.Store
             EducationManager = new EducationManager(DbContext);
             ExperienceManager = new ExperienceManager(DbContext);
             IndustryManager = new IndustryManager(DbContext);
+            ImageManager = new ImageManager(DbContext);
             LanguageManager = new LanguageManager(DbContext);
             OrganizationManager = new OrganizationManager(DbContext);
             PatentManager = new PatentManager(DbContext);
@@ -74,6 +77,7 @@ namespace ITI.MVC.LinkedIn.Store
             SharedPostManager = new SharedPostManager(DbContext);
             SkillManager = new SkillManager(DbContext);
             TestScoreManager = new TestScoreManager(DbContext);
+            TextManager = new TextManager(DbContext);
             UserCertificationManager = new UserCertificationManager(DbContext);
             UserLanguageManager = new UserLanguageManager(DbContext);
             UserSkillManager = new UserSkillManager(DbContext);

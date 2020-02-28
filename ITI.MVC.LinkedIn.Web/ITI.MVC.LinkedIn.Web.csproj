@@ -7,6 +7,7 @@
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -19,7 +20,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ITI.MVC.LinkedIn.Web</RootNamespace>
     <AssemblyName>ITI.MVC.LinkedIn.Web</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -30,7 +31,8 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <TypeScriptToolsVersion>3.7</TypeScriptToolsVersion>
+    <!--<TypeScriptToolsVersion>3.7</TypeScriptToolsVersion>-->
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -54,16 +56,14 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
@@ -108,6 +108,7 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -174,6 +175,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\FeedController.cs" />
+    <Compile Include="Controllers\FriendsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LinkedInAccountController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -186,12 +188,15 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ViewModels\AboutVM.cs" />
     <Compile Include="Models\ViewModels\CertificationsVM.cs" />
+    <Compile Include="Models\ViewModels\CommentVM.cs" />
     <Compile Include="Models\ViewModels\CoursesVM.cs" />
     <Compile Include="Models\ViewModels\EducationVM.cs" />
     <Compile Include="Models\ViewModels\HonorVM.cs" />
     <Compile Include="Models\ViewModels\LanguageVM.cs" />
     <Compile Include="Models\ViewModels\OrganizationVM.cs" />
     <Compile Include="Models\ViewModels\PatentVM.cs" />
+    <Compile Include="Models\ViewModels\PostsVM.cs" />
+    <Compile Include="Models\ViewModels\PostVM.cs" />
     <Compile Include="Models\ViewModels\ProfileVM.cs" />
     <Compile Include="Models\ViewModels\ProjectsVM.cs" />
     <Compile Include="Models\ViewModels\PublicationVM.cs" />
@@ -212,26 +217,81 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\css\search.css" />
     <Content Include="Content\HossamCSS\style.css" />
+    <Content Include="Content\images\12194855_752324661563499_3923251269933861549_o200830320.jpg" />
+    <Content Include="Content\images\20046463_345849289181497_7619896689018716209_n205400626.jpg" />
+    <Content Include="Content\images\20061204424433.png" />
+    <Content Include="Content\images\58960204556922.png" />
+    <Content Include="Content\images\74214423_3030458193649517_723266320778395648_o205221609.jpg" />
+    <Content Include="Content\images\arrow.svg" />
+    <Content Include="Content\images\backiee-120302204153916.jpg" />
+    <Content Include="Content\images\backiee-120825204238526.jpg" />
+    <Content Include="Content\images\backiee-121981204432081.jpg" />
+    <Content Include="Content\images\backiee-121981204433161.jpg" />
+    <Content Include="Content\images\backiee-121981204517585.jpg" />
+    <Content Include="Content\images\backiee-128003201308741.jpg" />
+    <Content Include="Content\images\backiee-80266204111353.jpg" />
+    <Content Include="Content\images\backiee-94660203214765.jpg" />
+    <Content Include="Content\images\bitrix24200552924.PNG" />
+    <Content Include="Content\images\black-color-png-6203308742.png" />
+    <Content Include="Content\images\black-color-png-6205027519.png" />
+    <Content Include="Content\images\ccc.png" />
     <Content Include="Content\images\client-3.jpg" />
+    <Content Include="Content\images\connect.svg" />
     <Content Include="Content\images\Cover.PNG" />
+    <Content Include="Content\images\img1.jpg" />
+    <Content Include="Content\images\img2.jpg" />
+    <Content Include="Content\images\img_184513204708457.png" />
     <Content Include="Content\images\itiLogo.png" />
+    <Content Include="Content\images\learn.svg" />
+    <Content Include="Content\images\linkedin-black-logo.png" />
+    <Content Include="Content\images\linkedIn-logo.png" />
     <Content Include="Content\images\logo-1.png" />
     <Content Include="Content\images\logo-2.png" />
     <Content Include="Content\images\logo-3.png" />
     <Content Include="Content\images\logo-4.jpg" />
     <Content Include="Content\images\logo-5.jpg" />
     <Content Include="Content\images\logo-6.jpg" />
+    <Content Include="Content\images\logo.jpg" />
+    <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\people.svg" />
     <Content Include="Content\images\profile.png" />
     <Content Include="Content\images\ProfilePic.jpg" />
     <Content Include="Content\Feed\post.css" />
     <Content Include="Content\layout.css" />
+    <Content Include="Content\images\sec1.png" />
+    <Content Include="Content\images\sec1.svg" />
+    <Content Include="Content\images\whoislinkedinfor.jfif" />
     <Content Include="Content\MoahamedCss\style.css" />
+    <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\images\Thumbs.db" />
+    <Content Include="Images\74214423_3030458193649517_723266320778395648_o205221609.jpg" />
+    <Content Include="Images\arrow.svg" />
+    <Content Include="Images\backiee-120302204153916.jpg" />
+    <Content Include="Images\backiee-120825204238526.jpg" />
+    <Content Include="Images\backiee-121981204432081.jpg" />
+    <Content Include="Images\backiee-121981204433161.jpg" />
+    <Content Include="Images\backiee-121981204517585.jpg" />
+    <Content Include="Images\backiee-128003201308741.jpg" />
+    <Content Include="Images\backiee-80266204111353.jpg" />
+    <Content Include="Images\backiee-94660203214765.jpg" />
+    <Content Include="Images\connect.svg" />
+    <Content Include="Images\img1.jpg" />
+    <Content Include="Images\img2.jpg" />
+    <Content Include="Images\learn.svg" />
+    <Content Include="Images\linkedin-black-logo.png" />
+    <Content Include="Images\linkedIn-logo.png" />
+    <Content Include="Images\logo.jpg" />
+    <Content Include="Images\logo.png" />
+    <Content Include="Images\people.svg" />
+    <Content Include="Images\sec1.png" />
+    <Content Include="Images\sec1.svg" />
+    <Content Include="Images\whoislinkedinfor.jfif" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -240,6 +300,8 @@
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
     <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\Feed\create-comment.js" />
+    <Content Include="Scripts\Feed\create-post.js" />
     <Content Include="Scripts\index.js.flow" />
     <Content Include="Scripts\esm\popper.min.js.map" />
     <Content Include="Scripts\esm\popper.js.map" />
@@ -410,6 +472,13 @@
     <Content Include="Views\Feed\Index.cshtml" />
     <Content Include="Views\Feed\_Post.cshtml" />
     <Content Include="Views\Feed\_SharedPost.cshtml" />
+    <Content Include="Views\Feed\_CreatePost.cshtml" />
+    <Content Include="Views\Feed\_ProfilePreview.cshtml" />
+    <Content Include="Views\Feed\_CreateComment.cshtml" />
+    <Content Include="Views\Feed\_Comment.cshtml" />
+    <Content Include="Views\Shared\_Scripts.cshtml" />
+    <Content Include="Views\Profile\UpdateExperience.cshtml" />
+    <Content Include="Views\Friends\search.cshtml" />
     <Content Include="Views\Profile\ReadPV\_CourseRV.cshtml" />
     <Content Include="Views\Profile\ReadPV\_ProjectRV.cshtml" />
     <Content Include="Views\Profile\ReadPV\_UserLanguageRV.cshtml" />
@@ -419,6 +488,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\" />
+    <Folder Include="Uploads\" />
     <Folder Include="Views\Default\" />
   </ItemGroup>
   <ItemGroup>
@@ -476,9 +546,9 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>52270</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:44350/</IISUrl>
+          <IISUrl>http://localhost:44351/</IISUrl>
           <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
-          <IISAppRootUrl>http://localhost:44350/</IISAppRootUrl>
+          <IISAppRootUrl>http://localhost:44351/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

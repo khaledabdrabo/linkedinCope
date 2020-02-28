@@ -1,146 +1,61 @@
-﻿@model SharedPost
-    <div class="card post shadow">
-        <div class="card-header post-header">
-            <img class="post-profile-img" src="unnamed.jpg">
-            <div class="post-header-creator-info">
-                <h6>@{ Model.User.FirstName + " " + Model.User.LastName }</h6>
-                <small class="text-muted">@Model.User.Headline</small>
-                <small class="text-muted">@Model.Post.Text.Time</small>
-            </div>
-        </div>
-        <p class="card-text">@Model.Post.Text.Content</p>
+﻿@*// <author>Ibrahim Farhan</author>*@
 
-        <div class="card-body post-body ">
-            @Html.Partial("_Post.cshtml", Model.OriginalPost)
-        </div>
-        <div class="post-status">
-
-            <p class="card-text">
-                <small class="text-muted">
-                    <small class="text-muted" data-toggle="modal" data-target=".bd-example-modal-sm">
-                        <i class="far fa-thumbs-up"></i>&nbsp;<i class="far fa-comments"></i>&nbsp;<i class="fas fa-share"></i>160
-                    </small>
-                    <small class="text-muted">150 Comment</small>
-                </small>
-            </p>
-
-        </div>
-        <div class="post-footer card-footer" style="display: flex;">
-            <div class="post-footer-action">
-                <div class="post-footer-like">
-
-                    <button class="btn btn-light reactions-container btn-lg" class="btn btn-secondary"
-                            data-animation="true" data-html="true" data-placement="top"
-                            data-toggle="popover" data-trigger="hover focus" data-content='<i class="far fa-thumbs-up " id="reaction" "></i>&nbsp;
-                              <i class="fas fa-praying-hands " id="reaction"></i>&nbsp;
-                              <i class="fas fa-heart  " id="reaction"></i>&nbsp;
-                              <i class="fab fa-free-code-camp  " id="reaction"></i>&nbsp;
-                              <i class="far fa-angry  " id="reaction"></i>'>
-
-                                        <i class="far fa-thumbs-up container__Sign reaction-sign"></i> like
-                                    </button>
-                </div>
-                &nbsp;
-                <div>
-                    <button class="btn btn-light btn-lg">
-                        <i class="far fa-comment-dots container__Sign comment-sign"></i>
-                        comment
-                    </button>
-                </div>
-                &nbsp;
-                <div>
-                    <button class="btn btn-light btn-lg" data-toggle="modal" data-target="#post">
-                        <i class="far fa-share-square container__Sign share-sign "></i>
-                        share
-                    </button>
-                </div>
-            </div>
-            <div class="col-md-12 col-lg-12 col-sm-12">
-
-                <div class="input-group mt-2 ml-0">
-                    <img class="post-profile-img mr-3" src="unnamed.jpg">
-                    <input type="text" class=" inputComment form-control " id="validationCustomUsername"
-                           placeholder="Add new comment..." aria-describedby="inputGroupPrepend" required>
-                    <div class="input-group-append">
-                        <label class="comment-image mt-2 mr-1" for="customFileLang">
-                            <input type="file" id="customFileLang" lang="es" style="display: none;">
-                            <i class="fas fa-images pr-3"></i>
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="comment-sec pl-5">
-                <!--Comment-->
-                <div class="row ">
-
-                    <!-- hshel ml-3 , mt-3 de fl a5er w h5li col-sm-6=> col-sm-12 -->
-
-                    <img class="post-profile-img mt-4 " src="unnamed.jpg">
-                    <div class="col-sm-10 mt-3 mr-0">
-
-                        <div class="card comment">
-                            <div class="card-body">
-                                <div class=" comment--header ">
-                                    <a class="card-title comment--auther " href="#">
-                                        Special title
-                                        treatment
-                                    </a>
-                                    <div class=" options-sec">
-                                        <p class="text-right font-weight-light comment--operation">
-                                            13h
-                                            <i class="fas fa-ellipsis-h option-click "></i>
-                                        </p>
-                                        <div class="card comment-options  " style="width: 15rem;">
-                                            <div class="card-body pt-2 pb-1 ">
-                                                <p class="card-text ">
-                                                    <i class="fas fa-link"></i> Copy
-                                                    Link to Comment
-                                                </p>
-                                                <p class="card-text">
-                                                    <i class="far fa-flag"></i> Report
-                                                </p>
-                                                <p class="card-text">
-                                                    <i class="fas fa-pen"></i> Edit
-                                                </p>
-                                                <p class="card-text" data-toggle="modal"
-                                                   data-target="#exampleModalScrollable">
-                                                    <i class="fas fa-trash"></i> Delete
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="font-weight-light comment--auth-job">Light weight text.</p>
-
-                                <p class="card-text comment--text"></p>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <!--End Comment-->
-                <!-- React-->
-
-                <div class="row ">
-
-                    <div class="col-sm-6 ml-5 ">
-                        <div class="card comment-bar ">
-                            <div class="card-body pt-1">
-                                <i class="far fa-thumbs-up pr-2 comment-like"></i>
-                                <span class="line">
-                                    <span class="font-weight-light likes-no">
-                                        .1
-                                        Like
-                                    </span>
-                                </span>
-                                <i class="far fa-comment-alt pl-3"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--End React-->
-            </div>
-
+@model SharedPost
+<div class="card post shadow">
+    <div class="card-header post-header">
+        <img class="post-profile-img" src="unnamed.jpg">
+        <div class="post-header-creator-info">
+            <h6>@(Model.User.FirstName + " " + Model.User.LastName)</h6>
+            <small class="text-muted">@Model.User.Headline</small>
+            <small class="text-muted">@Model.Post.Text.Time</small>
         </div>
     </div>
+    <p class="card-text">@Model.Post.Text.Content</p>
+
+    <div class="card-body post-body ">
+        @Html.Partial("_Post", Model.OriginalPost)
+    </div>
+    <div class="post-status">
+
+        <p class="card-text">
+            <small class="text-muted">
+                <small class="text-muted" data-toggle="modal" data-target=".bd-example-modal-sm">
+                    <i class="far fa-thumbs-up"></i>&nbsp;<i class="far fa-comments"></i>&nbsp;<i class="fas fa-share"></i>160
+                </small>
+                <small class="text-muted">150 Comment</small>
+            </small>
+        </p>
+
+    </div>
+    <div class="post-footer card-footer" style="display: flex;">
+        <div class="post-footer-action">
+            <div class="post-footer-like">
+                <button id="@Model.PostId" class="post-like-btn btn btn-light reactions-container btn-lg btn btn-secondary">
+                    <i class="far fa-thumbs-up container__Sign reaction-sign"></i> like
+                </button>
+            </div>
+            &nbsp;
+            <div>
+                <button class="btn btn-light btn-lg">
+                    <i class="far fa-comment-dots container__Sign comment-sign"></i>
+                    comment
+                </button>
+            </div>
+            &nbsp;
+            <div>
+                <button class="btn btn-light btn-lg" data-toggle="modal" data-target="#post">
+                    <i class="far fa-share-square container__Sign share-sign "></i>
+                    share
+                </button>
+            </div>
+        </div>
+
+        @Html.Partial("_CreateComment")
+
+        @foreach (Comment comment in Model.Post.Comments)
+        {
+            Html.Partial("_Comment", comment);
+        }
+
+    </div>
+</div>

@@ -32,5 +32,6 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
 
         public virtual Experience Experience { get; set; }
         public virtual ApplicationUser User { get; set; }
+       
     }
 }
