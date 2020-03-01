@@ -22,6 +22,18 @@ function SucessCourse() {
     $("#CoursesModal").modal("hide");
     document.getElementById("form0").reset();
 }
+
+
+function sucessEditCourse(data) {
+    $("#CoursesModal").modal('hide');
+    $("#Courses-Acc-Container").load(" #Courses-Acc");
+    if (data.success) {
+        alert(data.responseText);
+    }
+    else {
+        alert(data.responseText);
+    }
+}
 function beginEdit(id) {
     $("#"+id).remove();
 }
@@ -117,21 +129,45 @@ function addProject() {
     });
 
 }
-function SucessEditUserLanguage(){
+function SucessEditUserLanguage(data){
     $("#LanguageModal").modal('hide');
     $("#language-read-container").load(" #language-read");
+    if (data.success) {
+        alert(data.responseText);
+    }
+    else {
+        alert(data.responseText);
+    }
 }
-function SucessEditAward() {
+function SucessEditAward(data) {
     $("#AwardModal").modal('hide');
     $("#awards-read-container").load(" #awards-read");
+    if (data.success) {
+        alert(data.responseText);
+    }
+    else {
+        alert(data.responseText);
+    }
 }
-function SucessEditTestScore() {
+function SucessEditTestScore(data) {
     $('#testScoreModal').modal("hide");
     $("#TestScore-read-Container").load(" #TestScore-read");
+    if (data.success) {
+        alert(data.responseText);
+    }
+    else {
+        alert(data.responseText);
+    }
 }
-function OnProjectEditSuccess() {
+function OnProjectEditSuccess(data) {
     $("#Projects-Modal").modal('hide');
     $("#project-read-container").load(" #projects-read");
+    if (data.success) {
+        alert(data.responseText);
+    }
+    else {
+        alert(data.responseText);
+    }
 }
 function EditProject(id) {
     var ajaxCallURL = '/Profile/EditProject/'+ id ;

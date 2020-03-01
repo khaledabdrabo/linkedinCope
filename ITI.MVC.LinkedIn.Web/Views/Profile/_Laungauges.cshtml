@@ -11,7 +11,7 @@
                 HttpMethod = "POST",
                 UpdateTargetId = "LanguageColl",
                 InsertionMode = InsertionMode.InsertAfter,
-                OnSuccess = "SucessEditUserLanguage()"
+                OnSuccess = "SucessEditUserLanguage(data)"
 
 
             };
@@ -56,7 +56,11 @@
         </div>
     </div>
     @Html.HiddenFor(e => e.userlanguageCount)
-    <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Save</button>
-    </div>
+<div class="modal-footer">
+    <button type="submit" class="btn btn-primary">Save</button>
+    @if (action == "EditLanguage")
+    {
+        @Ajax.ActionLink("delete", "DeleteLanguage", new { id = Model.id }, opts, new { @class = "btn btn-primary" })
+    }
+</div>
 }

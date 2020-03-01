@@ -76,6 +76,21 @@ namespace ITI.MVC.LinkedIn.Web.Controllers
             return View(profileVM);
         }
 
+        public ActionResult DeleteCourse(int id)
+        {
+            CourseManager courseManager = Store.CourseManager;
+            var course = courseManager.GetById(id);
+            if (course != null)
+            {
+                courseManager.Remove(course);
+                return Json(new { success = true, responseText = "Deleted!" }, JsonRequestBehavior.AllowGet); ;
+            }
+            else
+            {
+                return  Json(new { success = false, responseText = "Server Error" }, JsonRequestBehavior.AllowGet); ;
+            }
+        }
+
         [HttpGet]
         public ActionResult AddCourse()
         {
@@ -232,6 +247,21 @@ namespace ITI.MVC.LinkedIn.Web.Controllers
             return null;
         }
 
+        public ActionResult DeleteProject(int id)
+        {
+            ProjectManager projectManager = Store.ProjectManager;
+            var project = projectManager.GetById(id);
+            if (project != null)
+            {
+                projectManager.Remove(project);
+                return Json(new { success = true, responseText = "Deleted!" }, JsonRequestBehavior.AllowGet); ;
+            }
+            else
+            {
+                return Json(new { success = false, responseText = "Server Error" }, JsonRequestBehavior.AllowGet); ;
+            }
+        }
+
 
         [HttpGet]
         public ActionResult AddProject()
@@ -320,6 +350,20 @@ namespace ITI.MVC.LinkedIn.Web.Controllers
             return PartialView("ReadPV/_ProjectRV",model);
             }
             return null;
+        }
+        public ActionResult DeleteAward(int id)
+        {
+            AwardManager awardManager = Store.AwardManager;
+            var award = awardManager.GetById(id);
+            if (award != null)
+            {
+                awardManager.Remove(award);
+                return Json(new { success = true, responseText = "Deleted!" }, JsonRequestBehavior.AllowGet); ;
+            }
+            else
+            {
+                return Json(new { success = false, responseText = "Server Error" }, JsonRequestBehavior.AllowGet); ;
+            }
         }
 
         [HttpGet]
@@ -454,6 +498,20 @@ namespace ITI.MVC.LinkedIn.Web.Controllers
             return PartialView("ReadPV/_AwardsRV", model);
             }
             return null;
+        }
+        public ActionResult DeleteTest(int id)
+        {
+            TestScoreManager testScoreManager = Store.TestScoreManager;
+            var test = testScoreManager.GetById(id);
+            if (test != null)
+            {
+                testScoreManager.Remove(test);
+                return Json(new { success = true, responseText = "Deleted!" }, JsonRequestBehavior.AllowGet); ;
+            }
+            else
+            {
+                return Json(new { success = false, responseText = "Server Error" }, JsonRequestBehavior.AllowGet); ;
+            }
         }
 
         [HttpGet]
@@ -599,6 +657,21 @@ namespace ITI.MVC.LinkedIn.Web.Controllers
             //Searching records from list using LINQ query  
 
             return Json(languages.Select(e=> new { e.Name,e.Id}), JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult DeleteLanguage(int id)
+        {
+            UserLanguageManager UserLanguageManager = Store.UserLanguageManager;
+            var language = UserLanguageManager.GetById(id);
+            if (language != null)
+            {
+                UserLanguageManager.Remove(language);
+                return Json(new { success = true, responseText = "Deleted!" }, JsonRequestBehavior.AllowGet); ;
+            }
+            else
+            {
+                return Json(new { success = false, responseText = "Server Error" }, JsonRequestBehavior.AllowGet); ;
+            }
         }
         [HttpGet]
         public ActionResult AddLanguage()

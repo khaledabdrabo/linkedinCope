@@ -11,7 +11,7 @@
                 HttpMethod = "POST",
                 UpdateTargetId = "projects-read-body",
                 InsertionMode = InsertionMode.InsertAfter,
-                OnSuccess = "OnProjectEditSuccess()"
+                OnSuccess = "OnProjectEditSuccess(data)"
 
 
             };
@@ -133,9 +133,13 @@ items, "Value", "Text");
             @Html.ValidationMessageFor(e => e.Creator, null, new { @class = "text-danger", cols = "30", rows = "4" })
         </div>
         @Html.HiddenFor(e => e.ProjectsCount)
-        <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Save</button>
-        </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Save</button>
+        @if (action == "EditProject")
+        {
+            @Ajax.ActionLink("delete", "DeleteProject", new { id = Model.id }, opts, new { @class = "btn btn-primary" })
+        }
+    </div>
     </div>
 }
 

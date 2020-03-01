@@ -12,7 +12,7 @@
                 UpdateTargetId = "CoursesColl",
                 OnBegin = "beginEdit("+"'courses-body-"+Model.id+"')",
                 InsertionMode = InsertionMode.InsertAfter,
-                OnSuccess = "SucessCourse(data)"
+                OnSuccess = "sucessEditCourse(data)"
 
 
             };
@@ -88,6 +88,10 @@ items, "Value", "Text");
         </div>
         <div class="modal-footer">
             <button type="submit" class="btn btn-primary">Save</button>
+        @if (action == "EditCourse")
+        {
+            @Ajax.ActionLink("delete", "DeleteCourse", new { id = Model.id }, opts,new {@class="btn btn-primary" })
+        }
         </div>
     </div>
     @Html.HiddenFor(e => e.CoursesCount)
