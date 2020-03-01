@@ -59,7 +59,7 @@
             </div>
             <div class="field">
                 @Html.ValidationMessageFor(m => m.Password)
-                @Html.TextBoxFor(m => m.Password, new { @placeholder = " " })
+                @Html.PasswordFor(m => m.Password, new { @placeholder = " " })
                 @Html.LabelFor(m => m.Password)
                 @*<input type="password" name="fullname" id="Password" placeholder=" ">
                     <label for="">Password</label>*@

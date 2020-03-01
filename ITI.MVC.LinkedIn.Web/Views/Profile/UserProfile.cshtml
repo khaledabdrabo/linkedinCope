@@ -28,9 +28,17 @@
                 <!-- upper div that includes img -->
                 <div class="col-sm-12 profile-imgs">
                     <!--profile img -->
+                    @if(ViewBag.imag!=null){
                     <div class="position-absolute profile-img">
                         <img src="~/Content/images/@ViewBag.imag" class="rounded-circle">
                     </div>
+                    }
+                    else
+                    {
+                        <div class="position-absolute profile-img">
+                            <img src="~/Content/images/img_184513204708457.png" class="rounded-circle">
+                        </div>
+                    }
                 </div>
                 <!-- down div -->
                 <div class="col-sm-12">
