@@ -11,17 +11,15 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
     [Table("Project")]
     public class Project
     {
+        [Key]
+        [Column(Order = 0)]
         [StringLength(50, ErrorMessage = "The name can only be 2 to 50 characters long.", MinimumLength = 2)]
         [Required(ErrorMessage = "Name is required")]
         public string Name { get; set; }
         
+        [Key, Column(Order = 1)]
         [ForeignKey("Experience")]
         public int? ExperienceId { get; set; }
-
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-
 
         [ForeignKey("User")]
         public string UserId { get; set; }

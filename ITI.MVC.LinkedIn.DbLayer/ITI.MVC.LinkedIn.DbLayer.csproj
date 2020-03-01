@@ -92,29 +92,25 @@
     <Compile Include="Entities\Volunteer.cs" />
     <Compile Include="Entities\Work.cs" />
     <Compile Include="Enums\ImageRole.cs" />
-    <Compile Include="Enums\LaungaugeProficiency.cs" />
     <Compile Include="Enums\PatentStatus.cs" />
     <Compile Include="Enums\VolunteeringCause.cs" />
     <Compile Include="Enums\EmploymentType.cs" />
     <Compile Include="Enums\OrganizationType.cs" />
     <Compile Include="ApplicationDbContext.cs" />
-    <Compile Include="Migrations\202002280143444_init.cs" />
-    <Compile Include="Migrations\202002280143444_init.designer.cs">
-      <DependentUpon>202002280143444_init.cs</DependentUpon>
+    <Compile Include="Migrations\202002241432048_ii.cs" />
+    <Compile Include="Migrations\202002241432048_ii.designer.cs">
+      <DependentUpon>202002241432048_ii.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\.editorconfig">
-      <Link>.editorconfig</Link>
-    </None>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202002280143444_init.resx">
-      <DependentUpon>202002280143444_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202002241432048_ii.resx">
+      <DependentUpon>202002241432048_ii.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

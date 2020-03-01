@@ -1,134 +1,87 @@
 ﻿@model ITI.MVC.LinkedIn.Web.Models.ViewModels.WorkExperinceVM
-    @{ string action = ViewBag.actionName;}
-   @using (Ajax.BeginForm(action, "Profile", new AjaxOptions { HttpMethod = "POST", OnSuccess = "OnSuccess", OnFailure = "OnFailure", UpdateTargetId = "Background", InsertionMode = InsertionMode.InsertAfter }))
-   {
-    <form action="">
-        <div class="form-controls">
-            @if(action== "EditExperience")
-            {
-                @Html.HiddenFor(m=>m.WorkExperince.ExperienceId)
-                @Html.HiddenFor(m => m.WorkExperince.Organization_Id)
-                @Html.HiddenFor(m=> m.WorkExperince.UserId)
-            }
-            <div class="form-group">
-                <label for="" class="required">Title</label>
-                @Html.TextBoxFor(m => m.WorkExperince.Title, new { @class = "form-control", @placeholder = "Title" })
-                @Html.ValidationMessageFor(m => m.WorkExperince.Title, "", new { @class = "text-danger" })
-                @*<input class="form-control" type="text" name="" id="" placeholder="Title">*@
+<div class="modal fade" id="WorkExperince" tabindex="-1" role="dialog" aria-labelledby="FullModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content row">
+            <div class="modal-header">
+                <h5 class="modal-title" id="FullModalLabel">Add experience</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-
-            <div class="form-group">
-                <label for="">Employment type</label>
-                @Html.EnumDropDownListFor(x => x.WorkExperince.EmploymentType, "-", new { @class = "form-control" })
-
-
-            </div>
-            <div class="form-group">
-                <label for="" class="required">Company</label>
-                @Html.TextBoxFor(m => m.Organization_name, new { @class = "form-control", @placeholder = "Company" })
-                @Html.ValidationMessageFor(m => m.Organization_name, "", new { @class = "text-danger" })
-
-
-
-            </div>
-            <div class="form-group">
-                <label for="" class="">Location</label>
-                @Html.TextBoxFor(m => m.WorkExperince.CountryName, new { @class = "form-control", @placeholder = "Location" })
-                @Html.ValidationMessageFor(m => m.WorkExperince.CountryName, "", new { @class = "text-danger" })
-
-
-
-            </div>
-            <div class="form-group">
-                <div>
-                    <input type="checkbox" name="" id="CurrentlyWorking" onclick="">
-                    <span>
-                        I am
-                        currently working in this role
-                    </span>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <label for="" class="required">Start Date</label>
-                        <div class="row">
-                            <div class="col-sm-12">
-
-                                @Html.DropDownListFor(e => e.StartMonth, EnumHelper.GetSelectList(typeof(ITI.MVC.LinkedIn.Web.Models.Enums.MonthEnum)), "Month", new { @class = "form-control" })
+            <div class="modal-body">
+                <form action="">
+                    <div class="form-controls">
+                        <div class="form-group">
+                            <label for="" class="required">Title</label>
+                            <input class="form-control" type="text" name="" id="" placeholder="Title">
+                        </div>
+               
+                        <div class="form-group">
+                            <label for="">Employment type</label>
+                            <select class="form-control" name="" id="">
+                                <option value="" disabled selected hidden>-</option>
+                                <option value="">Opa</option>
+                                <option value="">Opaa</option>
+                                <option value="">Opaaa</option>
+                                <option value="">Opaaaa</option>
+                                <option value="">Opaaaaa</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="required">Company</label>
+                            <input class="form-control" type="text" name="" id="" placeholder="Company">
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="">Location</label>
+                            <input class="form-control" type="text" name="" id="" placeholder="Location">
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <input type="checkbox" name="" id="CurrentlyWorking">
+                                    <span>
+                                    I am
+                                    currently working in this role
+                                </span>
                             </div>
-                            <div class="col-sm-12">
-                                @Html.DropDownListFor(e => e.StartYear, new SelectList(ITI.MVC.LinkedIn.Web.Models.Enums.YearList.YearListFun()), "Year", new { @class = "form-control" })
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="" class="required">Start Date</label>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+
+                                            @Html.DropDownListFor(e => e.StartMonth, EnumHelper.GetSelectList(typeof(ITI.MVC.LinkedIn.Web.Models.Enums.MonthEnum)), "Month", new { @class = "form-control" })
+                                        </div>
+                                        <div class="col-sm-12">
+                                            @Html.DropDownListFor(e => e.StartYear, new SelectList(ITI.MVC.LinkedIn.Web.Models.Enums.YearList.YearListFun()), "Year", new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="" class="required">End Date</label>
+                                    <h4 id="PresentWorkDate">Present</h4>
+                                    <div class="row" id="EndWorkDate">
+                                        <div class="col-sm-12">
+
+                                            @Html.DropDownListFor(e => e.EndMonth, EnumHelper.GetSelectList(typeof(ITI.MVC.LinkedIn.Web.Models.Enums.MonthEnum)), "Month", new { @class = "form-control" })
+                                        </div>
+                                        <div class="col-sm-12">
+                                            @Html.DropDownListFor(e => e.EndYear, new SelectList(ITI.MVC.LinkedIn.Web.Models.Enums.YearList.YearListFun()), "Year", new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6" id="EndDate">
-                        <label for="" class="required">End Date</label>
-                        <h4 id="PresentWorkDate">Present</h4>
-                        <div class="row" id="EndWorkDate">
-                            <div class="col-sm-12">
-
-                                @Html.DropDownListFor(e => e.EndMonth, EnumHelper.GetSelectList(typeof(ITI.MVC.LinkedIn.Web.Models.Enums.MonthEnum)), "Month", new { @class = "form-control" })
-                            </div>
-                            <div class="col-sm-12">
-                                @Html.DropDownListFor(e => e.EndYear, new SelectList(ITI.MVC.LinkedIn.Web.Models.Enums.YearList.YearListFun()), "Year", new { @class = "form-control" })
-                            </div>
+                        <div class="form-group">
+                            <label for="">Description</label>
+                            <textarea class="form-control" name="" id="" cols="30" rows="4"></textarea>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
-            <div class="form-group">
-                <label for="">Description</label>
-                @Html.TextAreaFor(m => m.WorkExperince.description, 4, 30, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.WorkExperince.description, "", new { @class = "text-danger" })
-
-
-
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Save</button>
             </div>
         </div>
-        <div class="modal-footer">
-            <button type="submit"   class="btn btn-primary">Save</button>
-            @*<a onclick="closeModel()" href="/Profile/DeleteExperience/@Model.WorkExperince.ExperienceId">delete</a>*@
-       @if (action == "EditExperience")
-       {
-            @Ajax.ActionLink("delete", "DeleteExperience", new { id = Model.WorkExperince.ExperienceId },
-            new AjaxOptions
-            {
-                OnSuccess="OnSuccess"
-
-            })
-       }
-         </div>
-    </form>
-
-
-    
-
-
-
-
-   }
-
-@*<script src="~/Scripts/jquery-3.4.1.min.js"></script>
-<script src="~/Scripts/bootstrap.min.js"></script>*@
-@*<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>*@
-
-<script>
-    //$("#CurrentlyWorking").s
-    $('input[type="checkbox"]').click(function () {
-        if ($(this).prop("checked") == true) {
-            $("#EndDate").hide();
-        }
-        else if ($(this).prop("checked") == false) {
-            $("#EndDate").show();
-        }
-    });
-    
-        
-    
-    
-
-    function OnSuccess() {
-        debugger
-        $("#WorkExperince").modal('hide');
-        $("#Background").load(" #Background");
-    }
-</script>
+    </div>
+</div>

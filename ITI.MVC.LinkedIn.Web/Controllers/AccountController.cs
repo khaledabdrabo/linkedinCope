@@ -30,9 +30,9 @@ namespace ITI.MVC.LinkedIn.Web.Controllers
 
         public DbStore Store
         {
-            get { return store ?? HttpContext.GetOwinContext().Get<DbStore>(); }
+            get => store ?? HttpContext.GetOwinContext().Get<DbStore>();
 
-            private set { store = value; }
+            private set => store = value;
         }
 
         public AccountController()
@@ -239,6 +239,7 @@ namespace ITI.MVC.LinkedIn.Web.Controllers
                     };
                     return View(signUpVM);
                 }
+                AddErrors(result);
             }
             else
             {
@@ -252,6 +253,7 @@ namespace ITI.MVC.LinkedIn.Web.Controllers
             }
 
             // If we got this far, something failed, redisplay form
+            return View(model);
         }
 
         //

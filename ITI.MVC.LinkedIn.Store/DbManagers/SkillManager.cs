@@ -13,6 +13,8 @@ namespace ITI.MVC.LinkedIn.Store.DbManagers
     {
         public SkillManager(DbContext ctx) : base(ctx)
         {
+
         }
+      
     }
 }

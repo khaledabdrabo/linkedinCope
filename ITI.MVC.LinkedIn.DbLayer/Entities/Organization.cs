@@ -22,6 +22,8 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
 
         public OrganizationType Type { get; set; }
 
+        public virtual ICollection<Work> WorkExperiences { get; set; }
+        public virtual ICollection<Volunteer> VolunteerExperiences { get; set; }
         public virtual ICollection<UserCertification> UserCertifications { get; set; }
     }
 }

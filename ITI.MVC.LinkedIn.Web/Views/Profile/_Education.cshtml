@@ -1,39 +1,28 @@
 ﻿@model ITI.MVC.LinkedIn.Web.Models.ViewModels.EducationVM
-@{ string action = ViewBag.actionName;}
-@using (Ajax.BeginForm(action, "Profile", new AjaxOptions { HttpMethod = "POST", OnSuccess = "OnSuccess", OnFailure = "OnFailure", UpdateTargetId = "Background", InsertionMode = InsertionMode.InsertAfter }))
-{
-
-    if (action == "editEducation")
-    {
-        @Html.HiddenFor(m => m.Education.ExperienceId)
-        @Html.HiddenFor(m => m.Education.Experience.OrganizationId)
-        @Html.HiddenFor(m => m.Education.UserId)
-    }
+<div class="modal fade" id="Education" tabindex="-1" role="dialog" aria-labelledby="FullModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content row">
+            <div class="modal-header">
+                <h5 class="modal-title" id="FullModalLabel">Add education</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="">
                     <div class="form-controls">
                         <div class="form-group">
                             <label for="" class="required">School</label>
-                            @Html.TextBoxFor(m => m.Education.Experience.Organization.Name, new { @class = "form-control", @placeholder = "School" })
-                            @Html.ValidationMessageFor(m => m.Education.Experience.Organization.Name, "", new { @class = "text-danger" })
-
-
-                            @*<input class="form-control" type="text" name="" id="" placeholder="School">*@
+                            <input class="form-control" type="text" name="" id="" placeholder="School">
                         </div>
-
                         <div class="form-group">
                             <label for="" class="required">Degree</label>
-                            @Html.TextBoxFor(m => m.Education.Degree, new { @class = "form-control", @placeholder = "Ex:Bachelor" })
-                            @Html.ValidationMessageFor(m => m.Education.Degree, "", new { @class = "text-danger" })
-
-
-                            @* <input class="form-control" type="text" name="" id="" placeholder="Ex:Bachelor">*@
+                            <input class="form-control" type="text" name="" id="" placeholder="Ex:Bachelor">
                         </div>
                         <div class="form-group">
                             <label for="" class="required">Field of study</label>
-                            @Html.TextBoxFor(m => m.Education.FieldOfStudy, new { @class = "form-control", @placeholder = "Ex:Businese" })
-                            @Html.ValidationMessageFor(m => m.Education.FieldOfStudy, "", new { @class = "text-danger" })
-
-
-                            @* <input class="form-control" type="text" name="" id="" placeholder="Ex:Businese">*@
+                            <input class="form-control" type="text" name="" id="" placeholder="Ex:Businese">
                         </div>
 
 
@@ -51,68 +40,28 @@
                                 <div class="col-sm-6">
                                     <label for="" class="required">End Year</label>
                                     <div class="col-sm-12">
-                                        @Html.DropDownListFor(e => e.EndYear, new SelectList(ITI.MVC.LinkedIn.Web.Models.Enums.YearList.YearListFun()), "Year", new { @class = "form-control" })
+                                        @Html.DropDownListFor(e => e.StartYear, new SelectList(ITI.MVC.LinkedIn.Web.Models.Enums.YearList.YearListFun()), "Year", new { @class = "form-control" })
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="" class="">Grade</label>
-                            @Html.TextBoxFor(m => m.Education.Grade, new { @class = "form-control", @placeholder = "Ex:Businese" })
-                            @Html.ValidationMessageFor(m => m.Education.Grade, "", new { @class = "text-danger" })
-
-
-                            @* <input class="form-control" type="text" name="" id="" placeholder="">*@
+                            <input class="form-control" type="text" name="" id="" placeholder="">
                         </div>
                         <div class="form-group">
                             <label for="">Activities and societies</label>
-                            @Html.TextAreaFor(m => m.Education.Activities,4,30, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.Education.Activities, "", new { @class = "text-danger" })
-
-
-                            @* <textarea class="form-control" name="" id="" cols="30" rows="4"></textarea>*@
+                            <textarea class="form-control" name="" id="" cols="30" rows="4"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="">Description</label>
-                            @Html.TextAreaFor(m => m.Education.Experience.Description, 4, 30, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.Education.Experience.Description, "", new { @class = "text-danger" })
-
-
-
-                            @*<textarea class="form-control" name="" id="" cols="30" rows="4"></textarea>*@
+                            <textarea class="form-control" name="" id="" cols="30" rows="4"></textarea>
                         </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Save</button>
-@if (action == "editEducation")
-{
-                        @Ajax.ActionLink("delete", "DeleteEducation", new { id = Model.Education.ExperienceId },
-new AjaxOptions
-{
-    OnSuccess = "OnSuccess"
-
-})
-}</div>
-
-
-
-
-}
-
-<script>
-    //$("#CurrentlyWorking").s
-    $('input[type="checkbox"]').click(function () {
-        if ($(this).prop("checked") == true) {
-            $("#EndYear").hide();
-        }
-        else if ($(this).prop("checked") == false) {
-            $("#EndYear").show();
-        }
-    });
-    function OnSuccess() {
-        debugger
-        $("#Education").modal('hide');
-        $("#Background").load(" #Background");
-    }
-</script>
+</form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>

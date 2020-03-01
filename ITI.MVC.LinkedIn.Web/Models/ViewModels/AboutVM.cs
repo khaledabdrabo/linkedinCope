@@ -7,5 +7,6 @@ namespace ITI.MVC.LinkedIn.Web.Models.ViewModels
 {
     public class AboutVM
     {
+        public string Summary { get; set; }
     }
 }

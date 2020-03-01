@@ -14,11 +14,5 @@ namespace ITI.MVC.LinkedIn.Store.DbManagers
         public UserLanguageManager(DbContext ctx) : base(ctx)
         {
         }
-        public List<UserLanguage> GetAllBindByUserID(string id)
-        {
-
-            List<UserLanguage> UserLanguages = this.Set.Where(e => e.UserId == id).ToList();
-            return UserLanguages;
-        }
     }
 }

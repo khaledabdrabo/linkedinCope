@@ -32,11 +32,9 @@ namespace ITI.MVC.LinkedIn.Store.DbManagers
 
     public class ApplicationUserManager : UserManager<ApplicationUser>
     {
-        //ApplicationDbContext db;
         public ApplicationUserManager(IUserStore<ApplicationUser> store)
             : base(store)
         {
-            
         }
 
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
@@ -84,12 +82,6 @@ namespace ITI.MVC.LinkedIn.Store.DbManagers
                     new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
             return manager;
-        }
-
-        public List<ApplicationUser> getStartsWith(ApplicationDbContext db, string prefix)
-        {
-            return db.Users.Where(u => u.UserName.Contains(prefix)).ToList();
-            //return 
         }
     }
 }
