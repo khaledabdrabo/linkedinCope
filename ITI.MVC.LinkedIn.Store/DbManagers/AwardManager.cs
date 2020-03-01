@@ -14,11 +14,5 @@ namespace ITI.MVC.LinkedIn.Store.DbManagers
         public AwardManager(DbContext ctx) : base(ctx)
         {
         }
-        public List<Award> GetAllBindByUserID(string id)
-        {
-
-            List<Award> Awards = this.Set.Where(e => e.UserId == id).ToList();
-            return Awards;
-        }
     }
 }

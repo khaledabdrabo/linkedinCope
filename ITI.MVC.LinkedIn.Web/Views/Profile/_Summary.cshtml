@@ -1,4 +1,14 @@
 ﻿@model ITI.MVC.LinkedIn.Web.Models.ViewModels.AboutVM
+@{
+    AjaxOptions opts = new AjaxOptions
+    {
+        HttpMethod = "POST",
+        OnBegin = "begin()",
+        OnSuccess = "succ()",
+        OnFailure = "fail()"
+
+    };
+}
 <div class="modal fade" id="Summary" tabindex="-1" role="dialog" aria-labelledby="FullModalLabel"
      aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -10,14 +20,15 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="">
+                @using (Ajax.BeginForm("AddPublication", "Profile", opts))
+                {
                     <div class="form-controls">
                         <div class="form-group">
                             <label for="">Summary</label>
                             <textarea class="form-control" name="" id="" cols="30" rows="4"></textarea>
                         </div>
                     </div>
-                </form>
+                }
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary">Save</button>
@@ -25,4 +36,3 @@
         </div>
     </div>
 </div>
-

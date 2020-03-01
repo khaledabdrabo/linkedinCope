@@ -11,7 +11,6 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
     [Table("Publication")]
     public class Publication
     {
-        [Key]
         [Column(Order = 0)]
         [StringLength(50, ErrorMessage = "The title can only be 2 to 50 characters long.", MinimumLength = 2)]
         [Required(ErrorMessage = "Title is required")]
@@ -19,12 +18,11 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
 
         [Key]
         [Column(Order = 1)]
-        [ForeignKey("User")]
         public string UserId { get; set; }
 
         public string Publisher { get; set; }
-
-        public DataType Date { get; set; }
+        [Column(TypeName = "datetime2")]
+        public DateTime? Date { get; set; }
 
         public string Author { get; set; }
 

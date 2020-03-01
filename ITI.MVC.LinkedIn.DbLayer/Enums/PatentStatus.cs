@@ -8,7 +8,7 @@ namespace ITI.MVC.LinkedIn.DbLayer.Enums
 {
     public enum PatentStatus
     {
-        Pending,
-        Issued
+        Pending=0,
+        Issued=1
     }
 }

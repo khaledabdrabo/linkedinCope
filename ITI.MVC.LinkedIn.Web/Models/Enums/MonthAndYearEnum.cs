@@ -5,6 +5,7 @@ using System.Web;
 
 namespace ITI.MVC.LinkedIn.Web.Models.Enums
 {
+    
     public enum MonthEnum
     {
         January = 1,
@@ -26,7 +27,6 @@ namespace ITI.MVC.LinkedIn.Web.Models.Enums
       public static List<int> YearListFun()
         {
             List<int> years = new List<int>();
-
             for(int i = 1950; i <= DateTime.Now.Year; i++)
             {
                 years.Add(i);
@@ -34,10 +34,20 @@ namespace ITI.MVC.LinkedIn.Web.Models.Enums
             return years;
         }
 
+        public static List<MonthEnum> MonthListFun()
+        {
+            List<MonthEnum> Months = new List<MonthEnum>();
+
+            for (int i = 1; i <= 12; i++)
+            {
+                Months.Add((MonthEnum)i);
+            }
+            return Months;
+        }
+
         public static List<int> DaysListFun()
         {
             List<int> Days = new List<int>();
-
             for (int i = 1; i <= 31; i++)
             {
                 Days.Add(i);

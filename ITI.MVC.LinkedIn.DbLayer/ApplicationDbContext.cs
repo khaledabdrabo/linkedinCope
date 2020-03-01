@@ -17,13 +17,7 @@ namespace ITI.MVC.LinkedIn.DbLayer
         {
             return new ApplicationDbContext();
         }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-        }
-
-
+    
         public virtual DbSet<Certification> Certifications { get; set; }
         public virtual DbSet<UserCertification> UserCertifications { get; set; }
         public virtual DbSet<CommentLike> CommentLikes { get; set; }

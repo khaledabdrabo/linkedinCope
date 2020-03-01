@@ -14,12 +14,5 @@ namespace ITI.MVC.LinkedIn.Store.DbManagers
         public CourseManager(DbContext ctx) : base(ctx)
         {
         }
-
-        public List<Course> GetAllBindByUserID(string id)
-        {
-
-            List<Course> Courses = this.Set.Where(e => e.UserId == id).ToList();
-            return Courses;
-        }
     }
 }

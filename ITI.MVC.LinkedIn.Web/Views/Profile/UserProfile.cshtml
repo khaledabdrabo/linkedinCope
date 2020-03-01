@@ -1,7 +1,6 @@
 ﻿@model ITI.MVC.LinkedIn.Web.Models.ViewModels.ProfileVM
 @using ITI.MVC.LinkedIn.Web.Models.ViewModels
 @{
-    int? coursesCount = 0;
     Layout = null;
 }
 
@@ -13,14 +12,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="https://kit.fontawesome.com/5028f5981e.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="~/Content/HossamCSS/style.css" />
-    
-     <title>LinkedIn</title>
+    <title>LinkedIn</title>
 </head>
 
-<body >
+<body>
     <!-- Profile Header Section -->
     <section class="p-3" id="ProfileSummary">
         <div class="container u-border">
@@ -28,17 +25,9 @@
                 <!-- upper div that includes img -->
                 <div class="col-sm-12 profile-imgs">
                     <!--profile img -->
-                    @if(ViewBag.imag!=null){
                     <div class="position-absolute profile-img">
-                        <img src="~/Content/images/@ViewBag.imag" class="rounded-circle">
+                        <img src="~/Content/images/ProfilePic.jpg" class="rounded-circle">
                     </div>
-                    }
-                    else
-                    {
-                        <div class="position-absolute profile-img">
-                            <img src="~/Content/images/img_184513204708457.png" class="rounded-circle">
-                        </div>
-                    }
                 </div>
                 <!-- down div -->
                 <div class="col-sm-12">
@@ -111,7 +100,6 @@
                                                                     <div class="d-block">
                                                                         <p>Add Summary </p>
                                                                         <p class=" font-weight-light p-0 m-0">Use summary to share what you do or the opportunities you’re looking for.</p>
-
                                                                     </div>
                                                                 </div>
                                                                 <div class="p-2" style="margin: auto 0;">
@@ -121,7 +109,6 @@
                                                                 </div>
                                                             </div>
                                                         </a>
-
 
                                                     </div>
                                                 </div>
@@ -147,11 +134,10 @@
                                                                     <div class="d-block">
                                                                         <p>Work experience</p>
                                                                         <p class=" font-weight-light p-0 m-0">3 positions on your profile.</p>
-
                                                                     </div>
                                                                 </div>
                                                                 <div class="p-2" style="margin: auto 0;">
-                                                                    <a href="" onclick="addEperience( )" class="col-sm-1 text-right " data-toggle="modal" data-target="#myModalTest">
+                                                                    <a href="" class="col-sm-1 text-right " data-toggle="modal" data-target="#WorkExperince">
                                                                         <i class="fas fa-plus p-3 profile-icon "></i>
                                                                     </a>
                                                                 </div>
@@ -160,39 +146,34 @@
                                                         @*Education*@
                                                         <a class="education text-reset " href="# ">
                                                             <div class="d-flex m-auto p-2">
-                                                                <div class="p-2" style="display: flex; align-items: center; ">
+                                                                <div class="p-2" style=" display: flex; align-items: center; ">
                                                                     <i class="fas fa-university" style="margin-right: 1rem;"></i>
                                                                     <div class="d-block">
                                                                         <p>Education</p>
                                                                         <p class=" font-weight-lighter p-0 m-0">1 school in your profile.</p>
-
                                                                     </div>
                                                                 </div>
                                                                 <div class="p-2" style="margin: auto 0;">
-                                                                    <a href="#" onclick="addEducation()" class="col-sm-1 text-right " data-toggle="modal" data-target="">
+                                                                    <a href="" class="col-sm-1 text-right " data-toggle="modal" data-target="#Education">
                                                                         <i class="fas fa-plus p-3 profile-icon "></i>
                                                                     </a>
                                                                 </div>
                                                             </div>
                                                         </a>
-
                                                         @*Licenses*@
                                                         <a class="licenses  text-reset" href="# ">
                                                             <div class="d-flex m-auto p-2">
-
                                                                 <div class="p-2" style=" display: flex; align-items: center; ">
-
                                                                     <i class="fas fa-pager" style="margin-right: 1rem;"></i>
                                                                     <div class="d-block">
                                                                         <p>Licenses & Certifications</p>
                                                                         <p class=" font-weight-light p-0 m-0">
                                                                             Showcase your expertise with your credentials.
                                                                         </p>
-
                                                                     </div>
                                                                 </div>
                                                                 <div class="p-2" style="margin: auto 0;">
-                                                                    <a href="#" onclick="()" class="col-sm-1 text-right " data-toggle="modal" data-target="#">
+                                                                    <a href="" class="col-sm-1 text-right " data-toggle="modal" data-target="#Licenses1">
                                                                         <i class="fas fa-plus p-3 profile-icon "></i>
                                                                     </a>
                                                                 </div>
@@ -209,13 +190,12 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="p-2" style="margin: auto 0;">
-                                                                    <a href="#" onclick="AddVolunteer()" class="col-sm-1 text-right " data-toggle="modal" data-target="#">
+                                                                    <a href="" class="col-sm-1 text-right " data-toggle="modal" data-target="#volunteer">
                                                                         <i class="fas fa-plus p-3 profile-icon "></i>
                                                                     </a>
                                                                 </div>
                                                             </div>
                                                         </a>
-
                                                     </div>
                                                 </div>
                                             </div>
@@ -238,7 +218,6 @@
                                                      data-parent="#accordionExample">
                                                     <div class="card-body">
                                                         @*Skills*@
-
                                                         <a class="volunteer  text-reset" href="# ">
                                                             <div class="d-flex j m-auto p-2">
                                                                 <div class="p-2" style=" display: flex; align-items: center; ">
@@ -255,7 +234,6 @@
                                                                 </div>
                                                             </div>
                                                         </a>
-
                                                     </div>
                                                 </div>
                                             </div>
@@ -284,7 +262,6 @@
                                                                 <div class="d-block">
                                                                     <p>Publications</p>
                                                                     <p class=" font-weight-light p-0 m-0">List your published work and be found 7x more</p>
-
                                                                 </div>
                                                             </div>
                                                             <div class="p-2" style="margin: auto 0;">
@@ -302,7 +279,6 @@
                                                                 <div class="d-block">
                                                                     <p>Patents</p>
                                                                     <p class=" font-weight-light p-0 m-0">Showcase your innovation and expertise</p>
-
                                                                 </div>
                                                             </div>
                                                             <div class="p-2" style="margin: auto 0;">
@@ -320,11 +296,10 @@
                                                                 <div class="d-block">
                                                                     <p>Courses</p>
                                                                     <p class=" font-weight-light p-0 m-0">1 course on your profile</p>
-
                                                                 </div>
                                                             </div>
                                                             <div class="p-2" style="margin: auto 0;">
-                                                                <a id="course-button" class="col-sm-1 text-right " data-toggle="modal" data-target="#">
+                                                                <a href="" class="col-sm-1 text-right " data-toggle="modal" data-target="#CoursesModal">
                                                                     <i class="fas fa-plus p-3 profile-icon "></i>
                                                                 </a>
                                                             </div>
@@ -338,11 +313,10 @@
                                                                 <div class="d-block">
                                                                     <p>Projects</p>
                                                                     <p class=" font-weight-light p-0 m-0">Add compelling projects to demonstrate your experience</p>
-
                                                                 </div>
                                                             </div>
                                                             <div class="p-2" style="margin: auto 0;">
-                                                                <a href="" id="project-btn" col-sm-1 text-right btn " data-toggle="modal" data-target="">
+                                                                <a href="" class="col-sm-1 text-right " data-toggle="modal" data-target="#Projects">
                                                                     <i class="fas fa-plus p-3 profile-icon "></i>
                                                                 </a>
                                                             </div>
@@ -356,11 +330,10 @@
                                                                 <div class="d-block">
                                                                     <p>Honor and Rewards</p>
                                                                     <p class=" font-weight-light p-0 m-0">Feature the recognition you’ve earned</p>
-
                                                                 </div>
                                                             </div>
                                                             <div class="p-2" style="margin: auto 0;">
-                                                                <a href="" id="award-btn" class="col-sm-1 text-right btn" data-toggle="modal" data-target="">
+                                                                <a href="" class="col-sm-1 text-right " data-toggle="modal" data-target="#Honor">
                                                                     <i class="fas fa-plus p-3 profile-icon "></i>
                                                                 </a>
                                                             </div>
@@ -374,11 +347,10 @@
                                                                 <div class="d-block">
                                                                     <p>Test Scores</p>
                                                                     <p class=" font-weight-light p-0 m-0">If you excelled in an exam, you can list your score here</p>
-
                                                                 </div>
                                                             </div>
                                                             <div class="p-2" style="margin: auto 0;">
-                                                                <a id="testScore-add-button" href="" class="col-sm-1 text-right " data-toggle="modal" data-target="">
+                                                                <a href="" class="col-sm-1 text-right " data-toggle="modal" data-target="#Test">
                                                                     <i class="fas fa-plus p-3 profile-icon "></i>
                                                                 </a>
                                                             </div>
@@ -392,11 +364,10 @@
                                                                 <div class="d-block">
                                                                     <p>Languages</p>
                                                                     <p class=" font-weight-light p-0 m-0">Add Laungauge</p>
-
                                                                 </div>
                                                             </div>
                                                             <div class="p-2" style="margin: auto 0;">
-                                                                <a id="User-langauge-btn" href="" class="col-sm-1 text-right " data-toggle="modal" data-target="">
+                                                                <a href="" class="col-sm-1 text-right " data-toggle="modal" data-target="#Language">
                                                                     <i class="fas fa-plus p-3 profile-icon "></i>
                                                                 </a>
                                                             </div>
@@ -410,7 +381,6 @@
                                                                 <div class="d-block">
                                                                     <p>Organizations</p>
                                                                     <p class=" font-weight-light p-0 m-0">Show your involvement with communities that are important to you</p>
-
                                                                 </div>
                                                             </div>
                                                             <div class="p-2" style="margin: auto 0;">
@@ -440,7 +410,6 @@
                                                 <div id="collapseSix" class="collapse" aria-labelledby="headingSix"
                                                      data-parent="#accordionExample">
                                                     <div class="card-body">
-
                                                         <div style=" display: flex;  justify-content:space-between; align-items: center; font-size: 2rem;">
                                                             <i class="fas fa-globe"></i>
                                                             <div class="d-block">
@@ -459,7 +428,6 @@
                                             </div>
                                         </form>
                                     </div>
-
                                 </div>
                                 <div class="dropdown p-2">
                                     <a class="btn border border-dark btn-light" id="dropdownMenu2" data-toggle="dropdown"
@@ -480,7 +448,6 @@
                             </div>
                         </div>
                     </div>
-
                     <!-- down section  -->
                     <div class="row p-3">
                         <div class="col-sm-6 user-info">
@@ -493,10 +460,10 @@
                                     <h4> ITI Intake 40</h4>
                                 </div>
                                 <div class="d-flex">
-                                    <h4>@ViewBag.country </h4>
+                                    <h4>Egypt </h4>
                                     <ul class="info">
                                         <!-- Button trigger modal -->
-                                        <li id="connection"><a href="#" class="btn btn-link"> @ViewBag.connection+ Connections </a></li>
+                                        <li id="connection"><a href="#" class="btn btn-link"> 500+ Connections </a></li>
                                         <li id="contact">
                                             <a href="#" type="button" class="btn btn-link" data-toggle="modal" data-target="#Connection">
                                                 Contact info
@@ -521,7 +488,6 @@
             </div>
         </div>
     </section>
-
     <!-- About section -->
     <section class="p-3" id="About">
         <div class="container">
@@ -540,7 +506,6 @@
             </div>
         </div>
     </section>
-
     <!-- Dashboard section -->
     <section class="p-3" id="Dashboard">
         <div class="container">
@@ -564,7 +529,6 @@
             </div>
         </div>
     </section>
-
     <!-- background section -->
     <section class="p-3" id="Background">
         <div class="background container u-border rounded p-0">
@@ -572,38 +536,32 @@
             <div class="p-4">
                 <div class="row">
                     <h2 class="col-sm-11 background__section-heading">Experience</h2>
-                    <a href="" onclick="addEperience( )" class="col-sm-1 text-right " data-toggle="modal" data-target="#myModalTest">
+                    <a href="" class="col-sm-1 text-right " data-toggle="modal" data-target="#WorkExperince">
                         <i class="fas fa-plus p-3 profile-icon "></i>
                     </a>
                 </div>
-                @foreach (var exper in ViewBag.getAllEperinec)
-                {
-                    <div class="background__hide-icon media row py-3 ">
-                        <div class="col-sm-1">
-                            <img src="~/Content/images/itiLogo.png" class="align-self-start background__img" />
-                        </div>
-                        <div class="media-body col-sm-10 ">
-                            <h3>@exper.Title</h3>
-                            <a href="http://" class="stretched-link text-decoration-none text-reset">
-                                <p class="mb-0 d-inline ">@exper.Organization.Name</p>
-                            </a>
-                            <p class="mb-0 d-inline ">@exper.EmploymentType</p>
-                            <br />
-                            <p class="mb-0 d-inline text-muted">@exper.Experience.Description</p>
-                            @*<p class="mb-0 d-inline text-muted">@exper.Experience.EndDate</p>*@
-                            <p class="mb-0 text-muted">@exper.CountryName</p>
-                            <p class="mb-0 text-muted">@exper.description</p>
-                        </div>
-                        
-                        <a href="#" onclick="getEperience(@exper.ExperienceId)" class="col-1 text-right" data-toggle="modal" @*data-toggle="modal" data-target="#myModalTest"*@>
-                            <i class="fas fa-pen p-3 profile-icon profile-icon--hide"></i>
-                        </a>
+                <div class="background__hide-icon media row py-3 ">
+                    <div class="col-sm-1">
+                        <img src="~/Content/images/itiLogo.png" class="align-self-start background__img" />
                     </div>
-                    <div class="u-border-bottom offset-1 row"></div>
-                }
-                
-                
-                @*<div class="background__hide-icon media row py-3 ">
+                    <div class="media-body col-sm-10 ">
+                        <h3>Student</h3>
+                        <a href="http://" class="stretched-link text-decoration-none text-reset">
+                            <p class="mb-0 d-inline ">Information technology institute</p>
+                        </a>
+                        <p class="mb-0 d-inline ">. Full Time</p>
+                        <br />
+                        <p class="mb-0 d-inline text-muted">Oct2019</p>
+                        <p class="mb-0 d-inline text-muted">- Present</p>
+                        <p class="mb-0 text-muted">Egypt</p>
+                        <p class="mb-0 text-muted">Enterprise and web development track</p>
+                    </div>
+                    <a href="" class="col-1 text-right" data-toggle="modal" data-target="#FullModal">
+                        <i class="fas fa-pen p-3 profile-icon profile-icon--hide"></i>
+                    </a>
+                </div>
+                <div class="u-border-bottom offset-1 row"></div>
+                <div class="background__hide-icon media row py-3 ">
                     <div class="col-sm-1">
                         <img src="~/Content/images/itiLogo.png" class="align-self-start background__img" />
                     </div>
@@ -622,120 +580,160 @@
                     <a href="" class="col-1 text-right" data-toggle="modal" data-target="#FullModal">
                         <i class="fas fa-pen p-3 profile-icon profile-icon--hide"></i>
                     </a>
-
-                </div>*@
+                </div>
             </div>
-
             <!-- hr -->
             <div class="u-border-bottom"></div>
-
             <!-- Education -->
             <div class="p-4">
                 <div class="row">
                     <h2 class="col-sm-11 background__section-heading">Education</h2>
-                    <a href="#" onclick="addEducation()" class="col-sm-1 text-right " data-toggle="modal" data-target="#">
+                    <a href="" class="col-sm-1 text-right " data-toggle="modal" data-target="#Education">
                         <i class="fas fa-plus p-3 profile-icon "></i>
                     </a>
                 </div>
-                @foreach (var item in ViewBag.getAllEDucation) {
                 <div class="background__hide-icon media row py-3 ">
                     <div class="col-sm-1">
                         <img src="~/Content/images/itiLogo.png" class="align-self-start background__img" />
                     </div>
                     <div class="media-body col-sm-10 ">
                         <a href="http://" class="stretched-link text-decoration-none text-reset">
-                            <h3>@item.Experience.Organization.Name</h3>
+                            <h3>School</h3>
                         </a>
-                        <p class="mb-0 d-inline ">@item.Degree</p>
-                        <p class="mb-0 d-inline ">@item.FieldOfStudy</p>
-                        <p class="mb-0 d-inline ">@item.Grade</p>
+                        <p class="mb-0 d-inline ">Degree</p>
+                        <p class="mb-0 d-inline ">. Field of study</p>
+                        <p class="mb-0 d-inline ">. Grade</p>
                         <br />
-                        <p class="mb-0 d-inline text-muted">@item.Experience.StartDate</p>
-                        <p class="mb-0 d-inline text-muted">- @item.Experience.EndDate</p>
-                        <p class="mb-0 text-muted">@item.Activities</p>
-                        <p class="mb-0 text-muted">@item.Experience.Description</p>
+                        <p class="mb-0 d-inline text-muted">Oct2019</p>
+                        <p class="mb-0 d-inline text-muted">- Present</p>
+                        <p class="mb-0 text-muted">Activities and societies</p>
+                        <p class="mb-0 text-muted">Description</p>
                     </div>
-                    <a href="#" onclick="getEducation(@item.ExperienceId)" class="col-1 text-right" data-toggle="modal" >
+                    <a href="" class="col-1 text-right" data-toggle="modal" data-target="#FullModal">
                         <i class="fas fa-pen p-3 profile-icon profile-icon--hide"></i>
                     </a>
                 </div>
                 <div class="u-border-bottom offset-1 row"></div>
-                }
-                
+                <div class="background__hide-icon media row py-3 ">
+                    <div class="col-sm-1">
+                        <img src="~/Content/images/itiLogo.png" class="align-self-start background__img" />
+                    </div>
+                    <div class="media-body col-sm-10 ">
+                        <a href="http://" class="stretched-link text-decoration-none text-reset">
+                            <h3>School</h3>
+                        </a>
+                        <p class="mb-0 d-inline ">Degree</p>
+                        <p class="mb-0 d-inline ">. Field of study</p>
+                        <p class="mb-0 d-inline ">. Grade</p>
+                        <br />
+                        <p class="mb-0 d-inline text-muted">Oct2019</p>
+                        <p class="mb-0 d-inline text-muted">- Present</p>
+                        <p class="mb-0 text-muted">Activities and societies</p>
+                        <p class="mb-0 text-muted">Description</p>
+                    </div>
+                    <a href="" class="col-1 text-right" data-toggle="modal" data-target="#FullModal">
+                        <i class="fas fa-pen p-3 profile-icon profile-icon--hide"></i>
+                    </a>
+                </div>
             </div>
-
             <!-- hr -->
             <div class="u-border-bottom"></div>
-
             <!-- Volunteer Experience -->
             <div class="p-4">
                 <div class="row">
                     <h2 class="col-sm-11 background__section-heading">Volunteer Experience</h2>
-                    <a href="#" onclick="AddVolunteer()" class="col-sm-1 text-right " data-toggle="modal" data-target="#">
+                    <a href="" class="col-sm-1 text-right " data-toggle="modal" data-target="#volunteer">
                         <i class="fas fa-plus p-3 profile-icon "></i>
                     </a>
                 </div>
-                @foreach (var item in ViewBag.getAllVolunteers) {
                 <div class="background__hide-icon media row py-3 ">
                     <div class="col-sm-1">
                         <img src="~/Content/images/itiLogo.png" class="align-self-start background__img" />
                     </div>
                     <div class="media-body col-sm-10 ">
-                        <h3>@item.Experience.Description</h3>
+                        <h3>Role</h3>
                         <a href="http://" class="stretched-link text-decoration-none text-reset">
-                            <p class="mb-0  ">@item.Experience.Organization.Name</p>
+                            <p class="mb-0  ">Organization</p>
                         </a>
-                       
-                          <p class="mb-0 text-muted">@item.VolunteeringCause</p>
-                        
+                        <p class="mb-0 d-inline text-muted">Oct2019</p>
+                        <p class="mb-0 d-inline text-muted">- Present</p>
+                        <p class="mb-0 text-muted">Cause</p>
+                        <p class="mb-0 text-muted">Description</p>
                     </div>
-                    <a href="#" onclick="EditVolunteer(@item.ExperienceId )" class="col-1 text-right" data-toggle="modal" data-target="#">
+                    <a href="" class="col-1 text-right" data-toggle="modal" data-target="#FullModal">
                         <i class="fas fa-pen p-3 profile-icon profile-icon--hide"></i>
                     </a>
                 </div>
                 <div class="u-border-bottom offset-1 row"></div>
-                }
-                
+                <div class="background__hide-icon media row py-3 ">
+                    <div class="col-sm-1">
+                        <img src="~/Content/images/itiLogo.png" class="align-self-start background__img" />
+                    </div>
+                    <div class="media-body col-sm-10 ">
+                        <h3>Role</h3>
+                        <a href="http://" class="stretched-link text-decoration-none text-reset">
+                            <p class="mb-0  ">Organization</p>
+                        </a>
+                        <p class="mb-0 d-inline text-muted">Oct2019</p>
+                        <p class="mb-0 d-inline text-muted">- Present</p>
+                        <p class="mb-0 text-muted">Cause</p>
+                        <p class="mb-0 text-muted">Description</p>
+                    </div>
+                    <a href="" class="col-1 text-right" data-toggle="modal" data-target="#FullModal">
+                        <i class="fas fa-pen p-3 profile-icon profile-icon--hide"></i>
+                    </a>
+                </div>
             </div>
-
             <!-- hr -->
             <div class="u-border-bottom"></div>
-
             <!-- licenses & certifications -->
             <div class="p-4">
                 <div class="row">
                     <h2 class="col-sm-11 background__section-heading">licenses & certifications</h2>
-                    <a href="#" onclick="AddCertification()" class="col-sm-1 text-right " data-toggle="modal" data-target="#">
+                    <a href="" class="col-sm-1 text-right " data-toggle="modal" data-target="#Licenses1">
                         <i class="fas fa-plus p-3 profile-icon "></i>
                     </a>
                 </div>
-                @foreach (var item in ViewBag.getAllCertificates)
-                {
                 <div class="background__hide-icon media row py-3 ">
                     <div class="col-sm-1">
                         <img src="~/Content/images/itiLogo.png" class="align-self-start background__img" />
                     </div>
                     <div class="media-body col-sm-10 ">
-                        <h3>@item.Certification.Name</h3>
+                        <h3>Name</h3>
                         <a href="http://" class="stretched-link text-decoration-none text-reset">
-                            <p class="mb-0  ">@item.Organization.Name </p>
+                            <p class="mb-0  ">Issuing Organization </p>
                         </a>
-                        <p class="mb-0 d-inline text-muted">Issued @item.IssueDate</p>
-                        <p class="mb-0 d-inline text-muted"> Expired @item.ExpirationDate</p>
-                        <p class="mb-0 text-muted">@item.CredentialId</p>
-                        <a href="http://" class="mb-0 text-muted">@item.CredentialUrl</a>
+                        <p class="mb-0 d-inline text-muted">Issued Oct2019</p>
+                        <p class="mb-0 d-inline text-muted">. Expired Jun2020</p>
+                        <p class="mb-0 text-muted">Credntial ID</p>
+                        <a href="http://" class="mb-0 text-muted">See Credntial</a>
                     </div>
-                    <a href="#" onclick="getCertification(@item.CertificationId )" class="col-1 text-right" data-toggle="modal" data-target="#">
+                    <a href="" class="col-1 text-right" data-toggle="modal" data-target="#FullModal">
                         <i class="fas fa-pen p-3 profile-icon profile-icon--hide"></i>
                     </a>
                 </div>
                 <div class="u-border-bottom offset-1 row"></div>
-                }
-                
+                <div class="background__hide-icon media row py-3 ">
+                    <div class="col-sm-1">
+                        <img src="~/Content/images/itiLogo.png" class="align-self-start background__img" />
+                    </div>
+                    <div class="media-body col-sm-10 ">
+                        <h3>Name</h3>
+                        <a href="http://" class="stretched-link text-decoration-none text-reset">
+                            <p class="mb-0  ">Issuing Organization </p>
+                        </a>
+                        <p class="mb-0 d-inline text-muted">Issued Oct2019</p>
+                        <p class="mb-0 d-inline text-muted">. Expired Jun2020</p>
+                        <p class="mb-0 text-muted">Credntial ID</p>
+                        <a href="http://" class="mb-0 text-muted">See Credntial</a>
+                    </div>
+                    <a href="" class="col-1 text-right" data-toggle="modal" data-target="#FullModal">
+                        <i class="fas fa-pen p-3 profile-icon profile-icon--hide"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
-
     <!-- Skills Section -->
     <section class="p-3" id="Skills">
         <div class="container section skills u-border">
@@ -768,7 +766,6 @@
                             <p class="skill__endorsed-person">Sara Ali</p>
                             <p class="skill__endorsment-description">has given an endorsement for this skill </p>
                         </div>
-
                     </div>
                     <div class="skill">
                         <div class="skill__title">
@@ -779,9 +776,7 @@
                             <p class="skill__endorsed-person">Sara Ali</p>
                             <p class="skill__endorsment-description">has given an endorsement for this skill </p>
                         </div>
-
                     </div>
-
                 </div>
             </div>
             <div class="row">
@@ -810,7 +805,6 @@
                         </div>
                     </div>
 
-
                 </div>
             </div>
             <div class="row">
@@ -819,7 +813,6 @@
             </div>
         </div>
     </section>
-
     <!-- Recommendations -->
     <section class="p-3" id="Recommendations">
         <div class="container section recommendations u-border">
@@ -854,7 +847,6 @@
                                             </p>
                                         </div>
 
-
                                     </div>
                                 </li>
                                 <li class="media">
@@ -874,7 +866,6 @@
                                             </p>
                                         </div>
 
-
                                     </div>
                                 </li>
                                 <li class="media">
@@ -893,7 +884,6 @@
 
                                             </p>
                                         </div>
-
 
                                     </div>
                                 </li>
@@ -918,7 +908,6 @@
                                             </p>
                                         </div>
 
-
                                     </div>
                                 </li>
                                 <li class="media">
@@ -937,7 +926,6 @@
 
                                             </p>
                                         </div>
-
 
                                     </div>
                                 </li>
@@ -958,7 +946,6 @@
                                             </p>
                                         </div>
 
-
                                     </div>
                                 </li>
                             </ul>
@@ -968,295 +955,63 @@
             </div>
         </div>
     </section>
-
     <!-- Accomplishments -->
     <section class="p-3" id="Accomplishments">
-        <div class="container section accomplishments u-border ">
+        <div class="container section accomplishments u-border">
             <div class="row">
-                <div id="acc-container" class="col-md-12">
+                <div class="col-md-12">
                     <h2>Accomplishments </h2>
-                    <div href="" class="btn btn--inline float-md-right btn--plus mr-4 accordion" data-toggle="tooltip"
+                    <div href="" class="btn btn--inline float-md-right btn--plus mr-4" data-toggle="tooltip"
                          data-placement="bottom"><i class="fas fa-plus"></i></div>
-                    @*courses*@
-                    @if (Model.courses.Count != 0)
-                    {
-                        coursesCount = Model.courses.Count;
-                <div id="Courses-Acc-Container">
-                    <div id="Courses-Acc" class="accomplishment">
+                    <div class="accomplishment">
                         <div class="accomplishment__section accomplishment__section1">
-                            <p class="accomplishment__number" id="courses-count">@Model.courses.Count</p>
+                            <p class="accomplishment__number">1</p>
                         </div>
                         <div class="accomplishment__section accomplishment__section2 mr-3">
                             <h4 class="accomplishment__type">
-                                Courses
+                                Publication
                             </h4>
-                            <p id="Courses-Names" class="accomplishment__description">
-                                @{if (Model.courses.Count != 0)
-                                    {
-                                        Course last = Model.courses.Last();
-
-
-                                        foreach (var item in Model.courses)
-                                        {
-                                            if (item.Equals(last))
-                                            {
-                                                @item.Name
-                                            }
-                                            else
-                                            {
-                                                @item.Name
-                                                <i class="fas fa-circle" style="font-size: 5px"></i>
-                                            }
-
-
-                                        }
-                                    }
-                                }
-
-
-
-                            </p>
+                            <p class="accomplishment__description"></p>
                         </div>
                         <div class="accomplishment__section accomplishment__section3 float-md-right">
-                            <button type="button" class="btn btn--arrow  btn--active" data-toggle="collapse" data-target="#CoursesColl"><i class="fas fa-chevron-down"></i></button>
+                            <a class="btn btn--arrow  btn--active" id="btn-1"><i class="fas fa-chevron-down"></i></a>
                             <a class="btn btn--arrow" id="btn-2"> <i class="fas fa-chevron-up"></i></a>
                         </div>
-
-                        <div id="CoursesColl" class="collapse h5 font-weight-bold">
-                            @foreach (var e in Model.courses)
-                            {
-
-                                <div id="courses-body-@e.Id" class="body-container h4">
-                                    <div class="float-right">
-                                        <a onclick="EditCourse(@e.Id)" class="btn btn--plus" style="color:#0E7BB5"><i class="fas fa-pencil-alt"></i> </a>
-                                    </div>
-                                    <div class="course-Name font-weight-bold"> @e.Name</div>
-                                    <div class="course-number font-weight-normal p">@e.Number</div>
-                                    <hr />
-                                </div>
-                            }
-                        </div>
                     </div>
-                </div>
-                    }
-                    @*Projects*@
-                    @if (Model.projects.Count != 0)
-                    {
-                        Project lastProject = Model.projects.Last();
-                <div id="project-read-container">
-                    <div id="projects-read" class="accomplishment">
+                    <div class="accomplishment">
                         <div class="accomplishment__section accomplishment__section1">
-                            <p id="project-read-count" class="accomplishment__number">@Model.projects.Count</p>
+                            <p class="accomplishment__number">1</p>
                         </div>
                         <div class="accomplishment__section accomplishment__section2 mr-3">
                             <h4 class="accomplishment__type">
                                 Project
                             </h4>
-                            <p id="project-read-names" class="accomplishment__description">
-                                @foreach (var item in Model.projects)
-                                {
-                                    if (item.Equals(lastProject))
-                                    {
-                                        @item.Name
-                                    }
-                                    else
-                                    {
-                                        @item.Name
-                                        <i class="fas fa-circle" style="font-size: 5px"></i>
-                                    }
-
-
-                                }
-                            </p>
+                            <p class="accomplishment__description">Test Description</p>
                         </div>
                         <div class="accomplishment__section accomplishment__section3 float-md-right">
-                            <button class="btn " data-toggle="collapse" data-target="#ProjectColl" id="Project-button"><i class="fas fa-chevron-down"></i></button>
+                            <a class="btn btn--arrow  btn--active" id="btn-1"><i class="fas fa-chevron-down"></i></a>
                             <a class="btn btn--arrow" id="btn-2"> <i class="fas fa-chevron-up"></i></a>
                         </div>
-
-                        <div id="ProjectColl" class="collapse">
-                            @foreach (var e in Model.projects)
-                            {
-                                <div id="projects-read-body" class="body-container h4">
-                                    <div class="float-right">
-                                        <a onclick="EditProject(@e.Id)" class="btn btn--plus" style="color:#0E7BB5"><i class="fas fa-pencil-alt"></i> </a>
-                                    </div>
-                                    <div class="course-Name font-weight-bold"> @e.Name</div>
-                                    <div class="course-number font-weight-normal p">@e.StartDate.GetValueOrDefault().ToString("MMM yyyy") - @e.EndDate.GetValueOrDefault().ToString("MMM yyyy")</div>
-                                    <div class="course-number font-weight-normal p">@e.Description</div>
-                                    <hr />
-                                </div>
-                            }
-                        </div>
-
                     </div>
-                </div>
-                    }
-                    @*languagesRead*@
-                    @if (Model.UserLanguages.Count != 0)
-                    {
-                        UserLanguage LuserLanguage = Model.UserLanguages.Last();
-                <div id="language-read-container">
-                    <div id="language-read" class="accomplishment">
+                    <div class="accomplishment">
                         <div class="accomplishment__section accomplishment__section1">
-                            <p id="language-read-count" class="accomplishment__number">@Model.UserLanguages.Count</p>
+                            <p class="accomplishment__number">1</p>
                         </div>
                         <div class="accomplishment__section accomplishment__section2 mr-3">
                             <h4 class="accomplishment__type">
-                                Languages
+                                Project
                             </h4>
-                            <p id="language-read-names" class="accomplishment__description">
-                                @foreach (var item in Model.UserLanguages)
-                                {
-                                    if (item.Equals(LuserLanguage))
-                                    {
-                                        @item.Language.Name
-                                    }
-                                    else
-                                    {
-                                        @item.Language.Name
-                                        <i class="fas fa-circle" style="font-size: 5px"></i>
-                                    }
-
-
-                                }
-                            </p>
+                            <p class="accomplishment__description">Test Description</p>
                         </div>
                         <div class="accomplishment__section accomplishment__section3 float-md-right">
-                            <button class="btn btn--arrow  btn--active" id="language-button" data-toggle="collapse" data-target="#LanguageColl"><i class="fas fa-chevron-down"></i></button>
+                            <a class="btn btn--arrow  btn--active" id="btn-1"><i class="fas fa-chevron-down"></i></a>
                             <a class="btn btn--arrow" id="btn-2"> <i class="fas fa-chevron-up"></i></a>
                         </div>
-                        <div id="LanguageColl" class="collapse">
-                            @foreach (var e in Model.UserLanguages)
-                            {
-                                <div id="language-read-body" class="body-container h4">
-                                    <div class="float-right">
-                                        <a onclick="EditUserLanguage(@e.Id)" class="btn btn--plus" style="color:#0E7BB5"><i class="fas fa-pencil-alt"></i> </a>
-                                    </div>
-                                    <div class="course-Name font-weight-bold"> @e.Language.Name</div>
-                                    <div class="course-number font-weight-normal p">@e.Proficiency</div>
-                                    <hr />
-                                </div>
-                            }
-                        </div>
                     </div>
-                </div>
-                    }
-                    @*AwardsRead*@
-                    @if (Model.Awards.Count != 0)
-                    {
-                        Award lastAward = Model.Awards.Last();
-                <div id="awards-read-container">
-                    <div id="awards-read" class="accomplishment">
-                        <div class="accomplishment__section accomplishment__section1">
-                            <p id="awards-read-count" class="accomplishment__number">@Model.Awards.Count</p>
-                        </div>
-                        <div class="accomplishment__section accomplishment__section2 mr-3">
-                            <h4 class="accomplishment__type">
-                                Honor & Award
-                            </h4>
-                            <p id="awards-read-names" class="accomplishment__description">
-                                @foreach (var item in Model.Awards)
-                                {
-                                    if (item.Equals(lastAward))
-                                    {
-                                        @item.Title
-                                    }
-                                    else
-                                    {
-                                        @item.Title
-                                        <i class="fas fa-circle" style="font-size: 5px"></i>
-                                    }
-
-
-                                }
-                            </p>
-                        </div>
-                        <div class="accomplishment__section accomplishment__section3 float-md-right">
-                            <button class="btn " data-toggle="collapse" data-target="#awardsColl" id="awards-button"><i class="fas fa-chevron-down"></i></button>
-                            <a class="btn btn--arrow" id="btn-2"> <i class="fas fa-chevron-up"></i></a>
-                        </div>
-
-                        <div id="awardsColl" class="collapse">
-                            @foreach (var e in Model.Awards)
-                            {
-                                <div id="awards-read-body" class="body-container h4">
-                                    <div class="float-right">
-                                        <a onclick="EditUserAwards(@e.Id)" class="btn btn--plus" style="color:#0E7BB5"><i class="fas fa-pencil-alt"></i> </a>
-                                    </div>
-                                    <div class="course-Name font-weight-bold"> @e.Title</div>
-                                    <div class="course-number font-weight-normal p">@e.IssueDate.GetValueOrDefault().ToString("MMM yyyy") </div>
-                                    <div class="course-number font-weight-normal p">@e.Description</div>
-                                    <hr />
-                                </div>
-                            }
-                        </div>
-
-                    </div>
-                </div>
-                    }
-
-                    @*testscore*@
-
-                    @if (Model.TestScores.Count != 0)
-                    {
-                        TestScore lastTestScore = Model.TestScores.Last();
-                <div id="TestScore-read-Container">
-
-
-                    <div id="TestScore-read" class="accomplishment">
-                        <div class="accomplishment__section accomplishment__section1">
-                            <p id="TestScore-read-count" class="accomplishment__number">@Model.TestScores.Count</p>
-                        </div>
-                        <div class="accomplishment__section accomplishment__section2 mr-3">
-                            <h4 class="accomplishment__type">
-                                Test Score
-                            </h4>
-                            <p id="TestScore-read-names" class="accomplishment__description">
-                                @foreach (var item in Model.TestScores)
-                                {
-                                    if (item.Equals(lastTestScore))
-                                    {
-                                        @item.TestName
-                                    }
-                                    else
-                                    {
-                                        @item.TestName
-                                        <i class="fas fa-circle" style="font-size: 5px"></i>
-                                    }
-
-
-                                }
-                            </p>
-                        </div>
-                        <div class="accomplishment__section accomplishment__section3 float-md-right">
-                            <button class="btn " data-toggle="collapse" data-target="#TestScoreColl" id="TestScore-button"><i class="fas fa-chevron-down"></i></button>
-                            <a class="btn btn--arrow" id="btn-2"> <i class="fas fa-chevron-up"></i></a>
-                        </div>
-
-                        <div id="TestScoreColl" class="collapse">
-                            @foreach (var e in Model.TestScores)
-                            {
-                                <div id="TestScore-read-body" class="body-container h4">
-                                    <div class="float-right">
-                                        <a onclick="EditTestScore(@e.Id)" class="btn btn--plus" style="color:#0E7BB5"><i class="fas fa-pencil-alt"></i> </a>
-                                    </div>
-                                    <div class="course-Name font-weight-bold"> @e.TestName</div>
-                                    <div class="course-number font-weight-normal p">@e.TestDate.GetValueOrDefault().ToString("MMM yyyy") </div>
-                                    <div class="course-number font-weight-normal p">@e.Score</div>
-                                    <hr />
-                                </div>
-                            }
-                        </div>
-
-                    </div>
-                </div>
-                    }
                 </div>
             </div>
         </div>
     </section>
-
     <!-- The Interests section displays the companies that a user following -->
     <section class="p-5" id="Interests">
         <div class="container interests">
@@ -1361,7 +1116,6 @@
             <a href="#" data-toggle="modal" data-target="#interests-modal" class="row interests__see-all">
                 <div class="interests__see-all-btn">See all</div>
             </a>
-
             <!-- Modal content that contains user's companies -->
             <div class="modal fade" id="interests-modal" role="dialog">
                 <div class="modal-dialog modal-lg interests-modal">
@@ -1448,7 +1202,6 @@
             </div>
         </div>
     </section>
-
     <!-- Modals -->
     <!-- Modal  More Button-->
     <div class="modal fade" id="Connection" tabindex="-1" role="dialog" aria-labelledby="ConnectionLabel"
@@ -1456,7 +1209,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">@ViewBag.name</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Nora Mohamed</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -1494,7 +1247,6 @@
             </div>
         </div>
     </div>
-
     <!-- Edit Skill -->
     <div class="modal fade edit-skills" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
          aria-hidden="true">
@@ -1504,7 +1256,6 @@
                     <h2 class="modal-title">
                         Reorder Skills & Endorsements (12)
                     </h2>
-
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -1515,7 +1266,6 @@
                     </h3>
                     <div class="row">
                         <div class="col-md-12">
-
                             <div class="skill-edit">
                                 <span class="skill-edit__skill">HTML5</span>
                                 <i class="fas fa-align-justify float-md-right mr-3 skill-edit__icon"></i>
@@ -1532,9 +1282,7 @@
                                 <i class="fas fa-trash-alt float-md-right mr-3 skill-edit__icon"></i>
                             </div>
                         </div>
-
                     </div>
-
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary">Save changes</button>
@@ -1544,7 +1292,6 @@
             </div>
         </div>
     </div>
-
     <!-- bootstrap form popup -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
@@ -1566,14 +1313,115 @@
             </div>
         </div>
     </div>
-
-
-
+    <!-- Full Modal -->
+    <div class="modal fade" id="FullModal" tabindex="-1" role="dialog" aria-labelledby="FullModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content row">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="FullModalLabel">Add Bla Bla Bla</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="">
+                        <div class="form-controls">
+                            <div class="form-group">
+                                <label for="" class="required">Title</label>
+                                <input class="form-control" type="text" name="" id="" placeholder="Bla Bla Bla">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Employment type</label>
+                                <select class="form-control" name="" id="">
+                                    <option value="" disabled selected hidden>-</option>
+                                    <option value="">Opa</option>
+                                    <option value="">Opaa</option>
+                                    <option value="">Opaaa</option>
+                                    <option value="">Opaaaa</option>
+                                    <option value="">Opaaaaa</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Description</label>
+                                <textarea class="form-control" name="" id="" cols="30" rows="4"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <div>
+                                    <input type="checkbox" name="" id="CurrentlyWorking"><span>
+                                        I am
+                                        currently working in this role
+                                        Transfare
+                                    </span>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label for="" class="required">Start Date</label>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <select class="form-control" name="" id="">
+                                                    <option value="" disabled selected hidden>Month</option>
+                                                    <option value="">Opa</option>
+                                                    <option value="">Opaa</option>
+                                                    <option value="">Opaaa</option>
+                                                    <option value="">Opaaaa</option>
+                                                    <option value="">Opaaaaa</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <select class="form-control" name="" id="">
+                                                    <option value="" disabled selected hidden>Year</option>
+                                                    <option value="">Opa</option>
+                                                    <option value="">Opaa</option>
+                                                    <option value="">Opaaa</option>
+                                                    <option value="">Opaaaa</option>
+                                                    <option value="">Opaaaaa</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="" class="required">End Date</label>
+                                        <h4 id="PresentWorkDate">Present</h4>
+                                        <div class="row" id="EndWorkDate">
+                                            <div class="col-sm-12">
+                                                <select class="form-control" name="" id="">
+                                                    <option value="" disabled selected hidden>Month</option>
+                                                    <option value="">Opa</option>
+                                                    <option value="">Opaa</option>
+                                                    <option value="">Opaaa</option>
+                                                    <option value="">Opaaaa</option>
+                                                    <option value="">Opaaaaa</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <select class="form-control" name="" id="">
+                                                    <option value="" disabled selected hidden>Year</option>
+                                                    <option value="">Opa</option>
+                                                    <option value="">Opaa</option>
+                                                    <option value="">Opaaa</option>
+                                                    <option value="">Opaaaa</option>
+                                                    <option value="">Opaaaaa</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Add Profile Section Modal -->
     <div class=" dropdown-menu " aria-labelledby="opaDropDown">
         <!-- Add Profile Section form -->
-        <form class="accordion list ">
+        <form class="accordion list " id="accordionExample">
             <!-- intro card -->
             <div class="card">
                 <div class="card-header" id="headingOne">
@@ -1619,7 +1467,6 @@
                 </div>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                     <div class="card-body">
-
                         <div style=" display: flex; align-items: center; font-size: 2rem;">
                             <i class="fas fa-indent"></i>
                             <div class="d-block">
@@ -1654,7 +1501,6 @@
                                     <div class="d-block">
                                         <p class=" font-weight-light p-0 m-0">3 positions on your profile.</p>
                                         <p>Work experience</p>
-
                                     </div>
                                 </div>
                                 <div class="p-2" style="margin: auto 0;">
@@ -1669,7 +1515,6 @@
                                     <div class="d-block">
                                         <p>Education</p>
                                         <p class=" font-weight-lighter p-0 m-0">1 school in your profile.</p>
-
                                     </div>
                                 </div>
                                 <div class="p-2" style="margin: auto 0;">
@@ -1679,16 +1524,13 @@
                         </a>
                         <a class="licenses  text-reset" href="# ">
                             <div class="d-flex m-auto p-2">
-
                                 <div class="p-2" style=" display: flex; align-items: center; ">
-
                                     <i class="fas fa-pager" style="margin-right: 1rem;"></i>
                                     <div class="d-block">
                                         <p>Licenses & Certifications</p>
                                         <p class=" font-weight-light p-0 m-0">
                                             Showcase your expertise with your credentials.
                                         </p>
-
                                     </div>
                                 </div>
                                 <div class="p-2" style="margin: auto 0;">
@@ -1696,7 +1538,6 @@
                                 </div>
                             </div>
                         </a>
-
                         <a class="volunteer  text-reset" href="# ">
                             <div class="d-flex j m-auto p-2">
                                 <div class="p-2" style=" display: flex; align-items: center; ">
@@ -1711,7 +1552,6 @@
                                 </div>
                             </div>
                         </a>
-
                     </div>
                 </div>
             </div>
@@ -1732,7 +1572,6 @@
                 </div>
                 <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
                     <div class="card-body">
-
                         <div style=" display: flex;  justify-content:space-between; align-items: center; font-size: 2rem;">
                             <i class="fas fa-medal"></i>
                             <div class="d-block">
@@ -1798,7 +1637,6 @@
                 </div>
                 <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
                     <div class="card-body">
-
                         <div style=" display: flex;  justify-content:space-between; align-items: center; font-size: 2rem;">
                             <i class="fas fa-globe"></i>
                             <div class="d-block">
@@ -1816,445 +1654,71 @@
             </div>
         </form>
     </div>
-    <div >
-        <div class="modal fade" id="WorkExperince" tabindex="-1" role="dialog" aria-labelledby="FullModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content row">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="FullModalLabel">Add experience</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body" id="ModelBody">
-                        
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-        @*@Html.Partial("_WorkExperince")*@
+    <div>
+        @Html.Partial("_WorkExperince", new WorkExperinceVM())
     </div>
     <div>
-        <div class="modal fade" id="Education" tabindex="-1" role="dialog" aria-labelledby="FullModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content row">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="FullModalLabel">Add education</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body" id="EducationBody">
-                    </div>
-                    
-
-                </div>
-            </div>
-        </div>
-       @*// @Html.Partial("_Education");*@
+        @Html.Partial("_Education", new EducationVM());
     </div>
     <div>
-
-        <div class="modal fade" id="Licenses1" tabindex="-1" role="dialog" aria-labelledby="Licenses1Label" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content row">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="Licenses1Label">Add education</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body" id="certificates">
-                    </div>
-
-
-                </div>
-            </div>
-
-            @*<div class="modal fade" id="Licenses1" tabindex="-1" role="dialog" aria-labelledby="Licenses1"
-                 aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content row">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="FullModalLabel">Add licenses & certifications</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-
-                        <div class="modal-body" id="certificates">
-
-                        </div>
-
-                    </div>
-                </div>
-            </div>*@
-            @*@{ Html.RenderPartial("_Certfications"); }*@
-        </div>
-        </div>
+        @{ Html.RenderPartial("_Certfications", new CertificationsVM()); }
+    </div>
     <div>
-        <div class="modal fade" id="volunteer" tabindex="-1" role="dialog" aria-labelledby="FullModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content row">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="FullModalLabel">Add volunteer experience</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body" id="VolunteerBody">
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        @*@Html.Partial("_Voulanteer")*@
+        @Html.Partial("_Voulanteer", new VoulanteerVM())
+    </div>
+    <div>
+        @*@Html.Partial("_CoursesModal",new CoursesVM() { Experiences = Model.Experiences})*@
+    </div>
+    <div>
+        @Html.Partial("_Honor", new HonorVM())
+    </div>
+    <div>
+        @Html.Partial("_Laungauges", new LanguageVM())
+    </div>
+    <div>
+        @Html.Partial("_Orgnizations", new OrganizationVM())
+    </div>
+    <div>
+        @{PatentVM x = new PatentVM();
+            x.AllCountry = Model.AllCountry;}
+        @Html.Partial("_Patents", x)
+    </div>
+    <div>
+        @*@Html.Partial("_Projects",new ProjectsVM{ Experiences = Model.Experiences})*@
+    </div>
+    @{int c = 5;}
+    <div>
+        @Html.Partial("_Publications", new PublicationVM())
+    </div>
+    @{int cx= 5;}
+    <div>
+        @Html.Partial("_TestScores", new TestScores { })
+    </div>
+    <div>
+        @Html.Partial("_Summary", new AboutVM())
+    </div>
+    <div>
+        @Html.Partial("_Skills", Model)
     </div>
 
-    <div>
-        <div class="modal fade" id="CoursesModal" tabindex="-1" role="dialog" aria-labelledby="FullModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content row">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="FullModalLabel">Add Course</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div id="course-body" class="modal-body">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div>
-        @*@Html.Partial("_Honor", new HonorVM { Experiences = Model.Experiences })*@
-        <div class="modal fade" id="AwardModal" tabindex="-1" role="dialog" aria-labelledby="FullModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content row">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="FullModalLabel">Add honors & awards</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div id="awards-body" class="modal-body">
-                    </div>
-                </div>
-            </div>
-        </div>
 
-    </div>
-                    <div>
-                        @*@Html.Partial("_wauges", new LanguageVM())*@
-                        <div class="modal fade" id="LanguageModal" tabindex="-1" role="dialog" aria-labelledby="FullModalLabel"
-                             aria-hidden="true">
-                            <div class="modal-dialog modal-lg" role="document">
-                                <div class="modal-content row">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="FullModalLabel">Add language</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div id="userlanguage-body" class="modal-body">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div>
-                        @Html.Partial("_Orgnizations", new OrganizationVM())
-                    </div>
-                    <div>
-                        @Html.Partial("_Patents", new PatentVM())
-                    </div>
-                    <div>
-                        @*@Html.Partial("_Projects", new ProjectsVM { Experiences = Model.Experiences })*@
-
-                        <div class="modal fade" id="Projects-Modal" tabindex="-1" role="dialog" aria-labelledby="FullModalLabel"
-                             aria-hidden="true">
-                            <div class="modal-dialog modal-lg" role="document">
-                                <div class="modal-content row">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="FullModalLabel">Add project</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div id="project-body" class="modal-body">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div>
-                        @Html.Partial("_Publications", new PublicationVM())
-                    </div>
-                    <div>
-                        <div class="modal fade" id="testScoreModal" tabindex="-1" role="dialog" aria-labelledby="FullModalLabel"
-                             aria-hidden="true">
-                            <div class="modal-dialog modal-lg" role="document">
-                                <div class="modal-content row">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="FullModalLabel">Add test score</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div id="testScore-body" class="modal-body">
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                                    <div>
-                                        @Html.Partial("_Summary", new AboutVM())
-                                    </div>
-
-                    <div>
-                        @Html.Partial("_Skills",new SkillsVM ())
-                    </div>
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    
+    @Html.Partial("_Scripts")
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="~/Scripts/HossamJs/script.js"></script>
+    <h1>aa</h1>
     <script>
-
-
-
-
-                        function addEperience() {
-                             ;
-                            var ajaxCallURL = '/Profile/AddWorkExperience/';
-                            var options = {
-                                "backdrop": "static",
-                                keyboard: true
-                            };
-                            $.ajax({
-                                type: "GET",
-                                url: ajaxCallURL,
-                                contentType: "application/json; charset=utf-8",
-                                datatype: "json",
-                                success: function (data) {
-                                    
-                                     
-
-                                    $('#ModelBody').html(data);
-                                    $('#WorkExperince').modal(options);
-                                    $('#WorkExperince').modal('show');
-                                },
-                                error: function () {
-                                    alert("Content load failed.");
-                                }
-                            });
-
-                        }
-                        function getEperience(id) {
-                             ;
-                            var ajaxCallURL = '/Profile/EditExperience/' + id;
-                            var options = {
-                                "backdrop": "static",
-                                keyboard: true
-                            };
-                            $.ajax({
-                                type: "GET",
-                                url: ajaxCallURL,
-                                contentType: "application/json; charset=utf-8",
-                                datatype: "json",
-                                success: function (data) {
-                                     ;
-                                     
-
-                                    $('#ModelBody').html(data);
-                                    $('#WorkExperince').modal(options);
-                                    $('#WorkExperince').modal('show');
-                                },
-                                error: function () {
-                                    alert("Content load failed.");
-                                }
-                            });
-
-                        }
-                        function addEducation() {
-                             ;
-                            var ajaxCallURL = '/Profile/AddEducation/';
-                            var options = {
-                                "backdrop": "static",
-                                keyboard: true
-                            };
-                            $.ajax({
-                                type: "GET",
-                                url: ajaxCallURL,
-                                contentType: "application/json; charset=utf-8",
-                                datatype: "json",
-                                success: function (data) {
-                                     ;
-                                     
-
-                                    $('#EducationBody').html(data);
-                                    $('#Education').modal(options);
-                                    $('#Education').modal('show');
-                                },
-                                error: function () {
-                                    alert("Content load failed.");
-                                }
-                            });
-
-                        }
-                        function getEducation(id) {
-                             ;
-                            var ajaxCallURL = '/Profile/editEducation/' + id;
-                            var options = {
-                                "backdrop": "static",
-                                keyboard: true
-                            };
-                            $.ajax({
-                                type: "GET",
-                                url: ajaxCallURL,
-                                contentType: "application/json; charset=utf-8",
-                                datatype: "json",
-                                success: function (data) {
-                                     ;
-                                     
-
-                                    $('#EducationBody').html(data);
-                                    $('#Education').modal(options);
-                                    $('#Education').modal('show');
-                                },
-                                error: function () {
-                                    alert("Content load failed.");
-                                }
-                            });
-
-                        }
-                        function AddCertification() {
-                             ;
-                            var ajaxCallURL = '/Profile/AddCertification/';
-                            var options = {
-                                "backdrop": "static",
-                                keyboard: true
-                            };
-                            $.ajax({
-                                type: "GET",
-                                url: ajaxCallURL,
-                                contentType: "application/json; charset=utf-8",
-                                datatype: "json",
-                                success: function (data) {
-                                     ;
-                                     
-
-                                    $('#certificates').html(data);
-                                    $('#Licenses1').modal(options);
-                                    $('#Licenses1').modal('show');
-                                },
-                                error: function () {
-                                    alert("Content load failed.");
-                                }
-                            });
-
-                        }
-                        function getCertification(id) {
-                             ;
-                            var ajaxCallURL = '/Profile/EditCertification/' + id;
-                            var options = {
-                                "backdrop": "static",
-                                keyboard: true
-                            };
-                            $.ajax({
-                                type: "GET",
-                                url: ajaxCallURL,
-                                contentType: "application/json; charset=utf-8",
-                                datatype: "json",
-                                success: function (data) {
-                                     ;
-                                     
-
-                                    $('#certificates').html(data);
-                                    $('#Licenses1').modal(options);
-                                    $('#Licenses1').modal('show');
-                                },
-                                error: function () {
-                                    alert("Content load failed.");
-                                }
-                            });
-
-                        }
-                        function AddVolunteer() {
-                             ;
-                            var ajaxCallURL = '/Profile/AddVoulanteer/';
-                            var options = {
-                                "backdrop": "static",
-                                keyboard: true
-                            };
-                            $.ajax({
-                                type: "GET",
-                                url: ajaxCallURL,
-                                contentType: "application/json; charset=utf-8",
-                                datatype: "json",
-                                success: function (data) {
-                                     ;
-                                     
-
-                                    $('#VolunteerBody').html(data);
-                                    $('#volunteer').modal(options);
-                                    $('#volunteer').modal('show');
-                                },
-                                error: function () {
-                                    alert("Content load failed.");
-                                }
-                            });
-
-                        }
-                        function EditVolunteer(Id ) {
-                           
-                            var ajaxCallURL = '/Profile/EditVolunteer/' + Id;
-                            var options = {
-                                "backdrop": "static",
-                                keyboard: true
-                            };
-                            $.ajax({
-                                type: "GET",
-                                url: ajaxCallURL,
-                                contentType: "application/json; charset=utf-8",
-                                datatype: "json",
-                                success: function (data) {
-                                     
-
-                                    $('#VolunteerBody').html(data);
-                                    $('#volunteer').modal(options);
-                                    $('#volunteer').modal('show');
-                                },
-                                error: function () {
-                                    alert("Content load failed.");
-                                }
-                            });
-
-                        }
-                    </script>
-                    @*@Html.Partial("_Scripts")*@
-
-
-
-    
-
-                                    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-                                    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-                                    <script src="~/Scripts/jquery.validate.min.js"></script>
-                                    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-                                    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-                                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-                                    <script src="~/Scripts/Profile/Profile.js"></script>
+        document.querySelector(".accomplishment__section3").addEventListener("click", function () {
+            console.log("hh");
+            var publicationPart = (document.getElementsByClassName("publicationPart").length)
+            for (i = 0; i < publicationPart; i++)
+                {
+                     document.getElementsByClassName("publicationPart")[i].style.display = 'block';
+                }
+        })
+    </script>
 </body>
 
 </html>

@@ -28,12 +28,6 @@ namespace ITI.MVC.LinkedIn.Web.Models.ViewModels
         public string Description { get; set; }
 
         public int ExperinceId { get; set; }
-
-        public DateTime? StartDate { get; set; }
-        public DateTime? EndDate { get; set; }
-
-        public int? id { get; set; }
-        public int? ProjectsCount { get; set; }
         public List<Experience> Experiences { get; set; }
     }
 }

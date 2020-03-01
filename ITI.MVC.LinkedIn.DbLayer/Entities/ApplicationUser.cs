@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace ITI.MVC.LinkedIn.DbLayer.Entities
 {
+    
     public class ApplicationUser : IdentityUser
     {
         public string Summary { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Headline { get; set; }
 
         [Column(TypeName = "datetime2")]
         public DateTime? BirthDate { get; set; }
@@ -38,8 +38,6 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
         public virtual ICollection<UserLanguage> UserLanguages { get; set; }
         public virtual ICollection<UserSkill> UserSkills { get; set; }
         public virtual ICollection<Experience> Experiences { get; set; }
-
-        [InverseProperty("User")]
         public virtual ICollection<Work> WorkExperiences { get; set; }
         public virtual ICollection<Volunteer> VolunteerExperiences { get; set; }
         public virtual ICollection<Education> EducationExperiences { get; set; }
@@ -70,4 +68,6 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
             return userIdentity;
         }
     }
+    
+  
 }

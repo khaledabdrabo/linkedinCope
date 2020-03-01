@@ -1,100 +1,67 @@
 ﻿@model ITI.MVC.LinkedIn.Web.Models.ViewModels.CoursesVM
-@{
-    string action = ViewBag.actionName;
-    AjaxOptions opts;
-    if (Model.CoursesCount > 0)
-    {
-        if (action == "EditCourse")
+    @{ 
+        AjaxOptions opts = new AjaxOptions
         {
-               opts = new AjaxOptions
-            {
-                HttpMethod = "POST",
-                UpdateTargetId = "CoursesColl",
-                OnBegin = "beginEdit("+"'courses-body-"+Model.id+"')",
-                InsertionMode = InsertionMode.InsertAfter,
-                OnSuccess = "sucessEditCourse(data)"
-
-
-            };
-        }
-        else
-        {
-            opts = new AjaxOptions
-            {
-                HttpMethod = "POST",
-                UpdateTargetId = "CoursesColl",
-                InsertionMode = InsertionMode.InsertAfter,
-                OnSuccess = "SucessCourse()"
-
-
-            };
-        }
-    }
-    else
-    {
-        opts = new AjaxOptions
-        {
-            HttpMethod = "POST",
-            UpdateTargetId = "acc-container",
-            InsertionMode = InsertionMode.InsertAfter,
-            OnSuccess = "SucessCourse(data)"
-
+            HttpMethod = "POST"
 
         };
+        List<SelectListItem> items = new List<SelectListItem>();
+       
+
+        foreach (var item in Model.Experiences)
+        {
+            SelectListItem Selecteditem;
+            if (item.WorkExperience != null) {
+                 Selecteditem = new SelectListItem { Text = ("Worked As " + item.WorkExperience.Title + " at " + item.Organization.Name),Value = item.Id.ToString() };
+            }
+            else
+            {
+                 Selecteditem = new SelectListItem { Text = ("Student At " + item.Organization.Name+" , " + item.EducationExperience.Degree),Value = item.Id.ToString()  };
+
+            }
+            items.Add(Selecteditem);
+        }
+
+        SelectList selectListItems = new SelectList(
+  items, "Value" , "Text");
     }
-    List<SelectListItem> items = new List<SelectListItem>();
+<div class="modal fade" id="CoursesModal" tabindex="-1" role="dialog" aria-labelledby="FullModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content row">
+            <div class="modal-header">
+                <h5 class="modal-title" id="FullModalLabel">Add Course</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @using (Ajax.BeginForm("AddCourse", "Profile", opts))
+                {
+                    <div class="form-controls">
+                        <div class="form-group">
+                            <label for="" class="required ">Course Name</label>
+                            @Html.EditorFor(e => e.Name, new { htmlAttributes = new { @class = "form-control" ,placeholder="Add Course" } })
+                            @Html.ValidationMessageFor(e => e.Name,null,new { @class = "text-danger"})
 
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="required">Number</label>
+                            @Html.TextBoxFor(e => e.Number,  new { @class = "form-control", placeholder = "Add Number" ,@type = "number" })
+                            @Html.ValidationMessageFor(e => e.Number, null, new { @class = "text-danger" })
+                        </div>
 
-    foreach (var item in Model.Experiences)
-    {
-        SelectListItem Selecteditem;
-        if (item.WorkExperience != null)
-        {
-            Selecteditem = new SelectListItem { Text = ("Worked As " + item.WorkExperience.Title + " at " + item.Organization.Name), Value = item.Id.ToString() };
-        }
-        else
-        {
-            Selecteditem = new SelectListItem { Text = ("Student At " + item.Organization.Name + " , " + item.EducationExperience.Degree), Value = item.Id.ToString() };
-
-        }
-        items.Add(Selecteditem);
-    }
-
-    SelectList selectListItems = new SelectList(
-items, "Value", "Text");
-
-}
-
-
-@using (Ajax.BeginForm(action, "Profile", opts))
-{
-    <div class="form-controls">
-        <div class="form-group">
-            <label for="" class="required ">Course Name</label>
-            @Html.EditorFor(e => e.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Add Course" } })
-            @Html.ValidationMessageFor(e => e.Name, null, new { @class = "text-danger" })
-
-        </div>
-        <div class="form-group">
-            <label for="" class="required">Number</label>
-            @Html.TextBoxFor(e => e.Number, new { @class = "form-control", placeholder = "Add Number", @type = "number" })
-            @Html.ValidationMessageFor(e => e.Number, null, new { @class = "text-danger" })
-        </div>
-
-        <div class="form-group">
-            <label for="">Associated with</label>
-            @Html.DropDownListFor(e => e.ExperinceId, selectListItems, "-", new { @class = "form-control" })
-            @Html.ValidationMessageFor(e => e.ExperinceId, null, new { @class = "text-danger" })
-        </div>
-        <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Save</button>
-        @if (action == "EditCourse")
-        {
-            @Ajax.ActionLink("delete", "DeleteCourse", new { id = Model.id }, opts,new {@class="btn btn-primary" })
-        }
+                        <div class="form-group">
+                            <label for="">Associated with</label>
+                            @Html.DropDownListFor(e => e.ExperinceId, selectListItems, "-", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(e => e.ExperinceId, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                                </div>
+                }
+            </div>
         </div>
     </div>
-    @Html.HiddenFor(e => e.CoursesCount)
-}
-
-@*@Html.Partial("_Scripts")*@
+</div>

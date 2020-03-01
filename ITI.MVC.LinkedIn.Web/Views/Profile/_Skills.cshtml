@@ -1,31 +1,198 @@
-﻿@model ITI.MVC.LinkedIn.Web.Models.ViewModels.SkillsVM
-<div class="modal fade" id="SkillsModal" tabindex="-1" role="dialog" aria-labelledby="SkillsModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content row">
+﻿
+@model ITI.MVC.LinkedIn.Web.Models.ViewModels.ProfileVM
+
+<style>
+    .skillSearch {
+        padding: 5px;
+        border: 1px solid black;
+        font-size: 20px;
+    }
+
+        .skillSearch > input {
+            width: 90%;
+            border: none;
+            font-size: 16px;
+            margin: 5px;
+        }
+
+            .skillSearch > input:focus {
+                padding: 0 5px;
+                outline: none;
+            }
+
+    .skilladded, .skillSuggest {
+        padding: 10px;
+        border: 1px solid black;
+    }
+
+
+    .hide {
+        display: none;
+    }
+
+    #skill {
+        margin: 5px;
+        padding: 5px 10px;
+        display: inline-block;
+        border-radius: 20px;
+        background-color: #E6EAED;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .skilladded > div {
+        background-color: #0073B1 !important;
+        color: white;
+    }
+
+    .modal-content {
+        width: 810px;
+    }
+</style>
+@{
+    AjaxOptions opts = new AjaxOptions
+    {
+        HttpMethod = "POST",
+        OnBegin = "begin()",
+        OnSuccess = "succ()",
+
+
+    };
+}
+@{
+    string[] skillsuggest = new string[] { "WorkShops ", "European Computer Driving Licence (ECDL)", "Microsoft Office", "Customer Service", "Microsoft Excel", "Leadership", "Microsoft Word", "Project Management", "Microsoft PowerPoint", "Research" };
+}
+
+<input type="hidden" id="LastSkillId" value='@Model.LastSkillId' name=""/>
+
+<div class="modal fade" id="SkillsModal" tabindex="-1" role="dialog" aria-labelledby="SkillsModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="SkillsModalLabel">Add Skills</h5>
+                <h3 class="modal-title" id="FullModalLabel">Add Skills</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form action="">
-                    <div class="form-controls">
-
-                        <div class="taged-textbox form-group">
-
-                            <input class="taged-textbox__textbox form-control" type="text" name="" id=""
-                                   placeholder="Add Skills">
+                <div class="form-controls">
+                    <div class="form-group">
+                        <div class="skillSearch">
+                            <i class="fas fa-search"></i><input class="searchskill" type="text" placeholder="Skill (ex: Data Analysis)">
                         </div>
-
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Save</button>
+                    @using (Ajax.BeginForm("AddSkills", "Profile", opts))
+                    {
+                        <input type="hidden" name="skillId" id="hiddId" />
+                        <input type="hidden" name="skillName" id="hiddName" />
+
+                        <div class="form-group">
+                            <div class="skilladded">
+                                <h5>You can add 48 more skills</h5>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="skillSuggest">
+                                <h4>Suggested skills based off your profile:</h4>
+                                @foreach (var skill in Model.Skills)
+                                {
+                                    <div class="sugg @skill.Id" id="skill">@skill.Name <span class=skillMark>+</span></div>
+                                }
+                                @*@for (int i = 0; i < skillsuggest.Length; i++)
+                                    {
+                                        <div class="sugg @i" id="skill">@skillsuggest[i] <span class=skillMark>+</span></div>
+                                    }*@
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input class="save" type="submit" value="Save" />
+                            @*  <button onclick="save()" type="button" class="btn btn-primary" data-dismiss="modal">Save</button>*@
+                        </div>
+                    }
+                </div>
+
             </div>
         </div>
     </div>
 </div>
 
+
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+
+<script>
+    var child, oldchild, newchild;
+    no = parseInt(document.getElementById("LastSkillId").value)+1;
+    console.log(no);
+    var newskillId = [];
+    var newskillName = [];
+    noOfNewSkill = 0;
+    document.querySelector(".skillSuggest").addEventListener("click", function (e) {
+        console.log("hh")
+        if (e.target.id == "skill") {
+            console.log(e.target.classList[1], e.target.firstChild.data)
+
+            newskillId[noOfNewSkill] = e.target.classList[1];
+            newskillName[noOfNewSkill] = e.target.firstChild.data;
+            noOfNewSkill++;
+            //no++;
+
+            child = document.getElementsByClassName("sugg " + e.target.classList[1] + "")[0];
+            child.style.display = 'none';
+            var removed = " <div class='added " + e.target.classList[1] + " ' id='skill'>" + e.target.firstChild.data + "<i class='fas fa-check'></i></div>"
+            document.querySelector(".skilladded").innerHTML += removed;
+
+        }
+    })
+
+    document.querySelector(".skilladded").addEventListener("click", function (e) {
+
+        if (e.target.id == "skill") {
+            var nn = { skillId: '' + e.target.classList[1], skillName: '' + e.target.firstChild.data };
+
+            oldchild = document.getElementsByClassName("added " + e.target.classList[1] + "")[0];
+            newchild = document.getElementsByClassName("sugg " + e.target.classList[1] + "")[0];
+
+            if (e.target.classList[1] < 1000) {
+
+                newchild.style.display = 'inline-block';
+            }
+
+            document.querySelector(".skilladded").removeChild(oldchild);
+
+            newskill = newskill.filter(value => value.skillId !== nn.skillId);
+           // no--;
+            console.log(newskill)
+        }
+    })
+
+    document.querySelector(".searchskill").addEventListener("keyup", function (e) {
+
+        if (e.keyCode == '13') {
+
+            var removed = " <div class='added " + no + " ' id='skill'>" + document.querySelector(".searchskill").value + "<i class='fas fa-check'></i></div>"
+            document.querySelector(".skilladded").innerHTML += removed;
+
+
+
+            newskillId[noOfNewSkill] = no;
+            newskillName[noOfNewSkill] = document.querySelector(".searchskill").value;
+            noOfNewSkill++;
+
+            console.log("kk");
+            console.log(no, document.querySelector(".searchskill").value );
+            document.querySelector(".searchskill").value = " ";
+            no++;
+        }
+    })
+
+    document.querySelector(".save").addEventListener("mouseup", function () {
+        console.log("lolo")
+        document.getElementById('hiddId').value = JSON.stringify(newskillId);
+        document.getElementById('hiddName').value = JSON.stringify(newskillName);
+
+    })
+
+</script>

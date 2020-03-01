@@ -12,21 +12,12 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
     public class SharedPost
     {
         [Key]
-        [ForeignKey("Post")]
         public int PostId { get; set; }
-
-        [ForeignKey("User")]
         public string UserId { get; set; }
-
-        [ForeignKey("OriginalPost")]
         public int OriginalPostId { get; set; }
 
         public virtual ApplicationUser User { get; set; }
-
-        [InverseProperty("SharedPost")]
         public virtual Post Post { get; set; }
-
-        [InverseProperty("Shares")]
         public virtual Post OriginalPost { get; set; }
     }
 }

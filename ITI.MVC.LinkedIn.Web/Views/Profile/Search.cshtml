@@ -1,0 +1,270 @@
+﻿@using ITI.MVC.LinkedIn.DbLayer.Entities;
+@model List<ApplicationUser>
+
+@{
+    Layout = null;
+}
+@{
+    AjaxOptions opts = new AjaxOptions
+    {
+        HttpMethod = "POST",
+        OnBegin = "begin()",
+        OnSuccess = "succ()",
+        OnFailure = "fail()"
+
+    };
+}
+
+<style>
+    .formstyle {
+        display: flex;
+    }
+    .notFound {
+        width: 792px;
+        background-color: #F5F5F5;
+        margin-right: 25px;
+    }
+        .notFound > div {
+            margin: 0 150px ;
+        }
+    .texrAreaNotFound{
+        width:490px;
+    }
+    .notFound--up {
+        text-align: center;
+        font-size: 14px;
+        padding: 50px 0;
+        border-bottom: 1px solid #CDCFD2;
+    }
+    .notFoundImg{
+        margin:50px 0 65;
+    }
+</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>test</title>
+    <link href="~/Content/css/search.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+          crossorigin="anonymous">
+</head>
+<body>
+
+    <div class="header">
+
+        <div class="d1">
+            <div class="logo">
+                <div class="logo--back"></div>
+                <div class="logo--icon"><a><i class="fab fa-linkedin"></i></a></div>
+            </div>
+        </div>
+
+        <div class="d2">
+            <div class="search__control">
+                <div class="search">
+                    <a class="search__icon"><i class="fas fa-search"></i></a><input type="text" value="Search">
+                </div>
+
+                <div class="search1 hide" style="height:35px;">
+                    @* <input type="text" placeholder="Search" autofocus<a class="search1__icon" href="https://www.google.com/"><i class="fas fa-search"></i></a>*@
+
+                    @*<form action="Search" method="POST" style="display:flex">*@
+                    @using (Ajax.BeginForm("Search", "Profile", null, opts, new { @class = "formstyle" }))
+                    {
+                        <input type="text" placeholder="Search" name="userName" autofocus style="width:210px"><input class="search1__icon" type="submit" value="ok" placeholder="search" style="background-color:lavender; width:20px;">
+                    }
+                    @*</form>*@
+                </div>
+            </div>
+        </div>
+
+        @{ Dictionary<string, string> dic = new Dictionary<string, string>() { { "home", "Home" }, { "user-friends", "My Network" }, { "briefcase", "Jobs" }, { "comment-dots", "Messaging" }, { "bell", "Notifications" }, { "caret-down", "Me" } };};
+
+        <div class="d3">
+
+            <div class="nav__item">
+                <ul>
+                    <li></li>
+                    @{ int x = 0;}
+                    @foreach (KeyValuePair<string, string> item in dic)
+                    {
+                        string cla = x == 3 || x == 4 ? "far fa-" + item.Key : "fas fa-" + item.Key;
+                        <li>
+                            <a href="">
+                                <span class="appear">
+                                    @if (x == 5)
+                                    {
+                                        <div class="personal-photo"></div>
+                                        <span>@item.Value <i class="@cla"></i></span>
+                                        continue;
+                                    }
+                                    <i class="@cla"></i><br>
+                                    <span>@item.Value</span>
+                                </span>
+                            </a>
+                        </li>
+
+                        x++;
+                    }
+
+                    <li class="nav__item--right">
+                        <a href=""><i class="fas fa-th"></i><br> Work<i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li><a class="premium" href="">Try Premium Free<br>for 1 Month</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div style="width: 100%; height: 58px; background-color: #E1E9EE;"></div>
+    <div style="width: 100%; height: 57px; margin-bottom: 20px; background-color: white; border: 0.5px solid #CFCFCF;"></div>
+
+
+    <div class="container" style="min-height:750px !important">
+         
+            @if (Model == null || Model.Count == 0)
+            {
+                <div div class="notFound">
+                <div class="notFound--up"> 
+                    <div class="notFoundImg">
+                        <img src="~/Content/img/notFound.svg" />
+                    </div>
+                    <div>
+                        <h2>No results found.</h2>
+                        <span>Your search returned no results. Try removing filters or rephrasing your search.</span>
+                    </div>
+                </div>
+                <div>
+                    <h3>Looking for someone not yet on LinkedIn? Invite them.</h3>
+                    <textarea placeholder="Enter Email address here, separated by comma" class="texrAreaNotFound"></textarea>
+                    <h4>How do you want to invite your contacts to LinkedIn?</h4>
+                    <input type="radio" name="rad" /> I’d like to add you to my professional network<br />
+                    <input type="radio" name="rad" /> LinkedIn can help you build a network, like I’m doing<br />
+                    <input type="radio" name="rad" /> Try LinkedIn if you’re looking to find the right job<br />
+                    <input type="radio" name="rad" /> Let’s use LinkedIn to keep in touch more often<br />
+                    <input type="radio" name="rad" /> LinkedIn keeps me informed, it might give you an edge at work<br />
+                </div>
+            </div>
+            }
+            else
+            {
+                <div class="container--left">
+                    <h3 class="No-result">Showing 2,189 results</h3>
+                    <ul>
+                        @foreach (ApplicationUser user in Model)
+                        {
+                            <li>
+                                <div class="search-result">
+
+                                    <div class="search-result__img">
+                                        <a href=""></a>
+                                    </div>
+
+                                    <div class="search-result__info">
+                                        <a href="" class="name"> @user.FirstName @user.LastName </a>
+                                        <p class="data"> @user.IndustryName </p>
+                                        <p class="country"> @user.CountryName </p>
+                                    </div>
+
+                                    <div class="search-result__action">
+                                        <button class="connect">Connect</button>
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+
+                    <div class="pages-number">
+                        <a href="" class="previous"><i class="fas fa-chevron-left"></i> Previous</a>
+                        <span>
+                            @{ List<string> num = new List<string> { "1", "2", "3", "4", "5", "6", "7", "8", "...", "100" }; }
+                            @foreach (string n in num)
+                            {
+                                @Html.ActionLink(n, null);
+                            }
+                        </span>
+                        <a href="" class="next">Next <i class="fas fa-chevron-right"></i></a>
+                    </div>
+
+                    <div class="bottom-img">
+                        <a href=""><img src="~/Content/img/img2.jpg" /></a>
+                    </div>
+                    
+                </div>
+            }
+
+        
+
+
+
+
+
+        <div class="container--right">
+            <a href=""><img src="~/Content/img/img1.jpg" /></a>
+        </div>
+    </div>
+
+    <div class="Footer">
+
+        <div class="Footer__title">Linked<i class="fab fa-linkedin"></i></div>
+        <div class="Footer__content--container">
+            @{string[] list1 = new string[] { "About", "Careers", "Advertising", "Small Business" };}
+            <div class="Footer__content">
+                @for (int i = 0; i < list1.Length; i++)
+                {
+                    <span> @Html.ActionLink(list1[i], null)</span>
+                }
+                <span class="Footer--Corporation">LinkedIn corp © 2020</span>
+            </div>
+
+            @{ string[] list2 = new string[] { "Talent Solutions", "Marketing Solutions", "Sales Solutions", "Safety Center" };}
+            <div class="Footer__content">
+                @for (int i = 0; i < list2.Length; i++)
+                {
+                    <span> @Html.ActionLink(list2[i], null)</span>
+                }
+            </div>
+
+            @{ List<string> list3 = new List<string> { "Community Guidelines", "Privacy & Terms", "Mobile" };}
+
+            <div class="Footer__content">
+                <span><a href="">Community Guidelines</a></span>
+                <span><a href="">Privacy & Terms &nbsp;<i class="fas fa-chevron-down"></i></a></span>
+                <span><a href="">Mobile</a></span>
+            </div>
+
+            <div class="Footer__content">
+                <span><a href=""><i class="far fa-question-circle"></i>&nbsp; Questions?<br><span class="detail">Visit our Help Center.</span></a></span>
+                <span><a href=""><i class="fas fa-cog"></i>&nbsp; Manage your account and privacy.<br><span class="detail">Go to your Settings.</span></a></span>
+            </div>
+
+            <div class="Footer__content">
+                <span class="select-title">Select Language</span>
+                <select name="" id="">
+                    @{string[] list4 = new string[] { "English (English)", "French", "Italy", "العربيه" };}
+                    @for (int i = 0; i < list4.Length; i++)
+                    {
+                        <option>@list4[i]</option>
+                    }
+                </select>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Scripts/src/app.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script>
+        function begin() {
+            conole.log("doooood");
+        }
+    </script>
+</body>
+</html> 
