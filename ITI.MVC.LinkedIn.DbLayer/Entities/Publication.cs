@@ -24,7 +24,7 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
 
         public string Publisher { get; set; }
 
-        public DataType Date { get; set; }
+        public DateTime Date { get; set; }
 
         public string Author { get; set; }
 

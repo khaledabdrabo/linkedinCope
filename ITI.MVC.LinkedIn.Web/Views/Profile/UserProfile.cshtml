@@ -1974,7 +1974,9 @@
                         @Html.Partial("_Orgnizations", new OrganizationVM())
                     </div>
                     <div>
-                        @Html.Partial("_Patents", new PatentVM())
+                        @{PatentVM x = new PatentVM();
+                            x.AllCountry = Model.AllCountry;}
+                        @Html.Partial("_Patents", x)
                     </div>
                     <div>
                         @*@Html.Partial("_Projects", new ProjectsVM { Experiences = Model.Experiences })*@
@@ -2024,7 +2026,7 @@
                                     </div>
 
                     <div>
-                        @Html.Partial("_Skills",new SkillsVM ())
+                        @Html.Partial("_Skills",Model)
                     </div>
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     

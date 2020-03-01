@@ -102,6 +102,10 @@
     <Compile Include="Migrations\202002280143444_init.designer.cs">
       <DependentUpon>202002280143444_init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003011419418_aftet.cs" />
+    <Compile Include="Migrations\202003011419418_aftet.designer.cs">
+      <DependentUpon>202003011419418_aftet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -115,6 +119,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202002280143444_init.resx">
       <DependentUpon>202002280143444_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003011419418_aftet.resx">
+      <DependentUpon>202003011419418_aftet.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

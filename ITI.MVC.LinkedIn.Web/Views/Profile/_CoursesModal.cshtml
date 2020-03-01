@@ -54,7 +54,7 @@
         }
         else
         {
-            Selecteditem = new SelectListItem { Text = ("Student At " + item.Organization.Name + " , " + item.EducationExperience.Degree), Value = item.Id.ToString() };
+            Selecteditem = new SelectListItem { Text = ("Student At " + item.Organization.Name + " , " +item.EducationExperience != null ?  item.EducationExperience.Degree : ""), Value = item.Id.ToString() };
 
         }
         items.Add(Selecteditem);

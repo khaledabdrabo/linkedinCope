@@ -22,5 +22,10 @@ namespace ITI.MVC.LinkedIn.Store.DbManagers
         {
             return dbc.Countries.Where(o => o.Name == countryName).FirstOrDefault();
         }
+
+        public List<string> GetAllCountry()
+        {
+            return Set.Select(e => e.Name).ToList();
+        }
     }
 }

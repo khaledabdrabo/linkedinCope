@@ -15,6 +15,9 @@ using System.ComponentModel.DataAnnotations;
 using ITI.MVC.LinkedIn.Web.Models.Enums;
 using System.Web.Services;
 using System.Threading.Tasks;
+using ITI.MVC.LinkedIn.DbLayer;
+using System.Web.Script.Serialization;
+
 namespace ITI.MVC.LinkedIn.Web.Controllers
 {
     [Authorize]
@@ -39,11 +42,15 @@ namespace ITI.MVC.LinkedIn.Web.Controllers
             }
             var user = Store.ApplicationUserManager.FindById(User.Identity.GetUserId());
             ViewBag.getAllEperinec = Store.WorkManager.GetAll().Include(e => e.Organization).Include(e => e.Experience).Where(ex => ex.UserId == id).ToList();
-            if (user.Images.ToList()[0] != null)
+ /*           if (user.Images.ToList()!= null)
             {
-                ViewBag.imag = user.Images.ToList()[0].Url.Replace("C:\\Users\\khaled abdrabo\\Desktop\\LatestVersion\\newversion\\iti-mvc-linkedin\\ITI.MVC.LinkedIn.Web\\Images\\", "") : null;
+                ViewBag.imag = user.Images.ToList()[0].Url.Replace("C:\\Users\\khaled abdrabo\\Desktop\\LatestVersion\\newversion\\iti-mvc-linkedin\\ITI.MVC.LinkedIn.Web\\Images\\", ""); 
 
             }
+            else
+            {
+                ViewBag.imag = null;
+            }*/
             ViewBag.name = user.FirstName + user.LastName;
             ViewBag.country = user.CountryName;
             ViewBag.connection = Store.ConnectionManager.GetAllBind().Where(c => c.SenderId == id || c.ReceiverId == id).Count();
@@ -66,6 +73,11 @@ namespace ITI.MVC.LinkedIn.Web.Controllers
             List<Award> awards = awardManager.GetAllBindByUserID(User.Identity.GetUserId());
             List<TestScore> testScores = testScoreManager.GetAllBindByUserID(User.Identity.GetUserId());
 
+            CountryManager countryManager = Store.CountryManager;
+            SkillManager skillManager = Store.SkillManager;
+            List<Skill> skills = (List<Skill>)skillManager.GetAllBind();
+            List<string> country = countryManager.GetAllCountry();
+
             ProfileVM profileVM = new ProfileVM
             {
                 Experiences = experiences != null ? experiences : null,
@@ -73,11 +85,125 @@ namespace ITI.MVC.LinkedIn.Web.Controllers
                  UserLanguages = userLanguages != null ? userLanguages : null,
                  TestScores = testScores != null ? testScores : null,
                  Awards = awards != null ? awards : null,
-                  projects = projects != null ? projects : null
+                  projects = projects != null ? projects : null,
+                AllCountry = country,
+                Skills = skills,
+                LastSkillId = skillManager.GetAllBind().LastOrDefault() != null ? skillManager.GetAllBind().LastOrDefault().Id : 0
 
 
             };
             return View(profileVM);
+        }
+
+        [HttpGet]
+        public ActionResult Search(List<ApplicationUser> users)
+        {
+            List<ApplicationUser> resultUsers = new List<ApplicationUser>();
+
+            resultUsers = (List<ApplicationUser>)TempData["users"];
+
+            return View(resultUsers);
+        }
+
+        [HttpPost]
+        public ActionResult Search(string userName)
+        {
+            String firstName, lastName;
+            ApplicationDbContext appUser = new ApplicationDbContext();
+            List<ApplicationUser> users = new List<ApplicationUser>();
+
+            string[] name = userName.Split(' ');
+
+
+            firstName = name[0];
+            if (name.Length == 1)
+            {
+                users = appUser.Users.Where(e => e.FirstName == firstName).ToList();
+
+            }
+
+            else if (name.Length == 2)
+            {
+                lastName = name[1];
+                users = appUser.Users.Where(e => e.FirstName == firstName && e.LastName == lastName).ToList();
+            }
+            TempData["users"] = users;
+
+            return RedirectToAction("Search");
+        }
+
+        [HttpPost]
+
+        public ActionResult AddPublication(PublicationVM model)
+        {
+            if (ModelState.IsValid)
+            {
+                PublicationManager publicationManager = Store.PublicationManager;
+                publicationManager.Remove(publicationManager.GetAllBind().LastOrDefault());
+                //int userId = (int.Parse(publicationManager.GetAllBind().LastOrDefault().UserId)) + 1;
+                Publication publication = new Publication { Title = model.Title, Publisher = model.Publisher, Date = new DateTime(model.Year, Convert.ToInt32(model.Month), model.Day), Author = model.Author, Url = model.URL, Description = model.Description, UserId = User.Identity.GetUserId() };
+
+                publicationManager.Add(publication);
+            }
+
+            return (null);
+        }
+
+        [HttpPost]
+        public ActionResult AddSkills(string skillId, string skillName)
+        {
+            UserSkillManager userskillManager = Store.UserSkillManager;
+            SkillManager skillManager = Store.SkillManager;
+
+            JavaScriptSerializer json_serializer = new JavaScriptSerializer();
+            object[] SId = (object[])json_serializer.DeserializeObject(skillId);
+            object[] SName = (object[])json_serializer.DeserializeObject(skillName);
+
+            userSkill[] skills = new userSkill[SId.Length];
+            string c = SName[0].ToString();
+            for (int i = 0; i < SId.Length; i++)
+            {
+                skills[i] = new userSkill { skillId = int.Parse(SId[i].ToString()), skillName = SName[i].ToString() };
+
+                // if user add new skill that does not exist in table
+                if (skillManager.GetById(skills[i].skillId) == null)
+                {
+                    Skill skill = new Skill { Id = skills[i].skillId, Name = skills[i].skillName };
+                    skillManager.Add(skill);
+                }
+
+                UserSkill userskill = new UserSkill { UserId = User.Identity.GetUserId(), SkillId = skills[i].skillId };
+
+                userskillManager.Add(userskill);
+
+
+
+            }
+
+            return (null);
+
+
+        }
+
+        [HttpPost]
+        public ActionResult AddPatents(PatentVM model)
+        {
+            if (ModelState.IsValid)
+            {
+                PatentManager patentnManager = Store.PatentManager;
+
+                //patentnManager.Remove(patentnManager.GetAllBind().LastOrDefault());
+
+                //int userId = (int.Parse(patentnManager.GetAllBind().LastOrDefault().UserId)) + 1;
+                Patent patent = new Patent { Title = model.Title, CountryName = model.Office, Number = model.PatentNo,
+                    Status = model.Status, Date = new DateTime(model.Year, Convert.ToInt32(model.Month), model.Day), Inventor = model.Inventor, Url = model.URL,
+                    Description = model.Description, UserId = User.Identity.GetUserId()
+                };
+
+                patentnManager.Add(patent);
+            }
+
+            return (null);
         }
 
         public ActionResult DeleteCourse(int id)
@@ -1298,5 +1424,10 @@ namespace ITI.MVC.LinkedIn.Web.Controllers
             }
             return RedirectToAction("UserProfile");
         }
+    }
+    public class userSkill
+    {
+        public int skillId { get; set; }
+        public string skillName { get; set; }
     }
 }
