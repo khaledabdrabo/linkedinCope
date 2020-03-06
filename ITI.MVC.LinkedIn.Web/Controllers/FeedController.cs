@@ -41,13 +41,13 @@ namespace ITI.MVC.LinkedIn.Web.Controllers
             List<Post> posts = Store.PostManager.GetByUserId(CurrentUser.Id);
             List<SharedPost> sharedPosts = Store.SharedPostManager.GetByUserId(CurrentUser.Id);
 
-            return View(new PostsVM { User = CurrentUser, Posts = posts, SharedPosts = sharedPosts });
+            return View(new FeedVM { User = CurrentUser, Posts = posts, SharedPosts = sharedPosts });
         }
 
         [HttpPost]
-        public bool CreatePost(PostVM model)
+        public bool CreatePost(CreatePostVM model)
         {
-            if (!ModelState.IsValid || (model.PostContent == null && model.File == null))
+            if (!ModelState.IsValid || (model.PostContent == null && model.UploadedFile == null))
             {
                 return false;
             }
@@ -59,10 +59,12 @@ namespace ITI.MVC.LinkedIn.Web.Controllers
                 Text text = new Text { Content = model.PostContent, Time = DateTime.Now, UserId = userId };
                 text = Store.TextManager.Add(text);
 
-                if (model.File != null)
+                if (model.UploadedFile != null)
                 {
-                    string targetPath = Path.Combine(HttpContext.Server.MapPath("~/Uploads"), model.File.FileName);
-                    model.File.SaveAs(targetPath);
+                    string fileName = DateTime.Now.ToString("hh-mm-ss-ddMMyy-") + model.UploadedFile.FileName;
+
+                    string targetPath = Path.Combine(HttpContext.Server.MapPath("/Uploads"), fileName);
+                    model.UploadedFile.SaveAs(targetPath);
 
                     Image image = new Image { ImageRole = ImageRole.Post, Url = targetPath, UserId = userId };
                     image = Store.ImageManager.Add(image);
@@ -74,8 +76,9 @@ namespace ITI.MVC.LinkedIn.Web.Controllers
                 Store.PostManager.Add(post);
             }
 
-            catch
+            catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 return false;
             }
 

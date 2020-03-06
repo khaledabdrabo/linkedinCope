@@ -192,7 +192,8 @@
     <Compile Include="Models\ViewModels\LanguageVM.cs" />
     <Compile Include="Models\ViewModels\OrganizationVM.cs" />
     <Compile Include="Models\ViewModels\PatentVM.cs" />
-    <Compile Include="Models\ViewModels\PostsVM.cs" />
+    <Compile Include="Models\ViewModels\FeedVM.cs" />
+    <Compile Include="Models\ViewModels\CreatePostVM.cs" />
     <Compile Include="Models\ViewModels\PostVM.cs" />
     <Compile Include="Models\ViewModels\ProfileVM.cs" />
     <Compile Include="Models\ViewModels\ProjectsVM.cs" />
@@ -244,6 +245,7 @@
     <Content Include="Scripts\esm\popper.min.js" />
     <Content Include="Scripts\Feed\create-comment.js" />
     <Content Include="Scripts\Feed\create-post.js" />
+    <Content Include="Scripts\Feed\post.js" />
     <Content Include="Scripts\index.js.flow" />
     <Content Include="Scripts\esm\popper.min.js.map" />
     <Content Include="Scripts\esm\popper.js.map" />
@@ -266,7 +268,7 @@
     <Content Include="fonts\fontawesome-webfont.eot" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\HossamJs\script.js" />
-    <Content Include="Scripts\Feed\post.js" />
+    <Content Include="Scripts\Feed\post-ui.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />

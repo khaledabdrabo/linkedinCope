@@ -1,4 +1,4 @@
-﻿@model PostsVM
+﻿@model FeedVM
 
 @{
     ViewBag.Title = "Feed";
@@ -10,13 +10,13 @@
 
     <div class="col-md-6 col-lg-6 col-sm-6">
 
-        @Html.Partial("_CreatePost", new PostVM())
+        @Html.Partial("_CreatePost", new CreatePostVM())
 
         <div id="postsContainer" class="posts mt-5">
 
             @foreach (Post post in Model.Posts)
             {
-                @Html.Partial("_Post", post)
+                @Html.Partial("_Post", new PostVM { Post = post, User = Model.User })
             }
 
             @foreach (SharedPost sharedPost in Model.SharedPosts)
@@ -30,6 +30,7 @@
 
 @section Scripts {
     <script src="~/Scripts/Feed/post.js"></script>
+    <script src="~/Scripts/Feed/post-ui.js"></script>
     <script src="~/Scripts/Feed/create-post.js"></script>
     <script src="~/Scripts/Feed/create-comment.js"></script>
 }

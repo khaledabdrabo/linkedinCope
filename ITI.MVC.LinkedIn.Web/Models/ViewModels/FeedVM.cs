@@ -6,7 +6,7 @@ using System.Web;
 
 namespace ITI.MVC.LinkedIn.Web.Models.ViewModels
 {
-    public class PostsVM
+    public class FeedVM
     {
         public ApplicationUser User { get; set; }
         public List<Post> Posts { get; set; }

@@ -1,9 +1,14 @@
 ﻿@model ApplicationUser
 
+@{
+    Image image = Model.Images.Where(i => i.ImageRole == ImageRole.Profile).FirstOrDefault();
+    string imageUrl = image != null ? Url.Content("~/Uploads" + Path.GetFileName(image.Url)) : "";
+}
+
 <div class="col-md-4 col-lg-4 col-sm-4">
 
     <div class="profile mx-auto">
-        <img class="profile--Image" src="@(Model.Images.Count != 0 ? Model.Images.Where(i => i.ImageRole == ImageRole.Profile).First().Url : "")"/>
+        <img class="profile--Image" src="@imageUrl" alt="profile image" />
         <div class="profile--info ">
             <div class="profile--text ">
                 <a href="#">
