@@ -28,14 +28,19 @@ namespace ITI.MVC.LinkedIn.DbLayer.Entities
 
         public EmploymentType? EmploymentType { get; set; }
 
-        [StringLength(50, ErrorMessage = "The name can only be 2 to 50 characters long.", MinimumLength = 2)]
-        [Required(ErrorMessage = "Headline is required")]
-        public string Headline { get; set; }
+        //[StringLength(50, ErrorMessage = "The name can only be 2 to 50 characters long.", MinimumLength = 2)]
+        //[Required(ErrorMessage = "Headline is required")]
+        //public string Headline { get; set; }
 
         public virtual Experience Experience { get; set; }
         public virtual Country Country { get; set; }
 
         [InverseProperty("WorkExperiences")]
         public virtual ApplicationUser User { get; set; }
+        [ForeignKey("Organization")]
+        public int Organization_Id { get; set; }
+        public virtual Organization Organization { get; set; }
+        public string description { get; set; }
+        
     }
 }

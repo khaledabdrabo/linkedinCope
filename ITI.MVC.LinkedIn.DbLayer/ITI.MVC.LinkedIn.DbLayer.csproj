@@ -92,25 +92,36 @@
     <Compile Include="Entities\Volunteer.cs" />
     <Compile Include="Entities\Work.cs" />
     <Compile Include="Enums\ImageRole.cs" />
+    <Compile Include="Enums\LaungaugeProficiency.cs" />
     <Compile Include="Enums\PatentStatus.cs" />
     <Compile Include="Enums\VolunteeringCause.cs" />
     <Compile Include="Enums\EmploymentType.cs" />
     <Compile Include="Enums\OrganizationType.cs" />
     <Compile Include="ApplicationDbContext.cs" />
-    <Compile Include="Migrations\202002271435561_Init.cs" />
-    <Compile Include="Migrations\202002271435561_Init.Designer.cs">
-      <DependentUpon>202002271435561_Init.cs</DependentUpon>
+    <Compile Include="Migrations\202002280143444_init.cs" />
+    <Compile Include="Migrations\202002280143444_init.designer.cs">
+      <DependentUpon>202002280143444_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003011419418_aftet.cs" />
+    <Compile Include="Migrations\202003011419418_aftet.designer.cs">
+      <DependentUpon>202003011419418_aftet.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </None>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202002271435561_Init.resx">
-      <DependentUpon>202002271435561_Init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202002280143444_init.resx">
+      <DependentUpon>202002280143444_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003011419418_aftet.resx">
+      <DependentUpon>202003011419418_aftet.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

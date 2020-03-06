@@ -1,0 +1,68 @@
+﻿@model ITI.MVC.LinkedIn.Web.Models.ViewModels.CoursesVM
+@{ string action = ViewBag.actionName;
+    if (Model.CoursesCount > 0)
+    {
+    <div id="courses-body-@Model.id" class="body-container h4">
+        <div class="float-right">
+            <a onclick="EditCourse(@Model.id)" class="btn btn--plus" style="color:#0E7BB5"><i class="fas fa-pencil-alt"></i> </a>
+        </div>
+        <div class="course-Name font-weight-bold"> @Model.Name</div>
+        <div class="course-number font-weight-normal p">@Model.Number</div>
+        <hr />
+    </div>
+    }
+    else
+    {
+         
+        <div id="Courses-Acc" class="accomplishment">
+            <div class="accomplishment__section accomplishment__section1">
+                <p class="accomplishment__number" id="courses-count"> 1 </p>
+            </div>
+            <div class="accomplishment__section accomplishment__section2 mr-3">
+                <h4 class="accomplishment__type">
+                    Courses
+                </h4>
+                <p id="Courses-Names" class="accomplishment__description">
+                    @Model.Name
+                </p>
+            </div>
+            <div class="accomplishment__section accomplishment__section3 float-md-right">
+                <button type="button" class="btn btn--arrow  btn--active" data-toggle="collapse" data-target="#CoursesColl"><i class="fas fa-chevron-down"></i></button>
+                <a class="btn btn--arrow" id="btn-2"> <i class="fas fa-chevron-up"></i></a>
+            </div>
+
+            <div id="CoursesColl" class="collapse h5 font-weight-bold">
+
+                <div id="courses-body-@Model.id" class="body-container h4">
+                    <div class="float-right">
+                        <a onclick="EditCourse(@Model.id)" class="btn btn--plus" style="color:#0E7BB5"><i class="fas fa-pencil-alt"></i> </a>
+                    </div>
+                    <div class="course-Name font-weight-bold"> @Model.Name</div>
+                    <div class="course-number font-weight-normal p">@Model.Number</div>
+                    <hr />
+                </div>
+
+            </div>
+        </div>
+    }
+}
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        if (@Model.CoursesCount > 0) {
+            if ("@action" == "EditCourse") {
+                var content = $("#Courses-Names").html();
+                var newContent = content.replace(`@Model.OldName`,`@Model.Name`);
+                    $("#Courses-Names").html(newContent);
+            }
+            else {
+                $("#Courses-Names").append(`<i class="fas fa-circle" style="font-size: 5px"></i> @Model.Name`);
+                document.getElementById("courses-count").innerHTML = @Model.CoursesCount +1;
+            }
+        }
+
+
+
+    });
+</script>

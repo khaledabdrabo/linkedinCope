@@ -1,6 +1,10 @@
-﻿using System;
+﻿using ITI.MVC.LinkedIn.DbLayer;
+using ITI.MVC.LinkedIn.DbManager;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +12,7 @@ using System.Threading.Tasks;
 namespace ITI.MVC.LinkedIn.DbManager
 {
     public class DbManager<TEntity> : IDbManager<TEntity> where TEntity : class
+       
     {
         DbContext ctx;
         DbSet<TEntity> set;
@@ -18,7 +23,9 @@ namespace ITI.MVC.LinkedIn.DbManager
             set = ctx.Set<TEntity>();
         }
 
-        public DbSet<TEntity> Set { get => set; }
+        public DbSet<TEntity> Set { get {return set; } }
+        public DbContext Ctx { get { return this.ctx; } }
+
 
         public TEntity Add(TEntity entity)
         {
@@ -52,10 +59,13 @@ namespace ITI.MVC.LinkedIn.DbManager
 
         public bool Update(TEntity entity)
         {
-            Set.Attach(entity);
-            ctx.Entry(entity).State = EntityState.Modified;
+            set.AddOrUpdate(entity);
+            //set.AsNoTracking();
+            //set.n.Attach(entity);
+            //ctx.Entry(entity).State = EntityState.Modified;
 
-            return ctx.SaveChanges() > 0;
+                return ctx.SaveChanges() > 0;
+            
         }
     }
 }

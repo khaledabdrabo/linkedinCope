@@ -14,5 +14,11 @@ namespace ITI.MVC.LinkedIn.Store.DbManagers
         public TestScoreManager(DbContext ctx) : base(ctx)
         {
         }
+        public List<TestScore> GetAllBindByUserID(string id)
+        {
+
+            List<TestScore> TestScores = this.Set.Where(e => e.UserId == id).ToList();
+            return TestScores;
+        }
     }
 }

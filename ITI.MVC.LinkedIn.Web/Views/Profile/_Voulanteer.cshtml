@@ -1,37 +1,46 @@
 ﻿@model ITI.MVC.LinkedIn.Web.Models.ViewModels.VoulanteerVM
-<div class="modal fade" id="volunteer" tabindex="-1" role="dialog" aria-labelledby="FullModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content row">
-            <div class="modal-header">
-                <h5 class="modal-title" id="FullModalLabel">Add volunteer experience</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="">
+@{ string action = ViewBag.actionName;}
+@using (Ajax.BeginForm(action, "Profile", new AjaxOptions { HttpMethod = "POST", OnSuccess = "OnSuccess", OnFailure = "OnFailure" }))
+{
+    if (action == "EditVolunteer")
+    {
+        @Html.HiddenFor(m => m.Volunteer.ExperienceId)
+        @Html.HiddenFor(m => m.Volunteer.Experience.OrganizationId)
+        @*@Html.HiddenFor(m => m.Volunteer..UserId)*@
+    }
+
                     <div class="form-controls">
                         <div class="form-group">
                             <label for="" class="required">Organization</label>
-                            <input class="form-control" type="text" name="" id="" placeholder="Ex:Red Cross">
+                            @Html.TextBoxFor(m => m.Volunteer.Experience.Organization.Name, new { @class = "form-control", @placeholder = "Ex:Red Cross" })
+                            @Html.ValidationMessageFor(m => m.Volunteer.Experience.Organization.Name, "", new { @class = "text-danger" })
+
+
+                            @*<input class="form-control" type="text" name="" id="" placeholder="Ex:Red Cross">*@
                         </div>
 
                         <div class="form-group">
                             <label for="" class="required">Role</label>
-                            <input class="form-control" type="text" name="" id="" placeholder="Ex:Fund Raising Volunteer">
+                            @Html.TextBoxFor(m => m.Volunteer.Role, new { @class = "form-control", @placeholder = "Ex:Fund Raising Volunteer" })
+                            @Html.ValidationMessageFor(m => m.Volunteer.Role, "", new { @class = "text-danger" })
+
+
+                            @*<input class="form-control" type="text" name="" id="" placeholder="Ex:Fund Raising Volunteer">*@
                         </div>
 
                         <div class="form-group">
                             <label for="">Cause</label>
-                            <select class="form-control" name="" id="">
+                           @Html.EnumDropDownListFor(x => x.Volunteer.VolunteeringCause, "-", new { @class = "form-control" })
+
+
+                            @*<select class="form-control" name="" id="">
                                 <option value="" disabled selected hidden>-</option>
                                 <option value="">Opa</option>
                                 <option value="">Opaa</option>
                                 <option value="">Opaaa</option>
                                 <option value="">Opaaaa</option>
                                 <option value="">Opaaaaa</option>
-                            </select>
+                            </select>*@
                         </div>
                         <div class="form-group">
                             <div>
@@ -53,10 +62,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-6"id="EndWorkDateVolunteer">
                                     <label for="" class="required">End Date</label>
-                                    <h4 id="PresentWorkDate">Present</h4>
-                                    <div class="row" id="EndWorkDate">
+                                    
+                                    <div class="row" >
                                         <div class="col-sm-12">
 
                                             @Html.DropDownListFor(e => e.EndMonth, EnumHelper.GetSelectList(typeof(ITI.MVC.LinkedIn.Web.Models.Enums.MonthEnum)), "Month", new { @class = "form-control" })
@@ -70,14 +79,41 @@
                         </div>
                         <div class="form-group">
                             <label for="">Description</label>
-                            <textarea class="form-control" name="" id="" cols="30" rows="4"></textarea>
+                            @Html.TextAreaFor(m => m.Volunteer.Experience.Description, 4, 30, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Volunteer.Experience.Description, "", new { @class = "text-danger" })
+
+
+                            
                         </div>
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Save</button>
-            </div>
-        </div>
-    </div>
-</div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Save</button>
+@if (action == "EditVolunteer")
+{
+                        @Ajax.ActionLink("delete", "DeleteVolunteer", new { id = Model.Volunteer.ExperienceId },
+new AjaxOptions
+{
+    OnSuccess = "OnSuccess"
+
+})
+}       </div>
+
+           
+}
+
+<script>
+    //$("#CurrentlyWorking").s
+    $('input[type="checkbox"]').click(function () {
+        if ($(this).prop("checked") == true) {
+            $("#EndWorkDateVolunteer").hide();
+        }
+        else if ($(this).prop("checked") == false) {
+            $("#EndWorkDateVolunteer").show();
+        }
+    });
+    function OnSuccess() {
+        debugger
+        $("#volunteer").modal('hide');
+        $("#Background").load(" #Background");
+    }
+</script>

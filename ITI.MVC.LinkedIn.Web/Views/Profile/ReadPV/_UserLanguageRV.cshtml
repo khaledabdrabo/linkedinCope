@@ -1,0 +1,57 @@
+﻿@model ITI.MVC.LinkedIn.Web.Models.ViewModels.LanguageVM
+@{ if (Model.userlanguageCount > 0)
+    {
+        <div id="language-read-body" class="body-container h4">
+            <div class="float-right">
+                <a onclick="EditUserLanguage(@Model.id)" class="btn btn--plus" style="color:#0E7BB5"><i class="fas fa-pencil-alt"></i> </a>
+            </div>
+            <div class="course-Name font-weight-bold"> @Model.LanguageName</div>
+            <div class="course-number font-weight-normal p">@Model.Proficiency</div>
+            <hr />
+        </div>
+    }
+    else
+    {
+
+<div id="language-read" class="accomplishment">
+    <div class="accomplishment__section accomplishment__section1">
+        <p id="language-read-count" class="accomplishment__number">1</p>
+    </div>
+    <div class="accomplishment__section accomplishment__section2 mr-3">
+        <h4 class="accomplishment__type">
+            Languages
+        </h4>
+        <p id="language-read-names" class="accomplishment__description">
+      @Model.LanguageName
+        </p>
+    </div>
+    <div class="accomplishment__section accomplishment__section3 float-md-right">
+        <button class="btn btn--arrow  btn--active" id="language-button" data-toggle="collapse" data-target="#LanguageColl"><i class="fas fa-chevron-down"></i></button>
+        <a class="btn btn--arrow" id="btn-2"> <i class="fas fa-chevron-up"></i></a>
+    </div>
+    <div id="LanguageColl" class="collapse">
+        <div id="language-read-body" class="body-container h4">
+            <div class="float-right">
+                <a onclick="EditUserLanguage(@Model.id)" class="btn btn--plus" style="color:#0E7BB5"><i class="fas fa-pencil-alt"></i> </a>
+            </div>
+            <div class="course-Name font-weight-bold"> @Model.LanguageName</div>
+            <div class="course-number font-weight-normal p">@Model.Proficiency</div>
+            <hr />
+        </div>
+    </div>
+</div>
+    }
+}
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        if (@Model.userlanguageCount > 0) {
+            $("#language-read-names").append(`<i class="fas fa-circle" style="font-size: 5px"></i> @Model.LanguageName`);
+            document.getElementById("language-read-count").innerHTML = @Model.userlanguageCount +1;
+        }
+
+
+
+    });
+</script>

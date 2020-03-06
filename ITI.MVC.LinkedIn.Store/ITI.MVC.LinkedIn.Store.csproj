@@ -35,9 +35,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DbManager">
-      <HintPath>..\ITI.MVC.LinkedIn.DbManager\bin\Debug\DbManager.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -117,14 +114,13 @@
     <Compile Include="DbStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\ITI.MVC.LinkedIn.DbLayer\ITI.MVC.LinkedIn.DbLayer.csproj">
-      <Project>{874597CF-4E43-4064-8C13-F7E86E5B554A}</Project>
+      <Project>{874597cf-4e43-4064-8c13-f7e86e5b554a}</Project>
       <Name>ITI.MVC.LinkedIn.DbLayer</Name>
     </ProjectReference>
     <ProjectReference Include="..\ITI.MVC.LinkedIn.DbManager\ITI.MVC.LinkedIn.DbManager.csproj">
-      <Project>{2C3BE841-B0BB-423B-B738-77938DC63D28}</Project>
+      <Project>{2c3be841-b0bb-423b-b738-77938dc63d28}</Project>
       <Name>ITI.MVC.LinkedIn.DbManager</Name>
     </ProjectReference>
   </ItemGroup>

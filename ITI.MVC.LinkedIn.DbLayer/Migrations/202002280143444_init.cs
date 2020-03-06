@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Init : DbMigration
+    public partial class init : DbMigration
     {
         public override void Up()
         {
@@ -243,8 +243,8 @@
                         ReceiverId = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => new { t.SenderId, t.ReceiverId })
-                .ForeignKey("dbo.AspNetUsers", t => t.ReceiverId)
-                .ForeignKey("dbo.AspNetUsers", t => t.SenderId)
+                .ForeignKey("dbo.AspNetUsers", t => t.ReceiverId, cascadeDelete: false)
+                .ForeignKey("dbo.AspNetUsers", t => t.SenderId, cascadeDelete: false)
                 .Index(t => t.SenderId)
                 .Index(t => t.ReceiverId);
             
@@ -257,8 +257,8 @@
                         StartDate = c.DateTime(precision: 7, storeType: "datetime2"),
                     })
                 .PrimaryKey(t => new { t.SenderId, t.ReceiverId })
-                .ForeignKey("dbo.AspNetUsers", t => t.ReceiverId)
-                .ForeignKey("dbo.AspNetUsers", t => t.SenderId)
+                .ForeignKey("dbo.AspNetUsers", t => t.ReceiverId, cascadeDelete: false)
+                .ForeignKey("dbo.AspNetUsers", t => t.SenderId, cascadeDelete: false)
                 .Index(t => t.SenderId)
                 .Index(t => t.ReceiverId);
             
@@ -299,26 +299,70 @@
                         UserId = c.String(maxLength: 128),
                         Title = c.String(nullable: false, maxLength: 50),
                         EmploymentType = c.Int(),
-                        Headline = c.String(nullable: false, maxLength: 50),
+                        Organization_Id = c.Int(nullable: false),
+                        description = c.String(),
                     })
                 .PrimaryKey(t => t.ExperienceId)
                 .ForeignKey("dbo.Country", t => t.CountryName)
                 .ForeignKey("dbo.Experience", t => t.ExperienceId)
+                .ForeignKey("dbo.Organization", t => t.Organization_Id, cascadeDelete: true)
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId)
                 .Index(t => t.ExperienceId)
                 .Index(t => t.CountryName)
-                .Index(t => t.UserId);
+                .Index(t => t.UserId)
+                .Index(t => t.Organization_Id);
+            
+            CreateTable(
+                "dbo.Organization",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false, maxLength: 50),
+                        Logo = c.String(),
+                        Type = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.UserCertification",
+                c => new
+                    {
+                        UserId = c.String(nullable: false, maxLength: 128),
+                        CertificationId = c.Int(nullable: false),
+                        OrganizationId = c.Int(nullable: false),
+                        IssueDate = c.DateTime(precision: 7, storeType: "datetime2"),
+                        ExpirationDate = c.DateTime(precision: 7, storeType: "datetime2"),
+                        CredentialId = c.String(maxLength: 250),
+                        CredentialUrl = c.String(maxLength: 250),
+                    })
+                .PrimaryKey(t => new { t.UserId, t.CertificationId })
+                .ForeignKey("dbo.Certification", t => t.CertificationId, cascadeDelete: true)
+                .ForeignKey("dbo.Organization", t => t.OrganizationId, cascadeDelete: true)
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
+                .Index(t => t.UserId)
+                .Index(t => t.CertificationId)
+                .Index(t => t.OrganizationId);
+            
+            CreateTable(
+                "dbo.Certification",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false, maxLength: 100),
+                    })
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.Course",
                 c => new
                     {
-                        Number = c.Int(nullable: false, identity: true),
+                        Id = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false),
+                        Number = c.Int(nullable: false),
                         ExperienceId = c.Int(),
                         UserId = c.String(maxLength: 128),
                     })
-                .PrimaryKey(t => t.Number)
+                .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Experience", t => t.ExperienceId)
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId)
                 .Index(t => t.ExperienceId)
@@ -348,8 +392,9 @@
                 "dbo.Project",
                 c => new
                     {
+                        Id = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false, maxLength: 50),
-                        ExperienceId = c.Int(nullable: false),
+                        ExperienceId = c.Int(),
                         UserId = c.String(maxLength: 128),
                         StartDate = c.DateTime(precision: 7, storeType: "datetime2"),
                         EndDate = c.DateTime(precision: 7, storeType: "datetime2"),
@@ -357,8 +402,8 @@
                         Url = c.String(),
                         Description = c.String(),
                     })
-                .PrimaryKey(t => new { t.Name, t.ExperienceId })
-                .ForeignKey("dbo.Experience", t => t.ExperienceId, cascadeDelete: true)
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Experience", t => t.ExperienceId)
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId)
                 .Index(t => t.ExperienceId)
                 .Index(t => t.UserId);
@@ -400,7 +445,7 @@
                         TestName = c.String(),
                         UserId = c.String(maxLength: 128),
                         ExperienceId = c.Int(),
-                        Score = c.Int(nullable: false),
+                        Score = c.String(nullable: false),
                         TestDate = c.DateTime(precision: 7, storeType: "datetime2"),
                         Description = c.String(),
                     })
@@ -411,56 +456,17 @@
                 .Index(t => t.ExperienceId);
             
             CreateTable(
-                "dbo.UserCertification",
-                c => new
-                    {
-                        UserId = c.String(nullable: false, maxLength: 128),
-                        CertificationId = c.Int(nullable: false),
-                        OrganizationId = c.Int(nullable: false),
-                        IssueDate = c.DateTime(precision: 7, storeType: "datetime2"),
-                        ExpirationDate = c.DateTime(precision: 7, storeType: "datetime2"),
-                        CredentialId = c.String(maxLength: 250),
-                        CredentialUrl = c.String(maxLength: 250),
-                    })
-                .PrimaryKey(t => new { t.UserId, t.CertificationId })
-                .ForeignKey("dbo.Certification", t => t.CertificationId, cascadeDelete: true)
-                .ForeignKey("dbo.Organization", t => t.OrganizationId, cascadeDelete: true)
-                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
-                .Index(t => t.UserId)
-                .Index(t => t.CertificationId)
-                .Index(t => t.OrganizationId);
-            
-            CreateTable(
-                "dbo.Certification",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false, maxLength: 100),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "dbo.Organization",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false, maxLength: 50),
-                        Logo = c.String(),
-                        Type = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
                 "dbo.UserLanguage",
                 c => new
                     {
-                        UserId = c.String(nullable: false, maxLength: 128),
+                        Id = c.Int(nullable: false, identity: true),
+                        UserId = c.String(maxLength: 128),
                         LanguageId = c.Int(nullable: false),
                         Proficiency = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => new { t.UserId, t.LanguageId })
+                .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Language", t => t.LanguageId, cascadeDelete: true)
-                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId)
                 .Index(t => t.UserId)
                 .Index(t => t.LanguageId);
             
@@ -538,9 +544,6 @@
             DropForeignKey("dbo.UserSkill", "SkillId", "dbo.Skill");
             DropForeignKey("dbo.UserLanguage", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.UserLanguage", "LanguageId", "dbo.Language");
-            DropForeignKey("dbo.UserCertification", "UserId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.UserCertification", "OrganizationId", "dbo.Organization");
-            DropForeignKey("dbo.UserCertification", "CertificationId", "dbo.Certification");
             DropForeignKey("dbo.TestScore", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.TestScore", "ExperienceId", "dbo.Experience");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
@@ -553,6 +556,10 @@
             DropForeignKey("dbo.Course", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.Course", "ExperienceId", "dbo.Experience");
             DropForeignKey("dbo.AspNetUsers", "CountryName", "dbo.Country");
+            DropForeignKey("dbo.WorkExperience", "Organization_Id", "dbo.Organization");
+            DropForeignKey("dbo.UserCertification", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.UserCertification", "OrganizationId", "dbo.Organization");
+            DropForeignKey("dbo.UserCertification", "CertificationId", "dbo.Certification");
             DropForeignKey("dbo.WorkExperience", "ExperienceId", "dbo.Experience");
             DropForeignKey("dbo.WorkExperience", "CountryName", "dbo.Country");
             DropForeignKey("dbo.Patent", "UserId", "dbo.AspNetUsers");
@@ -590,9 +597,6 @@
             DropIndex("dbo.UserSkill", new[] { "UserId" });
             DropIndex("dbo.UserLanguage", new[] { "LanguageId" });
             DropIndex("dbo.UserLanguage", new[] { "UserId" });
-            DropIndex("dbo.UserCertification", new[] { "OrganizationId" });
-            DropIndex("dbo.UserCertification", new[] { "CertificationId" });
-            DropIndex("dbo.UserCertification", new[] { "UserId" });
             DropIndex("dbo.TestScore", new[] { "ExperienceId" });
             DropIndex("dbo.TestScore", new[] { "UserId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
@@ -603,6 +607,10 @@
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.Course", new[] { "UserId" });
             DropIndex("dbo.Course", new[] { "ExperienceId" });
+            DropIndex("dbo.UserCertification", new[] { "OrganizationId" });
+            DropIndex("dbo.UserCertification", new[] { "CertificationId" });
+            DropIndex("dbo.UserCertification", new[] { "UserId" });
+            DropIndex("dbo.WorkExperience", new[] { "Organization_Id" });
             DropIndex("dbo.WorkExperience", new[] { "UserId" });
             DropIndex("dbo.WorkExperience", new[] { "CountryName" });
             DropIndex("dbo.WorkExperience", new[] { "ExperienceId" });
@@ -649,9 +657,6 @@
             DropTable("dbo.UserSkill");
             DropTable("dbo.Language");
             DropTable("dbo.UserLanguage");
-            DropTable("dbo.Organization");
-            DropTable("dbo.Certification");
-            DropTable("dbo.UserCertification");
             DropTable("dbo.TestScore");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.Publication");
@@ -659,6 +664,9 @@
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.Industry");
             DropTable("dbo.Course");
+            DropTable("dbo.Certification");
+            DropTable("dbo.UserCertification");
+            DropTable("dbo.Organization");
             DropTable("dbo.WorkExperience");
             DropTable("dbo.Patent");
             DropTable("dbo.Country");
